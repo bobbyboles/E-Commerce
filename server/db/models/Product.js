@@ -7,7 +7,6 @@ const sequelize = require('sequelize');
 const Product = db.define('product', {
   productName: {
     type: Sequelize.STRING,
-    unique: true,
     allowNull: false
   },
   category: {

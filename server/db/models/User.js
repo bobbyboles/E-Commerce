@@ -34,16 +34,13 @@ const User = db.define('user', {
     allowNull: false
   },
   phone: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     unique: true,
     allowNull: false,
-    validate: {
-      min: 0,
-      max: 9999999999
-    }
   },
   isAdmin: {
-    default: false
+      type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 })
 
