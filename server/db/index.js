@@ -6,6 +6,8 @@ const User = require('./models/User')
 const Product = require('./models/Product')
 
 //associations could go here!
+// product.belongsTo(cart);
+// cart.hasMany(product)
 
 module.exports = {
   db,
