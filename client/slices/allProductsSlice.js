@@ -3,11 +3,9 @@ import axios from "axios";
 
 const initialState = [];
 
-export const fetchProductsAsync = createAsyncThunk(
-    "Products/fetchAll",
-    async () => {
+export const fetchProductsAsync = createAsyncThunk("allProducts", async () => {
         try {
-            const { data } = await axios.get("/api/products",) 
+            const { data } = await axios.get("/api/products") 
             return data;
         }
         catch (err) {
