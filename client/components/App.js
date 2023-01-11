@@ -9,6 +9,7 @@ import { me } from "../store/store";
 import MyAccount from "./MyAccount";
 import AboutUs from "./AboutUs";
 import { useState } from "react";
+import SingleProduct from "./SingleProduct";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -39,6 +40,7 @@ const App = () => {
                 />
                 <Route path="/aboutUs" element={<AboutUs />} />
                 <Route path="/account" element={<MyAccount />} />
+                <Route path='/products/:productId/' element={<SingleProduct/>} />
             </Routes>
         </>
     );
