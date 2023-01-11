@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 
-const initialState = {};
+const initialState = [];
 
 export const getCart = createAsyncThunk('cart', async () => {
     try{
@@ -17,7 +17,7 @@ export const getCart = createAsyncThunk('cart', async () => {
 const cartSlice = createSlice({
     name: 'cart slice',
     initialState,
-    reducers: {},
+    reducers: [],
     extraReducers: (builder) => {
       builder.addCase(getCart.fulfilled,(state, action)=>{
         return action.payload
