@@ -3,19 +3,11 @@ import axios from "axios";
 
 const initialState = [];
 
-// let user = JSON.parse(sessionStorage.getItem('user')) ? JSON.parse(sessionStorage.getItem('user')):{data:{
-
-//     id:0
-// }} 
-// const token = user.data.id;
-
-  // const token = window.localStorage.getItem('token');
-
 export const fetchProductsAsync = createAsyncThunk(
     "Products/fetchAll",
     async () => {
         try {
-            const { data } = await axios.get("/api/products");
+            const { data } = await axios.get("/api/products",) 
             return data;
         }
         catch (err) {
