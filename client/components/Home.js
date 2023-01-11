@@ -28,6 +28,7 @@ const Home = () => {
         display: "flex",
         flexDirection: "row",
         flexWrap: 'wrap',
+        gap: 35
     };
 
     return (
