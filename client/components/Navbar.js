@@ -46,7 +46,7 @@ const Navbar = () => {
                     ) : (
                         <Link to="/login">Login</Link>
                     )}
-                    <Badge color='secondary' overlap="rectangular" badgeContent={1}><ShoppingCartIcon/></Badge>
+                    <Link to='/cart'><Badge color='secondary' overlap="rectangular" badgeContent={1}><ShoppingCartIcon/></Badge></Link>
                 </div>
             </nav>
             <hr />
