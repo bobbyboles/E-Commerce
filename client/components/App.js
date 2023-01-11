@@ -10,6 +10,7 @@ import MyAccount from "./MyAccount";
 import AboutUs from "./AboutUs";
 import { useState } from "react";
 import SingleProduct from "./SingleProduct";
+import Cart from "./Cart";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -41,6 +42,7 @@ const App = () => {
                 <Route path="/aboutUs" element={<AboutUs />} />
                 <Route path="/account" element={<MyAccount />} />
                 <Route path='/products/:productId/' element={<SingleProduct/>} />
+                <Route path="/cart" element={<Cart />} />
             </Routes>
         </>
     );
