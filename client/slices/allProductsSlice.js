@@ -12,13 +12,26 @@ export const fetchProductsAsync = createAsyncThunk("Products/fetchAll", async ()
     }
   });
 
+  export const getSingleProduct = createAsyncThunk('product', async (id) => {
+    try{
+        let {data} = await axios.get(`http://localhost:8080/api/products/${id}`)
+        return data
+    } catch (err){
+        alert('error has occurred, check console')
+        console.log('error has occurred, check console', err.message)
+    }
+  })
+
 const allProductsSlice = createSlice({
     name: 'products',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchProductsAsync.fulfilled, (state, action) => {
-          return action.payload;
+        return action.payload;
+        });
+      builder.addCase(getSingleProduct.fulfilled,(state, action)=>{
+        return action.payload
         });
     }
 })
