@@ -7,9 +7,10 @@ export const fetchProductsAsync = createAsyncThunk(
     "Products/fetchAll",
     async () => {
         try {
-            const { data } = await axios.get("/api/products");
+            const { data } = await axios.get("/api/products", {headers:{ 'Authorization' : 'Bearer check' }});
             return data;
-        } catch (err) {
+        }
+        catch (err) {
             console.log(err);
         }
     }
