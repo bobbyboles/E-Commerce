@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 
-const initialState = {};
+const initialState = [];
 
 export const getCart = createAsyncThunk('cart', async () => {
     try{
@@ -14,19 +14,34 @@ export const getCart = createAsyncThunk('cart', async () => {
     }
 })
 
+export const addProductToCart = createAsyncThunk('cart', async (id) => {
+    try{
+        let {data} = await axios.get(`http://localhost:8080/api/cart${id}`)
+        return data
+    } catch (err){
+        alert('error has occurred, check console')
+        console.log('error has occurred, check console', err.message)
+    }
+})
+
 const cartSlice = createSlice({
     name: 'cart slice',
     initialState,
-    reducers: {},
+    reducers: {
+        addToCart(state, action) {
+            state.push(action.payload)
+        }
+    },
     extraReducers: (builder) => {
       builder.addCase(getCart.fulfilled,(state, action)=>{
         return action.payload
         });
     }
 })
+export const {addToCart} = cartSlice.actions;
 
 export const selectGetCart = (state) => {
-    return state.getCart;
+    return state.cart;
 }
 
 export default cartSlice.reducer;

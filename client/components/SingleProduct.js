@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectSingleProduct, getSingleProduct } from "../slices/singleProductSlice";
+import { addToCart } from "../slices/cartSlice";
 
 const SingleProduct = () => {
     //this useState is ONLY for quantity counter
@@ -41,7 +42,7 @@ const SingleProduct = () => {
                 <h3>Price: {price}</h3>
                 <h3>Category: {category}</h3>
                 <p>Details: {description}</p>
-                <button>Add to Cart</button>
+                <button onClick={()=> dispatch(addToCart(singleProduct))}>Add to Cart</button>
                 
                 <div className="quantityCounter">
                     <h3>Quantity:</h3>
