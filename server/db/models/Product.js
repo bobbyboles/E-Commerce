@@ -1,8 +1,5 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
-// const jwt = require('jsonwebtoken')
-// const bcrypt = require('bcrypt');
-const sequelize = require('sequelize');
 
 const Product = db.define('product', {
   productName: {
