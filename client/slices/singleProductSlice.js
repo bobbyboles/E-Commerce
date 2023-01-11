@@ -5,6 +5,8 @@ const initialState = {};
 
 export const getSingleProduct = createAsyncThunk('singleProduct', async (id) => {
   try{
+      let {data} = await axios.get(`/api/products/${id}`)
+
       const { data } = await axios.get(`/api/products/${id}`)
       //console.log('Single Product Data:',data)
       return data
