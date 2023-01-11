@@ -1,17 +1,21 @@
 import React from "react";
 import Navbar from "./Navbar";
-import { Route, Routes } from 'react-router-dom';
-import Home from './Home';
+import { Route, Routes } from "react-router-dom";
+import Home from "./Home";
 import AuthForm from "./AuthForm";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { me } from '../store/store';
+import { me } from "../store/store";
+import MyAccount from "./MyAccount";
+import AboutUs from "./AboutUs";
+import { useState } from "react";
 
 const App = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const [loginToAccount, setLoginToAccount] = useState(false);
 
     useEffect(() => {
-        dispatch(me())
+        dispatch(me());
     }, []);
 
     return (
@@ -22,7 +26,19 @@ const App = () => {
             <Routes>
                 <Route path="/*" element={<Home />} />
                 <Route to="/home" element={<Home />} />
-                <Route path="/login" element={<AuthForm name="login" displayName="Login" />}/>
+                <Route
+                    path="/login"
+                    element={
+                        <AuthForm
+                            name="login"
+                            displayName="Login"
+                            loginToAccount={loginToAccount}
+                            setLoginToAccount={setLoginToAccount}
+                        />
+                    }
+                />
+                <Route path="/aboutUs" element={<AboutUs />} />
+                <Route path="/account" element={<MyAccount />} />
             </Routes>
         </>
     );
