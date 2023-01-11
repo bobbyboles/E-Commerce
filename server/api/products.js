@@ -13,10 +13,11 @@ router.get("/", async (req, res, next) => {
     }
 });
 
-router.get("/:id", async (req, res, next) => {
+router.get("/:productId", async (req, res, next) => {
     try {
-        const products = await Product.findByPk(req.params.id);
-        res.send(products);
+        const product = await Product.findByPk(req.params.productId);
+        //console.log(product)
+        res.send(product);
     } catch (err) {
         next(err);
     }
