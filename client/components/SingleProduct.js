@@ -45,10 +45,10 @@ const SingleProduct = () => {
                 
                 <div className="quantityCounter">
                     <h3>Quantity:</h3>
-                    <span className="quantityOutput">{counter}</span>
                     <div className="btn-container">
-                        <button className="control__btn" onClick={increase}>+</button>
                         <button className="control__btn" onClick={decrease}>-</button>
+                        <span className="quantityOutput"> { counter } </span>
+                        <button className="control__btn" onClick={increase}>+</button>
                     </div>
                 </div>
 
