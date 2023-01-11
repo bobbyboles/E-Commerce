@@ -26,7 +26,7 @@ const Product = db.define('product', {
   },
   imageUrl: {
     type:Sequelize.TEXT,
-    defaultValue: 'https://cdn.shopify.com/s/files/1/0559/6345/1567/products/VGP-SNESC-3.jpg?v=1635936112'
+    defaultValue:'defaultProduct.png' 
   }
 })
 
