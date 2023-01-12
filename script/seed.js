@@ -1,6 +1,6 @@
 const {
     db,
-    models: { User, Product },
+    models: { User, Product, Cart },
 } = require("../server/db");
 const _ = require("lodash");
 const { faker } = require("@faker-js/faker");

@@ -5,7 +5,7 @@ const initialState = [];
 
 export const getAllUsers = createAsyncThunk("allUsers", async () => {
     try {
-      const { data } = await axios.get('/api/users');
+        const { data } = await axios.get('/api/users',);
       return data;
     } catch (err) {
       console.log(err);
