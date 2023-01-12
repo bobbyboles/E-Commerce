@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import SingleProduct from "./SingleProduct";
-import { getCart, selectGetCart } from "../slices/cartSlice";
-import { useEffect } from "react";
+import { selectGetCart, deleteCart, removeFromCart } from "../slices/cartSlice";
+import { Link } from "react-router-dom";
+
 
 export const Cart = () => {
     const dispatch = useDispatch();
@@ -30,6 +30,10 @@ export const Cart = () => {
         );
     });
 
+    const deleteButton = (id) => {
+        dispatch(removeFromCart(id))
+    }
+
     return (
         <div id="cart_container">
             <div id="product_container">
@@ -43,13 +47,21 @@ export const Cart = () => {
                     ? uniqueArray.map((product) => {
                           return (
                               <div className="cart" key={product.id}>
-                                  <h2>{product.productName}</h2>
-                                  <h3>{product.price}</h3>
-                                  <h4>{product.count}</h4>
+                                <h2 id = "product" key={product.id}>
+                                    <Link
+                                        to={`/products/${product.id}`}
+                                        key={`All Products: ${product.id}`}
+                                    >{product.productName}
+                                    </Link>
+                                </h2>
+                                <h3>Price: {product.price*product.count}</h3>
+                                <h4>Quantity: {product.count}</h4>
+                                <button onClick = {() => deleteButton(product.id)} > REMOVE </button>
                               </div>
                           );
                       })
-                    : null}
+                    : 'There is nothing in your cart!'}
+                <button>Checkout</button>
             </div>
         </div>
     );

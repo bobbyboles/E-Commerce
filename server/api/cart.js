@@ -41,6 +41,7 @@ router.put("/:id", async (req, res, next) => {
 
 router.delete("/:id", async (req, res, next) => {
     try {
+        console.log(req.params.id)
         const cart = await Cart.findByPk(req.params.id);
         cart.destroy();
         res.send(cart);
