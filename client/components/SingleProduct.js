@@ -6,15 +6,20 @@ import {
     getSingleProduct,
 } from "../slices/singleProductSlice";
 import { addToCart } from "../slices/cartSlice";
+import { selectGetCart } from "../slices/cartSlice";
+import { addProductToCart } from "../slices/singleCartDatabaseSlice";
 
 const SingleProduct = () => {
-    //this useState is ONLY for quantity counter
-    const [counter, setCounter] = useState(1);
+    //this useState is ONLY for quantity quantity
+    const [quantity, setQuantity] = useState(1);
 
     const { productId } = useParams();
     const dispatch = useDispatch();
 
     const singleProduct = useSelector(selectSingleProduct);
+    const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+    const userId = useSelector((state) => state.auth.me.id);
+    const cartState = useSelector(selectGetCart)
 
     const {
         id,
@@ -36,12 +41,27 @@ const SingleProduct = () => {
 
     //Quantity Counter Logic
     const increase = () => {
-        setCounter((count) => count + 1);
+        setQuantity((count) => count + 1);
     };
 
     const decrease = () => {
-        if (counter > 0) {
-            setCounter((count) => count - 1);
+        if (quantity > 0) {
+            setQuantity((count) => count - 1);
+        }
+    };
+ 
+
+    const handleAddToCart = (quantity, userId, productId) => {
+        if (isLoggedIn && userId) {
+            dispatch(addProductToCart({ quantity, userId, productId }));
+            [...Array(quantity)].forEach(() =>
+               dispatch(addToCart(singleProduct))
+            );
+        } else {
+            [...Array(quantity)].forEach(() =>
+                dispatch(addToCart(singleProduct))
+            );
+            console.log(cartState)
         }
     };
 
@@ -54,10 +74,7 @@ const SingleProduct = () => {
                 <h3>Category: {category}</h3>
                 <p>Details: {description}</p>
                 <button
-                    onClick={() =>
-                        [...Array(counter)].forEach(() =>
-                            dispatch(addToCart(singleProduct))
-                        )
+                    onClick={()=> handleAddToCart(quantity, userId, productId)
                     }
                 >
                     Add to Cart
@@ -69,7 +86,7 @@ const SingleProduct = () => {
                         <button className="control__btn" onClick={decrease}>
                             -
                         </button>
-                        <span className="quantityOutput"> {counter} </span>
+                        <span className="quantityOutput"> {quantity} </span>
                         <button className="control__btn" onClick={increase}>
                             +
                         </button>

@@ -29,6 +29,7 @@ export const Cart = () => {
             })
         );
     });
+    console.log(uniqueArray)
 
     const deleteButton = (id) => {
         dispatch(removeFromCart(id))

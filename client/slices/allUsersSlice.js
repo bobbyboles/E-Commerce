@@ -3,9 +3,11 @@ import axios from "axios";
 
 const initialState = [];
 
+
 export const getAllUsers = createAsyncThunk("allUsers", async () => {
     try {
-        const { data } = await axios.get('/api/users',);
+  const token = window.localStorage.getItem('token');
+        const { data } = await axios.get('/api/users', {headers: {authorization: token}});
       return data;
     } catch (err) {
       console.log(err);
@@ -13,7 +15,7 @@ export const getAllUsers = createAsyncThunk("allUsers", async () => {
   });
 
 const allUsersSlice = createSlice({
-name: 'allUsers',
+name:  'allUsers',
 initialState,
 reducers: {},
 extraReducers: (builder) => {
