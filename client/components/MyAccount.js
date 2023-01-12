@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
 import { me } from '../store/store';
 import { useSelector, useDispatch } from "react-redux";
-import { getSingleUser, selectSingleUser } from "../slices/singleUserSlice";
+import { getSingleUser } from "../slices/singleUserSlice";
 import EditUserInfoForm from "./EditUserInfoForm";
 
 const MyAccount = () => {

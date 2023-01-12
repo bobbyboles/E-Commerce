@@ -13,11 +13,9 @@ export const getSingleUser = createAsyncThunk("singleUser", async (id) => {
     }
   });
 
-export const editSingleUser = createAsyncThunk("singleUser/edit", async (singleUser) => {
+export const editSingleUser = createAsyncThunk("singleUser/edit", async ({id, username, password, firstName, lastName, email, address, phone}) => {
   try {
-    const { username, password, firstName, lastName, email, address, phone} = singleUser
-    const updatedUser = {username, password, firstName, lastName, email, address, phone}
-    const { data } = await axios.put(`/api/users/${id}`, updatedUser);
+    const { data } = await axios.put(`/api/users/${id}`, {username, password, firstName, lastName, email, address, phone});
     return data;
   } catch (err) {
     console.log(err);

@@ -4,41 +4,46 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectSingleUser, editSingleUser } from "../slices/singleUserSlice";
 
 const EditUserForm = () => {
-    // const [username, setUserName] = useState("");
-    // const [password, setPassword] = useState("");
-    // const [firstName, setFirstName] = useState("");
-    // const [lastName, setLastName] = useState("");
-    // const [email, setEmail] = useState("");
-    // const [address, setAddress] = useState("");
-    // const [phone, setPhone] = useState("");
+    const [username, setUserName] = useState("");
+    const [password, setPassword] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [address, setAddress] = useState("");
+    const [phone, setPhone] = useState("");
 
     const singleUser = useSelector(selectSingleUser);
-    const {username, password, firstName, lastName, email, address, phone} = singleUser
     console.log('single User info:', singleUser)
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    useEffect(() => {
+            setUserName(singleUser.username)
+            setPassword(singleUser.password)
+            setFirstName(singleUser.firstName)
+            setLastName(singleUser.lastName)
+            setEmail(singleUser.email)
+            setAddress(singleUser.address)
+            setPhone(singleUser.phone)
+
+        }, [
+            singleUser.username,
+            singleUser.password,
+            singleUser.firstName,
+            singleUser.lastName,
+            singleUser.email,
+            singleUser.address,
+            singleUser.phone
+        ])
+
+    const id = singleUser.id
+
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        const updatedSingleUser = {username, password, firstName, lastName, email, address, phone}
-        dispatch(editSingleUser(updatedSingleUser))
-        navigate('/')
-      };
-
-    // useEffect(() => {
-    //     dispatch((res => {
-    //         const {username, password, firstName, lastName, email, address, phone} = res.payload
-    //         setUserName(username)
-    //         setPassword(password)
-    //         setFirstName(firstName)
-    //         setLastName(lastName)
-    //         setEmail(email)
-    //         setAddress(address)
-    //         setPhone(phone)
-
-    //     }))
-    // }, [])
+        dispatch(editSingleUser({id, username, password, firstName, lastName, email, address, phone}))
+        navigate('/account')
+        };
 
     return (
         <>
