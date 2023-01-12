@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import axios from "axios";
 import { current } from "@reduxjs/toolkit";
 
@@ -9,14 +9,19 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         addToCart(state, action) {
-            state.push(action.payload);
+            state.push(action.payload)
         },
+        removeFromCart(state, action) {
+            console.log(current(state))
+            return state.filter(product => {
+                return product.id !== action.payload})
+        }
     },
-    extraReducers: (builder) => {
+    extraReducers: (builder) => {}
+    }
+})
 
-    },
-});
-export const { addToCart } = cartSlice.actions;
+export const {addToCart, removeFromCart} = cartSlice.actions;
 
 export const selectGetCart = (state) => {
     return state.cart;

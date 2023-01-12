@@ -2,20 +2,6 @@ const router = require('express').Router()
 const { models: { User, Cart, Product}} = require('../db')
 
 
-// router.get('/', async (req, res, next) => {
-//   try {
-//     const users = await User.findAll({
-//       // explicitly select only the id and username fields - even though
-//       // users' passwords are encrypted, it won't help if we just
-//       // send everything to anyone who asks!
-//       attributes: ['id', 'username']
-//     })
-//     res.json(users)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
-
 router.get('/', async (req, res, next) => {
   try{
    const loggedInUser = await User.findByToken(req.headers.authorization) 
@@ -52,8 +38,8 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async(req, res, next) => {
   try{
-      const users = await User.findByPk(req.params.id)
-      res.send(await users.update(req.body))
+      const user = await User.findByPk(req.params.id)
+      res.send(await user.update(req.body))
   } catch(err) {
       next(err)
   }
