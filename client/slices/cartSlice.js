@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import axios from "axios";
 
 
@@ -24,21 +24,41 @@ export const addProductToCart = createAsyncThunk('cart', async (id) => {
     }
 })
 
+export const deleteCart = createAsyncThunk('deleteCart', async (id) => {
+    try{
+        let {data} = await axios.delete(`http://localhost:8080/api/cart/${id}`)
+        return data
+    } catch (err){
+        err('error')
+    }
+})
+
 const cartSlice = createSlice({
     name: 'cart slice',
     initialState,
     reducers: {
         addToCart(state, action) {
             state.push(action.payload)
+        },
+        removeFromCart(state, action) {
+            console.log(current(state))
+            return state.filter(product => {
+                return product.id !== action.payload})
         }
     },
     extraReducers: (builder) => {
       builder.addCase(getCart.fulfilled,(state, action)=>{
         return action.payload
         });
+      builder.addCase(deleteCart.fulfilled,(state, action)=>{
+        console.log(action)
+        console.log(state)
+        // state = state.filter(product => )
+        })
     }
 })
-export const {addToCart} = cartSlice.actions;
+
+export const {addToCart, removeFromCart} = cartSlice.actions;
 
 export const selectGetCart = (state) => {
     return state.cart;
