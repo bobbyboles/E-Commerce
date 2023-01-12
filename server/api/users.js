@@ -44,8 +44,8 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async(req, res, next) => {
   try{
-      const users = await User.findByPk(req.params.id)
-      res.send(await users.update(req.body))
+      const user = await User.findByPk(req.params.id)
+      res.send(await user.update(req.body))
   } catch(err) {
       next(err)
   }
