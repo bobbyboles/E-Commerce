@@ -8,6 +8,7 @@ import {
     sortByPriceHighLow,
     sortByPriceLowHigh,
 } from "../slices/allProductsSlice";
+import { getAllUsers } from "../slices/allUsersSlice";
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(fetchProductsAsync());
+        dispatch(getAllUsers())
     }, [dispatch]);
 
     const handleSort = ({ target: { value } }) => {

@@ -29,6 +29,7 @@ export const Cart = () => {
             })
         );
     });
+    console.log(uniqueArray)
 
     return (
         <div id="cart_container">

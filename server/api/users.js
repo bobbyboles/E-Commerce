@@ -1,5 +1,6 @@
 const router = require('express').Router()
-const { models: { User }} = require('../db')
+const { models: { User, Cart, Product}} = require('../db')
+
 
 // router.get('/', async (req, res, next) => {
 //   try {
@@ -17,8 +18,10 @@ const { models: { User }} = require('../db')
 
 router.get('/', async (req, res, next) => {
   try{
+   const loggedInUser = await User.findByToken(req.headers.authorization) 
+    console.log(loggedInUser)
       const users = await User.findAll({})
-      res.send(users)
+      if(loggedInUser.isAdmin)res.send(users)
   } catch (err){
       next (err)
   }
@@ -26,8 +29,13 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try{
-      const users = await User.findByPk(req.params.id)
-      res.send(users)
+      const user = await User.findOne({
+          where:{
+              id : req.params.id
+          },
+          include: Product
+      })
+      res.send(user)
   } catch (err){
       next (err)
   }
