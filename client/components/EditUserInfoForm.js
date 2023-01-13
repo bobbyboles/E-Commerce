@@ -13,7 +13,7 @@ const EditUserForm = () => {
     const [phone, setPhone] = useState("");
 
     const singleUser = useSelector(selectSingleUser);
-    console.log('single User info:', singleUser)
+    //console.log('single User info:', singleUser)
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -48,6 +48,8 @@ const EditUserForm = () => {
     return (
         <>
             <form id="edit-user-form" onSubmit={handleSubmit}>
+            <h3>View/Edit Account Information: </h3>
+
                 <label htmlFor="username">User Name:</label>
                 <input
                 name="username"
