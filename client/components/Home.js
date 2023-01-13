@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchProductsAsync, selectProducts } from "../slices/allProductsSlice";
+import { fetchProductsAsync, selectProducts, deleteProductAsync } from "../slices/allProductsSlice";
 import {
     sortAZ,
     sortZA,
@@ -75,6 +75,7 @@ const Home = () => {
                                       <h2>{product.productName}</h2>
                                       <h3>{product.price}</h3>
                                   </Link>
+                                  {user.isAdmin && <button onClick={() => {dispatch(deleteProductAsync(product.id))}}>Delete</button>}
                               </div>
                           );
                       })

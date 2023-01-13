@@ -7,10 +7,11 @@ import { getAllUsers } from "../slices/allUsersSlice";
 import { selectUsers } from "../slices/allUsersSlice";
 import AddProductForm from "./AddProductForm";
 import AddUserForm from "./AddUserForm";
+import AdminViewUsers from "./AdminViewUsers";
 
 const MyAccount = () => {
     const userId = useSelector((state) => state.auth.me.id);
-    const user = useSelector(getSingleUser)
+    //const user = useSelector(getSingleUser)
 
     const dispatch = useDispatch();
     const users = useSelector(selectUsers)
@@ -34,9 +35,10 @@ const MyAccount = () => {
 
         {(singleUser.isAdmin ? 
           <>
-            <h4>Admin Options:</h4>
+            <h4>Admin Dashboard:</h4>
             <div><AddProductForm /></div>
             <div><AddUserForm /></div>
+            <div><AdminViewUsers /></div>
           </>  
         : null)}
         
