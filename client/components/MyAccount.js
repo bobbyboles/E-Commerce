@@ -20,7 +20,6 @@ const MyAccount = () => {
 
     useEffect(() => {
 
-        dispatch(getSingleUser(userId));
         dispatch(getAllUsers())
     }, [dispatch, userId]);
 
