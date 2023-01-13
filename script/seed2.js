@@ -16,6 +16,25 @@ async function seed() {
             quantity:1,
             completed: false
         })
+                await User.create({
+                    username: 'admin' , 
+                    password: "password",
+                    firstName: faker.name.firstName(),
+                    lastName: faker.name.lastName(),
+                    email: faker.internet.email(),
+                    address: faker.address
+                        .streetAddress()
+                        .concat(
+                            " ",
+                            faker.address.cityName(),
+                            " ",
+                            faker.address.state(),
+                            " ",
+                            faker.address.zipCode()
+                        ),
+                    phone: faker.phone.number(),
+                    isAdmin: true
+                })
 }
 async function runSeed() {
     console.log("seeding...");
