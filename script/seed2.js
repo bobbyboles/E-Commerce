@@ -16,7 +16,7 @@ async function seed() {
             quantity:1,
             completed: false
         })
-
+        
         await User.create({
             username: 'admin' , 
             password: "password",
@@ -37,6 +37,7 @@ async function seed() {
             isAdmin: true
         })
 }
+
 async function runSeed() {
     console.log("seeding...");
     try {

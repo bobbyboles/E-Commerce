@@ -3,20 +3,27 @@ import { me } from '../store/store';
 import { useSelector, useDispatch } from "react-redux";
 import { getSingleUser, selectSingleUser } from "../slices/singleUserSlice";
 import EditUserInfoForm from "./EditUserInfoForm";
+import { getAllUsers } from "../slices/allUsersSlice";
+import { selectUsers } from "../slices/allUsersSlice";
 import AddProductForm from "./AddProductForm";
 import AddUserForm from "./AddUserForm";
 
 const MyAccount = () => {
     const userId = useSelector((state) => state.auth.me.id);
-    console.log('My Id is', userId)
+    const user = useSelector(getSingleUser)
 
     const dispatch = useDispatch();
+    const users = useSelector(selectUsers)
 
     const singleUser = useSelector(selectSingleUser);
 
     useEffect(() => {
+
         dispatch(getSingleUser(userId));
+        dispatch(getAllUsers())
     }, [dispatch, userId]);
+
+    console.log("This is the Users", users)
     
     return(
       <div id='myAccount'>

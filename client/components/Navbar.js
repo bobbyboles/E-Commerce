@@ -31,7 +31,7 @@ const Navbar = () => {
                 <div style={basicNavStyle}>
                     <Link to="/home">
                         <img
-                            src="retrogaming.png"
+                            src="/logo/retrogaming.png"
                             style={{ height: 50, width: 100 }}
                         />
                     </Link>
