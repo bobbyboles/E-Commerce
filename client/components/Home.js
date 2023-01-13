@@ -40,13 +40,6 @@ const Home = () => {
         gap: 35,
     };
 
-    if (isLoggedIn && user.products && cartState.length < 1) {
-        user.products.map((product) => {
-            [...Array(product.cart.quantity)].forEach(() => {
-                dispatch(addToCart(product));
-            });
-        });
-    }
 
     return (
         <div>
