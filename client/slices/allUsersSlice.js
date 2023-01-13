@@ -14,6 +14,15 @@ export const getAllUsers = createAsyncThunk("allUsers", async () => {
     }
   });
 
+export const addUserAsync = createAsyncThunk("allUsers/addUser", async (addUser) => {
+  try {
+    const { data } = await axios.post('/api/users', addUser);
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 const allUsersSlice = createSlice({
 name:  'allUsers',
 initialState,
@@ -22,6 +31,9 @@ extraReducers: (builder) => {
     builder.addCase(getAllUsers.fulfilled, (state, action) => {
         return action.payload;
     });
+    builder.addCase(addUserAsync.fulfilled, (state, action) => {
+      return action.payload;
+  });
   }
 })
 

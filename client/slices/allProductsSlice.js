@@ -14,6 +14,15 @@ export const fetchProductsAsync = createAsyncThunk("allProducts", async () => {
     }
 );
 
+export const addProductAsync = createAsyncThunk("allProducts/addProduct", async (addProduct) => {
+    try {
+      const { data } = await axios.post('/api/products', addProduct);
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  });
+
 const allProductsSlice = createSlice({
     name: "products",
     initialState,
@@ -40,6 +49,9 @@ const allProductsSlice = createSlice({
         builder.addCase(fetchProductsAsync.fulfilled, (state, action) => {
             return action.payload;
         });
+        builder.addCase(addProductAsync.fulfilled, (state, action) => {
+            state.push(action.payload);
+          });
     },
 });
 
