@@ -5,10 +5,15 @@ import { logout } from "../store/store";
 import { Badge } from "@material-ui/core";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { selectGetCart } from "../slices/cartSlice";
+import { useEffect } from "react";
+import { selectSingleUser, getSingleUser } from "../slices/singleUserSlice";
+import { addToCart } from "../slices/cartSlice";
 
 const Navbar = () => {
     const cartNum = useSelector(selectGetCart);
     const username = useSelector((state) => state.auth.me.username);
+    const userId = useSelector((state)=> state.auth.me.id)
+    const user = useSelector(selectSingleUser)
     const isLoggedIn = useSelector((state) => !!state.auth.me.id);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -24,6 +29,18 @@ const Navbar = () => {
         height: 60,
         margin: 10,
     };
+    useEffect(() => {
+        if(userId)dispatch(getSingleUser(userId));
+    }, [dispatch, userId]);
+
+    console.log(isLoggedIn, user, cartNum)
+    if (isLoggedIn && user.products && cartNum.length < 1) {
+        user.products.map((product) => {
+            [...Array(product.cart.quantity)].forEach(() => {
+                dispatch(addToCart(product));
+            });
+        });
+    }
 
     return (
         <div>

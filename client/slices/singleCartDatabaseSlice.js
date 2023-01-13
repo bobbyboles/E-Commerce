@@ -32,7 +32,7 @@ export const getMyCart = createAsyncThunk('myCart', async (userId) => {
 })
 export const editProductInCart = createAsyncThunk("singleUser/edit", async ({id, userId, productId, quantity, completed}) => {
   try {
-    const { data } = await axios.put(`/api/cart/${id}`, {userId, productId, quantity, completed});
+      const { data } = await axios.put(`/api/cart/${id}`, {userId, productId, quantity, completed});
     return data;
   } catch (err) {
     console.log(err);
