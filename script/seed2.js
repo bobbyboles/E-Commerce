@@ -10,12 +10,6 @@ async function seed() {
     await db.sync(); 
     console.log("db synced!");
 
-        await Cart.create({
-            userId:1,
-            productId:1,
-            quantity:1,
-            completed: false
-        })
 
         // Begin Real Seed Data
         //SNES Start
@@ -407,6 +401,12 @@ async function seed() {
                 ),
             phone: faker.phone.number(),
             isAdmin: true
+        })
+        await Cart.create({
+            userId:1,
+            productId:1,
+            quantity:1,
+            completed: false
         })
 }
 
