@@ -92,6 +92,7 @@ const SingleProduct = () => {
 
     return (
         <div id="single-product">
+
             <div id="single-product-info"> 
                 <img src={`/${imageUrl}`} />
                 
