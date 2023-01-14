@@ -68,7 +68,7 @@ const SingleProduct = () => {
     return (
         <div id="single-product">
             <div id="single-product-info">
-                <img src={`/${imageUrl}`} />
+                <img src={`${imageUrl}`} /> 
                 <h1>{productName}</h1>
                 <h3>Price: {price}</h3>
                 <h3>Category: {category}</h3>
