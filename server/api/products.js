@@ -33,8 +33,8 @@ router.post("/", async (req, res, next) => {
 
 router.put("/:id", async (req, res, next) => {
     try {
-        const products = await Product.findByPk(req.params.id);
-        res.send(await products.update(req.body));
+        const product = await Product.findByPk(req.params.id);
+        res.send(await product.update(req.body));
     } catch (err) {
         next(err);
     }

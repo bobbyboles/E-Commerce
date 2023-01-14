@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { authenticate } from "../store/store";
 import { useNavigate } from "react-router-dom";
-
+import  AddUserForm from './AddUserForm'
 /**
   The AuthForm component can be used for Login or Sign Up.
   Props for Login: name="login", displayName="Login"
@@ -42,6 +42,7 @@ const AuthForm = ({ name, displayName }) => {
                     <button type="submit">{displayName}</button>
                 </div>
             </form>
+            <div><AddUserForm /></div>
         </div>
     );
 };

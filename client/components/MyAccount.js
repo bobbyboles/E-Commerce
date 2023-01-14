@@ -36,7 +36,6 @@ const MyAccount = () => {
           <>
             <h4>Admin Dashboard:</h4>
             <div><AddProductForm /></div>
-            <div><AddUserForm /></div>
             <div><AdminViewUsers /></div>
           </>  
         : null)}
