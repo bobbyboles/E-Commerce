@@ -10,7 +10,6 @@ import  AddUserForm from './AddUserForm'
 **/
 
 const AuthForm = ({ name, displayName }) => {
-    const { error } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
     const nav = useNavigate();
 

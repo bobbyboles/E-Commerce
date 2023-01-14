@@ -61,31 +61,29 @@ const SingleProduct = () => {
 
     const isAlreadyInCart = (cart, _productId) =>{
         for(const item of cart){
-            console.log('this is the item.productId', item.productId, 'this is the productId from params', _productId)
-            if(item.productId == _productId )return [item.id, item.quantity] 
+            if(item.id == _productId )return [item.id, item.quantity] 
              else return false
         }
     }
+
     const handleAddToCart = (quantity, userId, productId, userCart) => {
-        console.log(isAlreadyInCart(userCart, productId))
         if (isLoggedIn && userId && isAlreadyInCart(userCart, productId) ) {
-            console.log('fire');
             const [id, cartQuantity] = isAlreadyInCart(userCart, productId);
             quantity+= cartQuantity
             dispatch(editProductInCart({id, userId, productId, quantity}));
             quantity-= cartQuantity;
-            [...Array(quantity)].forEach(() =>
-                dispatch(addToCart(singleProduct))
-            );
+            const newProduct = JSON.parse(JSON.stringify(singleProduct))
+            newProduct['count'] = quantity
+            dispatch(addToCart(newProduct))
         } else if(isLoggedIn && userId ) {
             dispatch(addProductToCart({userId, productId, quantity}));
-            [...Array(quantity)].forEach(() =>
-                dispatch(addToCart(singleProduct))
-            );
+            const newProduct = JSON.parse(JSON.stringify(singleProduct))
+            newProduct['count'] = quantity
+            dispatch(addToCart(newProduct))
         } else{
-            [...Array(quantity)].forEach(() =>
-                dispatch(addToCart(singleProduct))
-            );
+            const newProduct = JSON.parse(JSON.stringify(singleProduct))
+            newProduct['count'] = quantity
+            dispatch(addToCart(newProduct))
 
         }
     };

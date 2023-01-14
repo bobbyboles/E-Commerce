@@ -5,7 +5,7 @@ import { selectSingleUser, editSingleUser } from "../slices/singleUserSlice";
 
 const EditUserForm = () => {
     const [username, setUserName] = useState("");
-    const [password, setPassword] = useState("");
+    const [password, setPassword] = useState("********");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -20,7 +20,6 @@ const EditUserForm = () => {
 
     useEffect(() => {
             setUserName(singleUser.username)
-            setPassword(singleUser.password)
             setFirstName(singleUser.firstName)
             setLastName(singleUser.lastName)
             setEmail(singleUser.email)
@@ -60,7 +59,7 @@ const EditUserForm = () => {
                 <label htmlFor="password">Password:</label>
                 <input
                 name="password"
-                value={''}
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 />
 

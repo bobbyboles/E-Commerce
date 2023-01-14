@@ -7,6 +7,16 @@ const cartSlice = createSlice({
     name: "cart slice",
     initialState,
     reducers: {
+        addToQuantity(state, action){
+             state.map(product => {
+                if(action.payload.id == product.id) product.count++
+            })
+        },
+        removeToQuantity(state, action){
+             state.map(product => {
+                if(action.payload.id == product.id) product.count--
+            })
+        },
         addToCart(state, action) {
             state.push(action.payload)
         },
@@ -19,7 +29,7 @@ const cartSlice = createSlice({
     }
 )
 
-export const {addToCart, removeFromCart} = cartSlice.actions;
+export const {addToCart, removeFromCart, addToQuantity, removeToQuantity} = cartSlice.actions;
 
 export const selectGetCart = (state) => {
     return state.cart;
