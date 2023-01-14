@@ -387,11 +387,8 @@ async function seed() {
         
         // END XBOX
         
-        
-        
-        
-        
         //End Real Seed Data
+
         await User.create({
             username: 'admin' , 
             password: "password",
@@ -412,8 +409,6 @@ async function seed() {
             isAdmin: true
         })
 }
-
-
 
 async function runSeed() {
     console.log("seeding...");

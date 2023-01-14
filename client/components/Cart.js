@@ -55,7 +55,7 @@ export const Cart = () => {
                                     >{product.productName}
                                     </Link>
                                 </h2>
-                                <h3>Price: {product.price*product.count}</h3>
+                                <h3>Price: {(product.price*product.count).toFixed(2)}</h3>
                                 <h4>Quantity: {product.count}</h4>
                                 <button onClick = {() => deleteButton(product.id)} > REMOVE </button>
                               </div>

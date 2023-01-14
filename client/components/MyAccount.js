@@ -1,29 +1,46 @@
 import React, { useEffect } from "react";
 import { me } from '../store/store';
 import { useSelector, useDispatch } from "react-redux";
-import { getSingleUser } from "../slices/singleUserSlice";
+import { getSingleUser, selectSingleUser } from "../slices/singleUserSlice";
 import EditUserInfoForm from "./EditUserInfoForm";
+import { getAllUsers } from "../slices/allUsersSlice";
+import { selectUsers } from "../slices/allUsersSlice";
+import AddProductForm from "./AddProductForm";
+import AddUserForm from "./AddUserForm";
+import AdminViewUsers from "./AdminViewUsers";
 
 const MyAccount = () => {
     const userId = useSelector((state) => state.auth.me.id);
-    console.log('My Id is', userId)
+    //const user = useSelector(getSingleUser)
 
     const dispatch = useDispatch();
+    const users = useSelector(selectUsers)
+
+    const singleUser = useSelector(selectSingleUser);
 
     useEffect(() => {
-        dispatch(getSingleUser(userId));
+
+        dispatch(getAllUsers())
     }, [dispatch, userId]);
+
+    console.log("This is the Users", users)
     
     return(
-      <>
+      <div id='myAccount'>
         <h1>My Account</h1>
-        <h3>Please select one of the following options: </h3>
-        <h4>View/Edit Account Information</h4>
-        <span><EditUserInfoForm /></span>
-        <p>Order History</p>
-        <p>Admin</p>
+        <h4>User Options: </h4>
+        <div><EditUserInfoForm /></div>
+        <h4>Order History:</h4>
+
+        {(singleUser.isAdmin ? 
+          <>
+            <h4>Admin Dashboard:</h4>
+            <div><AddProductForm /></div>
+            <div><AdminViewUsers /></div>
+          </>  
+        : null)}
         
-      </>
+      </div>
     )
 }
  

@@ -33,8 +33,8 @@ router.post("/", async (req, res, next) => {
 
 router.put("/:id", async (req, res, next) => {
     try {
-        const products = await Product.findByPk(req.params.id);
-        res.send(await products.update(req.body));
+        const product = await Product.findByPk(req.params.id);
+        res.send(await product.update(req.body));
     } catch (err) {
         next(err);
     }
@@ -42,9 +42,9 @@ router.put("/:id", async (req, res, next) => {
 
 router.delete("/:id", async (req, res, next) => {
     try {
-        const products = await Product.findByPk(req.params.id);
-        products.destroy();
-        res.send(products);
+        const product = await Product.findByPk(req.params.id);
+        product.destroy();
+        res.send(product);
     } catch (err) {
         next(err);
     }

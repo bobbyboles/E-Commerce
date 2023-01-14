@@ -1,23 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchProductsAsync, selectProducts } from "../slices/allProductsSlice";
+import { fetchProductsAsync, selectProducts, deleteProductAsync } from "../slices/allProductsSlice";
 import {
     sortAZ,
     sortZA,
     sortByPriceHighLow,
     sortByPriceLowHigh,
 } from "../slices/allProductsSlice";
-import { getAllUsers } from "../slices/allUsersSlice";
+import { getSingleUser } from "../slices/singleUserSlice";
+import { selectSingleUser } from "../slices/singleUserSlice";
+import { addToCart } from "../slices/cartSlice";
+import { selectGetCart } from "../slices/cartSlice";
 
 const Home = () => {
     const dispatch = useDispatch();
     const products = useSelector(selectProducts);
+    const userId = useSelector((state) => state.auth.me.id);
+    const user = useSelector(selectSingleUser);
+    const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+    const cartState = useSelector(selectGetCart);
 
     useEffect(() => {
         dispatch(fetchProductsAsync());
-        dispatch(getAllUsers())
-    }, [dispatch]);
+        if (userId) dispatch(getSingleUser(userId));
+    }, [dispatch, userId]);
 
     const handleSort = ({ target: { value } }) => {
         if (value == "titleaz") dispatch(sortAZ());
@@ -29,9 +36,10 @@ const Home = () => {
     const simpleStyle = {
         display: "flex",
         flexDirection: "row",
-        flexWrap: 'wrap',
-        gap: 35
+        flexWrap: "wrap",
+        gap: 35,
     };
+
 
     return (
         <div>
@@ -60,6 +68,7 @@ const Home = () => {
                                       <h2>{product.productName}</h2>
                                       <h3>{product.price}</h3>
                                   </Link>
+                                  {user.isAdmin && <button onClick={() => {dispatch(deleteProductAsync(product.id))}}>Delete</button>}
                               </div>
                           );
                       })
