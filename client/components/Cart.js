@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import { addToQuantity, removeToQuantity } from "../slices/cartSlice";
+import { getMyCart } from "../slices/singleCartDatabaseSlice";
+import { selectSingleCartDatabase} from "../slices/singleCartDatabaseSlice";
 
 export const Cart = () => {
     const dispatch = useDispatch();
@@ -18,6 +20,11 @@ export const Cart = () => {
     const deleteButton = (id) => {
         dispatch(removeFromCart(id));
     };
+
+    useEffect(() => {
+        if(userId)dispatch(getMyCart(userId));
+    }, [dispatch, userId]);
+
 
     const cartTotal = cart.reduce((acc, item)=>{
         acc+= item.price * item.count
