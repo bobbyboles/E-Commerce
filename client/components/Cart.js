@@ -16,6 +16,8 @@ import { selectSingleCartDatabase} from "../slices/singleCartDatabaseSlice";
 export const Cart = () => {
     const dispatch = useDispatch();
     const cart = useSelector(selectGetCart);
+    const dbCart = useSelector(selectSingleCartDatabase)
+    const userId = useSelector((state) => state.auth.me.id);
 
     const deleteButton = (id) => {
         dispatch(removeFromCart(id));
@@ -30,6 +32,24 @@ export const Cart = () => {
         acc+= item.price * item.count
         return acc
     },0)
+
+    
+    const getCartId = (_dbCart, _productId) =>{
+        for(const item of _dbCart){
+            if(item.id == _productId )return [item.id, item.quantity] 
+             else return false
+        }
+    }
+
+    const handleIncreaseQuantity = (_cartId, product) =>{
+
+    }
+    const handleDecreaseQuantity = (_cartId, product) =>{
+
+    }
+    const handleDelete = (_cartId, product) =>{
+
+    }
 
     return (
         <div id="cart_container">
