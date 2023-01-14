@@ -1,111 +1,98 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectSingleUser, editSingleUser } from "../slices/singleUserSlice";
+import { selectSingleProduct, editSingleProduct } from "../slices/singleProductSlice";
 
 const EditProductForm = () => {
-    return(
-        <div>HELLOOOOOO</div>
+    const [productName, setProductName] = useState("");
+    const [category, setCategory] = useState("");
+    const [stockQuantity, setStockQuantity] = useState("");
+    const [description, setDescription] = useState("");
+    const [price, setPrice] = useState("");
+    const [imageUrl, setImageUrl] = useState("");
+
+    const singleProduct = useSelector(selectSingleProduct);
+    console.log('single Product info:', singleProduct)
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+            setProductName(singleProduct.productName)
+            setCategory(singleProduct.category)
+            setStockQuantity(singleProduct.stockQuantity)
+            setDescription(singleProduct.description)
+            setPrice(singleProduct.price)
+            setImageUrl(singleProduct.imageUrl)
+
+        }, [
+            singleProduct.productName,
+            singleProduct.category,
+            singleProduct.stockQuantity,
+            singleProduct.description,
+            singleProduct.price,
+            singleProduct.imageUrl
+        ])
+
+    const id = singleProduct.id
+
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
+        dispatch(editSingleProduct({id, productName, category, stockQuantity, description, price, imageUrl}))
+        navigate('/')
+        };
+
+    return (
+        <>
+            <form id="edit-product-form" onSubmit={handleSubmit}>
+            <h3>View/Edit Product Information: </h3>
+
+                <label htmlFor="productName">Product Name:</label>
+                <input
+                name="productName"
+                value={productName}
+                onChange={(e) => setProductName(e.target.value)}
+                />
+
+                <label htmlFor="category">Category:</label>
+                <input
+                name="category"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                />
+
+                <label htmlFor="stockQuantity">Stock Quantity:</label>
+                <input
+                name="stockQuantity"
+                value={stockQuantity}
+                onChange={(e) => setStockQuantity(e.target.value)}
+                />
+
+                <label htmlFor="description">Description:</label>
+                <input
+                name="description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                />
+
+                <label htmlFor="price">Price:</label>
+                <input
+                name="price"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                />
+
+                <label htmlFor="imageUrl">Image URL:</label>
+                <input
+                name="imageUrl"
+                value={imageUrl}
+                onChange={(e) => setImageUrl(e.target.value)}
+                />
+
+                <button type="submit">Update Information</button>
+            </form>
+        </>
     )
-    // const [username, setUserName] = useState("");
-    // const [password, setPassword] = useState("");
-    // const [firstName, setFirstName] = useState("");
-    // const [lastName, setLastName] = useState("");
-    // const [email, setEmail] = useState("");
-    // const [address, setAddress] = useState("");
-    // const [phone, setPhone] = useState("");
-
-    // const singleUser = useSelector(selectSingleUser);
-    // //console.log('single User info:', singleUser)
-
-    // const dispatch = useDispatch();
-    // const navigate = useNavigate();
-
-    // useEffect(() => {
-    //         setUserName(singleUser.username)
-    //         setPassword(singleUser.password)
-    //         setFirstName(singleUser.firstName)
-    //         setLastName(singleUser.lastName)
-    //         setEmail(singleUser.email)
-    //         setAddress(singleUser.address)
-    //         setPhone(singleUser.phone)
-
-    //     }, [
-    //         singleUser.username,
-    //         singleUser.password,
-    //         singleUser.firstName,
-    //         singleUser.lastName,
-    //         singleUser.email,
-    //         singleUser.address,
-    //         singleUser.phone
-    //     ])
-
-    // const id = singleUser.id
-
-    // const handleSubmit = (evt) => {
-    //     evt.preventDefault();
-    //     dispatch(editSingleUser({id, username, password, firstName, lastName, email, address, phone}))
-    //     navigate('/account')
-    //     };
-
-    // return (
-    //     <>
-    //         <form id="edit-user-form" onSubmit={handleSubmit}>
-    //         <h3>View/Edit Account Information: </h3>
-
-    //             <label htmlFor="username">User Name:</label>
-    //             <input
-    //             name="username"
-    //             value={username}
-    //             onChange={(e) => setUserName(e.target.value)}
-    //             />
-
-    //             <label htmlFor="password">Password:</label>
-    //             <input
-    //             name="password"
-    //             value={''}
-    //             onChange={(e) => setPassword(e.target.value)}
-    //             />
-
-    //             <label htmlFor="firstName">First Name:</label>
-    //             <input
-    //             name="firstName"
-    //             value={firstName}
-    //             onChange={(e) => setFirstName(e.target.value)}
-    //             />
-
-    //             <label htmlFor="lastName">Last Name:</label>
-    //             <input
-    //             name="lastName"
-    //             value={lastName}
-    //             onChange={(e) => setLastName(e.target.value)}
-    //             />
-
-    //             <label htmlFor="email">Email Address:</label>
-    //             <input
-    //             name="email"
-    //             value={email}
-    //             onChange={(e) => setEmail(e.target.value)}
-    //             />
-
-    //             <label htmlFor="address">Address:</label>
-    //             <input
-    //             name="address"
-    //             value={address}
-    //             onChange={(e) => setAddress(e.target.value)}
-    //             />
-
-    //             <label htmlFor="phone">Phone Number:</label>
-    //             <input
-    //             name="phone"
-    //             value={phone}
-    //             onChange={(e) => setPhone(e.target.value)}
-    //             />
-
-    //             <button type="submit">Update Information</button>
-    //         </form>
-    //     </>
-    // )
 }
 
 export default EditProductForm

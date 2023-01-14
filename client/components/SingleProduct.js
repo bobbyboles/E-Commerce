@@ -14,7 +14,7 @@ import { getSingleUser } from "../slices/singleUserSlice";
 import { selectSingleUser } from "../slices/singleUserSlice";
 import { getMyCart } from "../slices/singleCartDatabaseSlice";
 import { selectSingleCartDatabase } from "../slices/singleCartDatabaseSlice";
-import { EditProductForm} from '../components/EditProductForm'
+import  EditProductForm from './EditProductForm'
 
 const SingleProduct = () => {
     const [quantity, setQuantity] = useState(1);
@@ -27,8 +27,8 @@ const SingleProduct = () => {
     const userId = useSelector((state) => state.auth.me.id);
     const userCart = useSelector(selectSingleCartDatabase);
 
-    // const singleUser = useSelector(selectSingleUser);
-    // console.log('Single User Data', singleUser)
+    const singleUser = useSelector(selectSingleUser);
+    console.log('Single User Data', singleUser)
 
     const {
         productName,
@@ -92,8 +92,11 @@ const SingleProduct = () => {
 
     return (
         <div id="single-product">
-            <div id="single-product-info">
+            <div id="single-product-info"> 
                 <img src={`/${imageUrl}`} />
+                
+                {singleUser.isAdmin ? <EditProductForm /> :
+                <>
                 <h1>{productName}</h1>
                 <h3>Price: {price}</h3>
                 <h3>Category: {category}</h3>
@@ -127,9 +130,7 @@ const SingleProduct = () => {
                         </button>
                     </div>
                 </div>
-
-
-
+            </> } 
             </div>
         </div>
     );
