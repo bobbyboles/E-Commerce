@@ -1,39 +1,28 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectGetCart, deleteCart, removeFromCart } from "../slices/cartSlice";
+import {
+    selectGetCart,
+    deleteCart,
+    removeFromCart,
+    resetState,
+} from "../slices/cartSlice";
 import { Link } from "react-router-dom";
-
+import { useEffect } from "react";
+import { useState } from "react";
+import { addToQuantity, removeToQuantity } from "../slices/cartSlice";
 
 export const Cart = () => {
     const dispatch = useDispatch();
     const cart = useSelector(selectGetCart);
 
-    const copyCart = JSON.parse(JSON.stringify(cart));
-    const countCartItems = copyCart.reduce((acc, { productName }) => {
-        if (acc[productName]) ++acc[productName];
-        else acc[productName] = 1;
-        return acc;
-    }, {});
-
-    const cartModified = copyCart.map((obj) => {
-        obj["count"] = countCartItems[obj.productName];
-        return obj;
-    });
-
-    const uniqueArray = cartModified.filter((value, index) => {
-        const _value = JSON.stringify(value);
-        return (
-            index ===
-            cartModified.findIndex((obj) => {
-                return JSON.stringify(obj) === _value;
-            })
-        );
-    });
-    console.log(uniqueArray)
-
     const deleteButton = (id) => {
-        dispatch(removeFromCart(id))
-    }
+        dispatch(removeFromCart(id));
+    };
+
+    const cartTotal = cart.reduce((acc, item)=>{
+        acc+= item.price * item.count
+        return acc
+    },0)
 
     return (
         <div id="cart_container">
@@ -45,25 +34,46 @@ export const Cart = () => {
                     <img />
                     <button> + </button><button> - </button> */}
                 {cart && cart.length
-                    ? uniqueArray.map((product) => {
+                    ? cart.map((product) => {
                           return (
                               <div className="cart" key={product.id}>
-                                <h2 id = "product" key={product.id}>
-                                    <Link
-                                        to={`/products/${product.id}`}
-                                        key={`All Products: ${product.id}`}
-                                    >{product.productName}
-                                    </Link>
-                                </h2>
-                                <h3>Price: {(product.price*product.count).toFixed(2)}</h3>
-                                <h4>Quantity: {product.count}</h4>
-                                <button onClick = {() => deleteButton(product.id)} > REMOVE </button>
+                                  <h2 id="product">
+                                      <Link
+                                          to={`/products/${product.id}`}
+                                          key={`All Products: ${product.id}`}
+                                      >
+                                          {product.productName}
+                                      </Link>
+                                  </h2>
+                                  <h3>Price:{product.price}</h3>
+                                  <button
+                                      onClick={() =>
+                                          dispatch(removeToQuantity(product))
+                                      }
+                                  >
+                                      Decrease Quantity
+                                  </button>
+                                  <h3>Quantity:{product.count}</h3>
+                                  <button
+                                      onClick={() =>
+                                          dispatch(addToQuantity(product))
+                                      }
+                                  >
+                                      Increase Quantity
+                                  </button>
+                                  <h3>Total:{product.price * product.count}</h3>
+                                  <button
+                                      onClick={() => deleteButton(product.id)}
+                                  >
+                                      REMOVE{" "}
+                                  </button>
                               </div>
                           );
                       })
-                    : 'There is nothing in your cart!'}
+                    : "There is nothing in your cart!"}
                 <button>Checkout</button>
             </div>
+            <div>{cartTotal}</div>
         </div>
     );
 };

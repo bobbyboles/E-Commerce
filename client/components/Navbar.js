@@ -12,8 +12,8 @@ import { addToCart } from "../slices/cartSlice";
 const Navbar = () => {
     const cartNum = useSelector(selectGetCart);
     const username = useSelector((state) => state.auth.me.username);
-    const userId = useSelector((state)=> state.auth.me.id)
-    const user = useSelector(selectSingleUser)
+    const userId = useSelector((state) => state.auth.me.id);
+    const user = useSelector(selectSingleUser);
     const isLoggedIn = useSelector((state) => !!state.auth.me.id);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -30,18 +30,23 @@ const Navbar = () => {
         margin: 10,
     };
     useEffect(() => {
-        if(userId)dispatch(getSingleUser(userId));
+        if (userId) dispatch(getSingleUser(userId));
     }, [dispatch, userId]);
 
-    console.log(isLoggedIn, user, cartNum)
+    console.log(isLoggedIn, user, cartNum);
     if (isLoggedIn && user.products && cartNum.length < 1) {
         user.products.map((product) => {
-            [...Array(product.cart.quantity)].forEach(() => {
-                dispatch(addToCart(product));
-            });
+            const newProduct = JSON.parse(JSON.stringify(product));
+            newProduct["count"] = product.cart.quantity;
+            dispatch(addToCart(newProduct));
         });
     }
 
+    const cartNumber =  cartNum.reduce((acc, item) => {
+            acc += item.count;
+            return acc;
+        }, 0);
+    
     return (
         <div>
             <nav>
@@ -74,7 +79,7 @@ const Navbar = () => {
                         <Badge
                             color="secondary"
                             overlap="rectangular"
-                            badgeContent={cartNum.length}
+                            badgeContent={cartNumber}
                         >
                             <ShoppingCartIcon />
                         </Badge>
