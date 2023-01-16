@@ -40,7 +40,7 @@ export const editProductInCart = createAsyncThunk("singleUser/edit", async ({id,
 });
 export const deleteDBCart = createAsyncThunk("deleteCart", async ({id}) => {
   try {
-      const { data } = await axios.put(`/api/cart/${id}`) 
+      const { data } = await axios.delete(`/api/cart/${id}`) 
     return data;
   } catch (err) {
     console.log(err);
@@ -59,10 +59,14 @@ const singleCartDatabaseSlice = createSlice({
            return action.payload
         });
         builder.addCase(editProductInCart.fulfilled, (state, action) => {
-            return action.payload;
+            return state.map((cart)=>{
+                if(cart.id == action.payload.id) cart = action.payload
+                return cart 
+            })
+           
         });
         builder.addCase(deleteDBCart.fulfilled, (state, action) => {
-            return action.payload;
+            return state.filter((cart)=> cart.id !== action.payload.id) 
         });
     },
 });

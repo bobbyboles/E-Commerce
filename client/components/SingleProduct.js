@@ -61,9 +61,9 @@ const SingleProduct = () => {
 
     const isAlreadyInCart = (cart, _productId) =>{
         for(const item of cart){
-            if(item.id == _productId )return [item.id, item.quantity] 
-             else return false
+            if(item.productId == _productId )return [item.id, item.quantity] 
         }
+        return false
     }
 
     const handleAddToCart = (quantity, userId, productId, userCart) => {

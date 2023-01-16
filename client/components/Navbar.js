@@ -8,9 +8,14 @@ import { selectGetCart } from "../slices/cartSlice";
 import { useEffect } from "react";
 import { selectSingleUser, getSingleUser } from "../slices/singleUserSlice";
 import { addToCart } from "../slices/cartSlice";
+import { selectProducts } from "../slices/allProductsSlice";
+import { selectSingleCartDatabase } from "../slices/singleCartDatabaseSlice";
+import { getMyCart } from "../slices/singleCartDatabaseSlice";
 
 const Navbar = () => {
     const cartNum = useSelector(selectGetCart);
+    const allProducts = useSelector(selectProducts)
+    const dbCart = useSelector(selectSingleCartDatabase)
     const username = useSelector((state) => state.auth.me.username);
     const userId = useSelector((state) => state.auth.me.id);
     const user = useSelector(selectSingleUser);
@@ -31,10 +36,11 @@ const Navbar = () => {
     };
     useEffect(() => {
         if (userId) dispatch(getSingleUser(userId));
+        if(userId)dispatch(getMyCart(userId));
     }, [dispatch, userId]);
 
-    console.log(isLoggedIn, user, cartNum);
-    if (isLoggedIn && user.products && cartNum.length < 1) {
+    if (isLoggedIn && user.products && cartNum.length < 1 && dbCart.length) {
+        console.log('fired')
         user.products.map((product) => {
             const newProduct = JSON.parse(JSON.stringify(product));
             newProduct["count"] = product.cart.quantity;
