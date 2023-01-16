@@ -5,7 +5,7 @@ const {
 
 router.get("/", async (req, res, next) => {
     try {
-       console.log("This is the Token from Router",req.headers.authorization) 
+        console.log("This is the Token from Router", req.headers.authorization);
         const loggedInUser = await User.findByToken(req.headers.authorization);
         console.log("this is the logged in user from router", loggedInUser);
         if (loggedInUser.isAdmin === true) {
@@ -23,9 +23,8 @@ router.get("/:id", async (req, res, next) => {
     try {
         const user = await User.findOne({
             where: {
-                id: req.params.id ,
-            },
-            include: Product,
+                id: req.params.id,
+            }
         });
         res.send(user);
     } catch (err) {

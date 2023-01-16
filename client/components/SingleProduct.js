@@ -6,15 +6,13 @@ import {
     getSingleProduct,
 } from "../slices/singleProductSlice";
 import { addToCart } from "../slices/cartSlice";
-import {
-    addProductToCart,
-    editProductInCart,
-} from "../slices/singleCartDatabaseSlice";
 import { getSingleUser } from "../slices/singleUserSlice";
 import { selectSingleUser } from "../slices/singleUserSlice";
-import { getMyCart } from "../slices/singleCartDatabaseSlice";
-import { selectSingleCartDatabase } from "../slices/singleCartDatabaseSlice";
-import  EditProductForm from './EditProductForm'
+import EditProductForm from "./EditProductForm";
+import { addProductToDBCart } from "../slices/cartSlice";
+import { editProductInDBCart } from "../slices/cartSlice";
+import { selectGetCart } from "../slices/cartSlice";
+import { getMyCart } from "../slices/cartSlice";
 
 const SingleProduct = () => {
     const [quantity, setQuantity] = useState(1);
@@ -25,10 +23,10 @@ const SingleProduct = () => {
     const singleProduct = useSelector(selectSingleProduct);
     const isLoggedIn = useSelector((state) => !!state.auth.me.id);
     const userId = useSelector((state) => state.auth.me.id);
-    const userCart = useSelector(selectSingleCartDatabase);
+    const cart = useSelector(selectGetCart);
 
     const singleUser = useSelector(selectSingleUser);
-    console.log('Single User Data', singleUser)
+    console.log("Single User Data", singleUser);
 
     const {
         productName,
@@ -41,8 +39,10 @@ const SingleProduct = () => {
 
     useEffect(() => {
         dispatch(getSingleProduct(productId));
-        if(userId)dispatch(getMyCart(userId));
+        if (userId) dispatch(getMyCart(userId));
     }, [dispatch, userId]);
+
+    console.log(cart);
 
     if (!productName) {
         return <p>NO PRODUCTS FOUND</p>;
@@ -58,78 +58,75 @@ const SingleProduct = () => {
         }
     };
 
-
-    const isAlreadyInCart = (cart, _productId) =>{
-        for(const item of cart){
-            if(item.productId == _productId )return [item.id, item.quantity] 
+    const isAlreadyInCart = (cart, _productId) => {
+        for (const item of cart) {
+            if (item.productId == _productId || item.id == _productId) return [item.id, item.quantity];
         }
-        return false
-    }
+        return false;
+    };
 
     const handleAddToCart = (quantity, userId, productId, userCart) => {
-        if (isLoggedIn && userId && isAlreadyInCart(userCart, productId) ) {
+        if (isLoggedIn && userId && isAlreadyInCart(userCart, productId)) {
             const [id, cartQuantity] = isAlreadyInCart(userCart, productId);
-            quantity+= cartQuantity
-            dispatch(editProductInCart({id, userId, productId, quantity}));
-            quantity-= cartQuantity;
-            const newProduct = JSON.parse(JSON.stringify(singleProduct))
-            newProduct['count'] = quantity
-            dispatch(addToCart(newProduct))
-        } else if(isLoggedIn && userId ) {
-            dispatch(addProductToCart({userId, productId, quantity}));
-            const newProduct = JSON.parse(JSON.stringify(singleProduct))
-            newProduct['count'] = quantity
-            dispatch(addToCart(newProduct))
-        } else{
-            const newProduct = JSON.parse(JSON.stringify(singleProduct))
-            newProduct['count'] = quantity
-            dispatch(addToCart(newProduct))
-
+            quantity += cartQuantity;
+            dispatch(editProductInDBCart({ id, userId, productId, quantity }));
+        }else if (isLoggedIn && userId) {
+            dispatch(addProductToDBCart({ userId, productId, quantity }));
+        } else {
+            const newProduct = JSON.parse(JSON.stringify(singleProduct));
+            newProduct["quantity"] = quantity;
+            dispatch(addToCart(newProduct));
         }
     };
 
     return (
         <div id="single-product">
+            <div id="single-product-info">
+                <img src={`${imageUrl}`} height="400px" />
 
-            <div id="single-product-info"> 
-                <img src={`${imageUrl}`} height='400px' />
-                
-                {singleUser.isAdmin ? <EditProductForm /> :
-                <>
-                <h1>{productName}</h1>
-                <h3>Price: {price}</h3>
-                <h3>Category: {category}</h3>
-                <p>Details: {description}</p>
-                {stockQuantity > 0 ? (
-                    <button
-                        onClick={() =>
-                            handleAddToCart(
-                                quantity,
-                                userId,
-                                productId,
-                                userCart
-                            )
-                        }
-                    >
-                        Add to Cart
-                    </button>
+                {singleUser.isAdmin ? (
+                    <EditProductForm />
                 ) : (
-                    <div>OUT OF STOCK</div>
-                )}
+                    <>
+                        <h1>{productName}</h1>
+                        <h3>Price: {price}</h3>
+                        <h3>Category: {category}</h3>
+                        <p>Details: {description}</p>
+                        {stockQuantity > 0 ? (
+                            <button
+                                onClick={() =>
+                                    handleAddToCart(quantity, userId, productId, cart)
+                                }
+                            >
+                                Add to Cart
+                            </button>
+                        ) : (
+                            <div>OUT OF STOCK</div>
+                        )}
 
-                <div className="quantityCounter">
-                    <h3>Quantity:</h3>
-                    <div className="btn-container">
-                        <button className="control__btn" onClick={decrease}>
-                            -
-                        </button>
-                        <span className="quantityOutput"> {quantity} </span>
-                        <button className="control__btn" onClick={increase}>
-                            +
-                        </button>
-                    </div>
-                </div>
-            </> } 
+                        <div className="quantityCounter">
+                            <h3>Quantity:</h3>
+                            <div className="btn-container">
+                                <button
+                                    className="control__btn"
+                                    onClick={decrease}
+                                >
+                                    -
+                                </button>
+                                <span className="quantityOutput">
+                                    {" "}
+                                    {quantity}{" "}
+                                </span>
+                                <button
+                                    className="control__btn"
+                                    onClick={increase}
+                                >
+                                    +
+                                </button>
+                            </div>
+                        </div>
+                    </>
+                )}
             </div>
         </div>
     );

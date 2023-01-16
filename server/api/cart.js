@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const {
-    models: { Cart },
+    models: { Cart, Product },
 } = require("../db");
 
 router.get("/", async (req, res, next) => {
@@ -17,7 +17,8 @@ router.get("/myCart", async (req, res, next) => {
         const cart = await Cart.findAll({
             where:{
                 userId:req.headers.authid || null
-            }
+            },
+            include: Product
         });
         res.json(cart);
     } catch (err) {
