@@ -16,7 +16,23 @@ router.get("/myCart", async (req, res, next) => {
         console.log(req.headers)
         const cart = await Cart.findAll({
             where:{
-                userId:req.headers.authid || null
+                userId:req.headers.authid || null, 
+                completed: false
+            },
+            include: Product
+        });
+        res.json(cart);
+    } catch (err) {
+        next(err);
+    }
+});
+router.get("/myOrders", async (req, res, next) => {
+    try {
+        console.log(req.headers)
+        const cart = await Cart.findAll({
+            where:{
+                userId:req.headers.authid || null, 
+                completed: true
             },
             include: Product
         });

@@ -31,8 +31,36 @@ export const getMyCart = createAsyncThunk("myCart", async (userId) => {
         console.log("error has occurred, check console", err.message);
     }
 });
+export const getMyOrders = createAsyncThunk("myOrders", async (userId) => {
+    try {
+        let { data } = await axios.get(
+            `http://localhost:8080/api/cart/myOrders`,
+            { headers: { authid: userId } }
+        );
+        console.log("this is the thunk for myCart", data);
+        return data;
+    } catch (err) {
+        alert("error has occurred, check console");
+        console.log("error has occurred, check console", err.message);
+    }
+});
 export const editProductInDBCart = createAsyncThunk(
-    "singleUser/edit",
+    "editCart",
+    async ({ id, productId, quantity, completed }) => {
+        try {
+            const { data } = await axios.put(`/api/cart/${id}`, {
+                productId,
+                quantity,
+                completed,
+            });
+            return data;
+        } catch (err) {
+            console.log(err);
+        }
+    }
+);
+export const checkoutCart = createAsyncThunk(
+    "checkoutCart",
     async ({ id, userId, productId, quantity, completed }) => {
         try {
             const { data } = await axios.put(`/api/cart/${id}`, {
@@ -103,6 +131,9 @@ const cartSlice = createSlice({
             return state.filter((product) => {
                 return product.id !== action.payload;
             });
+        });
+        builder.addCase(checkoutCart.fulfilled, (state, action) => {
+          return initialState 
         });
     },
 });

@@ -15,6 +15,7 @@ import { getSingleUser } from "../slices/singleUserSlice";
 import { selectSingleUser } from "../slices/singleUserSlice";
 import { deleteDBCart } from "../slices/cartSlice";
 import { getMyCart } from "../slices/cartSlice";
+import { checkoutCart } from "../slices/cartSlice";
 
 export const Cart = () => {
     const dispatch = useDispatch();
@@ -27,16 +28,15 @@ export const Cart = () => {
         dispatch(removeFromCart(id));
     };
 
-
     const cartTotal = cart.reduce((acc, item) => {
         acc += item.price * item.quantity;
         return acc;
     }, 0);
 
-    useEffect(()=>{
-       if(userId) dispatch(getSingleUser(userId))
-        if(userId) dispatch(getMyCart(userId))
-    },[dispatch, userId])
+    useEffect(() => {
+        if (userId) dispatch(getSingleUser(userId));
+        if (userId) dispatch(getMyCart(userId));
+    }, [dispatch, userId]);
 
     // const getCartId = (_dbCart, _productId) => {
     //     for (const item of _dbCart) {
@@ -57,29 +57,39 @@ export const Cart = () => {
     const handleIncreaseQuantity = (_dbCart, product) => {
         dispatch(addToQuantity(product));
         if (isLoggedIn) {
-            let id = product.cartId
-            let productId = product.id
-            let quantity = product.quantity+ 1
-            dispatch(editProductInDBCart({ id, userId, productId, quantity }));
+            let id = product.cartId;
+            let productId = product.id;
+            let quantity = product.quantity + 1;
+            dispatch(editProductInDBCart({ id,  productId, quantity }));
         }
     };
     const handleDecreaseQuantity = (_dbCart, product) => {
         dispatch(removeToQuantity(product));
         if (isLoggedIn) {
-            let id = product.cartId
-            let productId = product.id
-            let quantity = product.quantity  - 1
+            let id = product.cartId;
+            let productId = product.id;
+            let quantity = product.quantity - 1;
             dispatch(editProductInDBCart({ id, userId, productId, quantity }));
         }
     };
     const handleDelete = (_dbCart, product) => {
         dispatch(removeFromCart(product.id));
         if (isLoggedIn) {
-            let id = product.cartId
+            let id = product.cartId;
             dispatch(deleteDBCart({ id }));
         }
     };
-    console.log('THIS USER IS LOGGED IN', isLoggedIn)
+
+    const handleCheckout = (cart, userId) => {
+        let completed = true;
+        cart.map((item) => {
+            let id = item.cartId 
+            let productId = item.id
+            let quantity = item.quantity
+            console.log("THIS IS THE VALUES OF CHECKOUTCART PARAMS", id, userId, productId, quantity, completed)
+            dispatch(checkoutCart({id, userId,productId, quantity,  completed}));
+        });
+    };
 
     return (
         <div id="cart_container">
@@ -96,19 +106,16 @@ export const Cart = () => {
                               <div className="cart" key={product.id}>
                                   <h2 id="product">
                                       <Link
-                                          to={`/products/${ product.id}`}
-                                          key={`All Products: ${ product.id}`}
+                                          to={`/products/${product.id}`}
+                                          key={`All Products: ${product.id}`}
                                       >
                                           {product.productName}
                                       </Link>
                                   </h2>
-                                  <h3>Price:{ product.price}</h3>
+                                  <h3>Price:{product.price}</h3>
                                   <button
                                       onClick={() =>
-                                          handleDecreaseQuantity(
-                                              cart,
-                                              product
-                                          )
+                                          handleDecreaseQuantity(cart, product)
                                       }
                                   >
                                       Decrease Quantity
@@ -116,15 +123,14 @@ export const Cart = () => {
                                   <h3>Quantity:{product.quantity}</h3>
                                   <button
                                       onClick={() =>
-                                          handleIncreaseQuantity(
-                                              cart,
-                                              product
-                                          )
+                                          handleIncreaseQuantity(cart, product)
                                       }
                                   >
                                       Increase Quantity
                                   </button>
-                                  <h3>Total:{product.price * product.quantity}</h3>
+                                  <h3>
+                                      Total:{product.price * product.quantity}
+                                  </h3>
                                   <button
                                       onClick={() =>
                                           handleDelete(cart, product)
@@ -136,7 +142,7 @@ export const Cart = () => {
                           );
                       })
                     : "There is nothing in your cart!"}
-                <button>Checkout</button>
+                <button onClick={()=> handleCheckout(cart, userId)}>Checkout</button>
             </div>
             <div>{cartTotal}</div>
         </div>
