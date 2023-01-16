@@ -378,9 +378,383 @@ async function seed() {
             price: 40.00,
             imageUrl: 'https://images.pricerunner.com/product/600x600/1795546256/Trials-Evolution.jpg?c=0.7'
         });
-        
         // END XBOX
+
+        // BEGIN N64
+        await Product.create({
+            productName: 'Donkey Kong 64',
+            category: 'Nintendo 64',
+            stockQuantity: 30,
+            description: 'Donkey Kong 64 is a 1999 platform game developed by Rare and published by Nintendo for the Nintendo 64. It is the first 3D game in the Donkey Kong series. As the gorilla Donkey Kong, the player explores themed levels to collect items and rescue his kidnapped friends from King K. Rool.',
+            price: 45.00,
+            imageUrl: 'https://commondatastorage.googleapis.com/images.pricecharting.com/AMIfv963B7XboIqfMzqWJQfm-6ba6X7MQtHKQjl6cjj_-LIGAa4C_P-QHRJT9ztJQ2QoPav30VXkuMVl9Lx67s9CJiRLSIAv5zhmdaE9H-XjXB3AAyI_K4mmYrpm-5vqq3PYmYlwHhgbtDSNJG0wjv3RC5GmtYg5Gw/240.jpg'
+        }),
         
+        await Product.create({
+            productName: 'Hey You Pikachu',
+            category: 'Nintendo 64',
+            stockQuantity: 30,
+            description: 'Hey You, Pikachu! is a virtual pet Pokémon spin-off video game for the Nintendo 64 developed by Ambrella and published by Nintendo. It was released in Japan on December 12, 1998, and in North America on October 30, 2000.',
+            price: 55.00,
+            imageUrl: 'https://i.ebayimg.com/images/g/hGQAAMXQUY1Q9yre/s-l300.jpg'
+        }),
+        
+        await Product.create({
+            productName: 'Kirby 64: The Crystal Shards',
+            category: 'Nintendo 64',
+            stockQuantity: 30,
+            description: 'Kirby 64: The Crystal Shards is a 2000 platform game developed by HAL Laboratory and published by Nintendo for the Nintendo 64. It is the first Kirby game to feature 3D computer graphics and follows Kirby as he attempts to reassemble a sacred crystal shattered by Dark Matter.',
+            price: 37.00,
+            imageUrl: 'https://i.ebayimg.com/images/g/3CsAAMXQWuRQ9fkR/s-l640.jpg'
+        }),
+        
+        await Product.create({
+            productName: 'The Legend of Zelda: Ocarina of Time',
+            category: 'Nintendo 64',
+            stockQuantity: 30,
+            description: 'The Legend of Zelda: Ocarina of Time[a] is an action-adventure game developed and published by Nintendo for the Nintendo 64. It was released in Japan and North America in November 1998, and in PAL regions the following month. Ocarina of Time is the first game in The Legend of Zelda series with 3D graphics.',
+            price: 65.00,
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/en/5/57/The_Legend_of_Zelda_Ocarina_of_Time.jpg'
+        }),
+        
+        await Product.create({
+            productName: 'Mario Party',
+            category: 'Nintendo 64',
+            stockQuantity: 30,
+            description: 'Mario Party is a party video game developed by Hudson Soft and published by Nintendo for the Nintendo 64.',
+            price: 40.00,
+            imageUrl: 'https://assets-prd.ignimgs.com/2022/01/14/marioparty64-sq-1642190930183.jpg'
+        }),
+        
+        await Product.create({
+            productName: 'Perfect Dark',
+            category: 'Nintendo 64',
+            stockQuantity: 30,
+            description: 'Perfect Dark is a 2000 first-person shooter developed and published by Rare for the Nintendo 64. The first game of the Perfect Dark series, it follows Joanna Dark, an agent of the Carrington Institute research centre, as she attempts to stop an extraterrestrial conspiracy by rival corporation dataDyne.',
+            price: 28.00,
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/en/3/32/Perfect_dark_box.jpg'
+        }),
+        
+        await Product.create({
+            productName: 'Pokemon Stadium',
+            category: 'Nintendo 64',
+            stockQuantity: 30,
+            description: 'Pokémon Stadium is the first game to show Pokémon in 3-D, giving N64 fans a chance to see their teams in a different way. With the N64 Transfer Pak, players can import and bring to battle Pokémon from their Pokémon Red Version, Pokémon Blue Version, and Pokémon Yellow Version games.',
+            price: 52.00,
+            imageUrl: 'https://assets.pokemon.com/assets/cms2/img/video-games/video-games/pokemon_stadium/pokemon_stadium_main_169.jpg'
+        }),
+        
+        await Product.create({
+            productName: 'Resident Evil 2',
+            category: 'Nintendo 64',
+            stockQuantity: 30,
+            description: 'Resident Evil 2 is a 1998 survival horror video game developed and published by Capcom for the N64.',
+            price: 33.00,
+            imageUrl: 'https://www.lukiegames.com/assets/images/N64/n64_resident_evil_2_p_iucv2y.jpg'
+        }),
+        
+        await Product.create({
+            productName: 'Star Wars: Rogue Squadron',
+            category: 'Nintendo 64',
+            stockQuantity: 30,
+            description: 'Star Wars: Rogue Squadron is an arcade-style flight action game co-developed by Factor 5 and LucasArts. The first of three games in the Rogue Squadron series, it was published by LucasArts and Nintendo and released for Microsoft Windows and Nintendo 64 in December 1998.',
+            price: 31.00,
+            imageUrl: 'https://i.pinimg.com/736x/57/f6/38/57f6386bdc8b6b0e03c59df071d565b1--games-box-nintendo-games.jpg'
+        }),
+        
+        await Product.create({
+            productName: 'WWF No Mercy',
+            category: 'Nintendo 64',
+            stockQuantity: 30,
+            description: 'WWF No Mercy is a professional wrestling video game released in 2000 by THQ for the Nintendo 64. It is based on the World Wrestling Federation and is named after the companys annual event of the same name.',
+            price: 25.00,
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/en/9/90/NoMercyGameBox.jpg'
+        }),
+
+        // END N64
+
+        //BEGIN NES
+        
+        await Product.create({
+            productName: 'Battle Toads',
+            category: 'NES',
+            stockQuantity: 30,
+            description: 'Battletoads is a beat them up/platform video game developed by Rare and published by Tradewest. It is the first installment of the Battletoads series and was originally released on 1 June 1991 for the Nintendo Entertainment System.',
+            price: 42.00,
+            imageUrl: 'https://i.ebayimg.com/images/g/r4oAAOSwxYxUyk88/s-l640.jpg'
+        }),
+        
+        await Product.create({
+            productName: 'Castevania',
+            category: 'NES',
+            stockQuantity: 30,
+            description: 'Castlevania, known in Japan as Akumajō Dracula, is a platform game developed and published by Konami for the Family Computer Disk System video game console in Japan in September 1986.',
+            price: 32.00,
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/en/5/51/Castlevania_1_cover.png'
+        }),
+        
+        await Product.create({
+            productName: 'Contra',
+            category: 'NES',
+            stockQuantity: 30,
+            description: 'Contra is a run-and-gun shooter video game developed and published by Konami, originally developed as a coin-operated arcade game in 1986 and released on February 20, 1987.',
+            price: 36.00,
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/en/6/65/Contra_cover.jpg'
+        }),
+        
+        await Product.create({
+            productName: 'Duck Hunt',
+            category: 'NES',
+            stockQuantity: 30,
+            description: 'Duck Hunt is a 1984 light gun shooter video game developed and published by Nintendo for the Nintendo Entertainment System video game console and the Nintendo Vs. System arcade hardware. The game was first released in April 1984, in Japan for the Family Computer console and in North America as an arcade game.',
+            price: 55.00,
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/en/1/14/DuckHuntBox.jpg'
+        }),
+        
+        await Product.create({
+            productName: 'Final Fantasy',
+            category: 'NES',
+            stockQuantity: 30,
+            description: 'Final Fantasy is a fantasy role-playing video game developed and published by Square in 1987. It is the first game in Squares Final Fantasy series, created by Hironobu Sakaguchi.',
+            price: 32.00,
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/en/d/d8/FF1_USA_boxart.jpg'
+        }),
+        
+        await Product.create({
+            productName: 'Megaman',
+            category: 'NES',
+            stockQuantity: 30,
+            description: 'Mega Man, known as Rockman in Japan, is a 1987 action-platform video game developed and published by Capcom for the Nintendo Entertainment System (NES).',
+            price: 38.00,
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/en/d/dd/Mega_Man_1_box_artwork.jpg'
+        }),
+        
+        await Product.create({
+            productName: 'Metroid',
+            category: 'NES',
+            stockQuantity: 30,
+            description: 'Metroid is an action-adventure game developed and published by Nintendo. The first installment in the Metroid series, it was originally released in Japan for the Family Computer Disk System peripheral beta version in August 1986.',
+            price: 28.00,
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/en/5/5d/Metroid_boxart.jpg'
+        }),
+        
+        await Product.create({
+            productName: 'Super Mario',
+            category: 'NES',
+            stockQuantity: 30,
+            description: 'Super Mario Bros. is a platform game developed and published by Nintendo for the Nintendo Entertainment System (NES).',
+            price: 35.00,
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/en/0/03/Super_Mario_Bros._box.png'
+        }),
+        
+        await Product.create({
+            productName: 'Tetris',
+            category: 'NES',
+            stockQuantity: 30,
+            description: 'Tetris is a puzzle video game for the Nintendo Entertainment System released in 1989, based on Tetris by Alexey Pajitnov. It is the first official console release of Tetris to have been developed and published by Nintendo.',
+            price: 15.00,
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/7/7d/Tetris_NES_cover_art.jpg/220px-Tetris_NES_cover_art.jpg'
+        }),
+        
+        await Product.create({
+            productName: 'The Legend of Zelda',
+            category: 'NES',
+            stockQuantity: 30,
+            description: 'The Legend of Zelda, originally released in Japan as The Hyrule Fantasy: Zelda no Densetsu, is a 1986 action-adventure game developed and published by Nintendo.',
+            price: 40.00,
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/en/4/41/Legend_of_zelda_cover_%28with_cartridge%29_gold.png'
+        })
+
+        // END NES
+
+        // BEGIN PLAYSTATION
+
+        await Product.create({
+            productName: 'Crash Bandicoot',
+            category: 'Playstation',
+            stockQuantity: 30,
+            description: 'Crash Bandicoot is a 1996 platform video game developed by Naughty Dog and published by Sony Computer Entertainment for the PlayStation.',
+            price: 17.00,
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/en/4/44/Crash_Bandicoot_Cover.png'
+        }),
+
+        await Product.create({
+            productName: 'Diablo',
+            category: 'Playstation',
+            stockQuantity: 30,
+            description: 'Diablo is an action role-playing video game developed by Blizzard North and released by Blizzard Entertainment in January 1997, and is the first installment in the video game series of the same name.',
+            price: 14.00,
+            imageUrl: 'https://i.ebayimg.com/images/g/l9EAAOxyxU1Q8M6l/s-l600.jpg'
+        }),
+
+        await Product.create({
+            productName: 'Driver',
+            category: 'Playstation',
+            stockQuantity: 30,
+            description: 'Driver (known as Driver: You Are the Wheelman in North America) is an action driving video game and the first installment in the Driver series.',
+            price: 15.00,
+            imageUrl: 'https://m.media-amazon.com/images/I/71kZLhjdqGL.jpg'
+        }),
+
+        await Product.create({
+            productName: 'Final Fantasy IV',
+            category: 'Playstation',
+            stockQuantity: 30,
+            description: 'Final Fantasy IV, known as Final Fantasy II for its initial North American release, is a role-playing video game developed and published by Square for the Super Nintendo Entertainment System. Released in 1991, it is the fourth main installment of the Final Fantasy series.',
+            price: 20.00,
+            imageUrl: 'https://neverendingrealm.com/wp-content/uploads/2019/02/Final-Fantasy-4-Box-Art-1200x1224.jpg'
+        }),
+
+        await Product.create({
+            productName: 'Gran Turismo',
+            category: 'Playstation',
+            stockQuantity: 30,
+            description: 'Gran Turismo is a 1997 racing simulation video game developed by Polys Entertainment and published by Sony Computer Entertainment for the PlayStation video game console.',
+            price: 23.00,
+            imageUrl: 'https://i.ebayimg.com/images/g/05YAAOSwlxRaaLU5/s-l600.jpg'
+        }),
+
+        await Product.create({
+            productName: 'Hogs of War',
+            category: 'Playstation',
+            stockQuantity: 30,
+            description: 'Hogs of War is a 2000 turn-based tactics video game developed by Infogrames Sheffield House and published by Infogrames for the PlayStation and Microsoft Windows. The game is set in the First World War-era where anthropomorphic pigs engage in combat.',
+            price: 12.00,
+            imageUrl: 'https://m.media-amazon.com/images/I/41hvgqz-mvL._AC_SY1000_.jpg'
+        }),
+
+        await Product.create({
+            productName: 'Resident Evil',
+            category: 'Playstation',
+            stockQuantity: 30,
+            description: 'Resident Evil is a 1996 survival horror video game developed and published by Capcom originally for the PlayStation. It is the first title in Capcoms Resident Evil franchise.',
+            price: 20.00,
+            imageUrl: 'https://i.ebayimg.com/images/g/ZfsAAOxywbNQ9vMN/s-l400.jpg'
+        }),
+
+        await Product.create({
+            productName: 'Spyro',
+            category: 'Playstation',
+            stockQuantity: 30,
+            description: 'Spyro the Dragon is a platform game developed by Insomniac Games and published by Sony Computer Entertainment for the PlayStation on September 9, 1998.',
+            price: 25.00,
+            imageUrl: 'https://m.media-amazon.com/images/I/51+X6fIKptL._AC_SY1000_.jpg'
+        }),
+
+        await Product.create({
+            productName: 'Tekken',
+            category: 'Playstation',
+            stockQuantity: 30,
+            description: 'Tekken (鉄拳) is a fighting game developed and published by Namco. It was originally released for arcades in 1994, and ported to the PlayStation a year later. ',
+            price: 18.00,
+            imageUrl: 'https://i.ebayimg.com/images/g/j3UAAMXQU6tQ9ygH/s-l640.jpg'
+        }),
+
+        await Product.create({
+            productName: 'Tomb Raider',
+            category: 'Playstation',
+            stockQuantity: 30,
+            description: 'Tomb Raider is a 1996 action-adventure video game developed by Core Design and published by Eidos Interactive.',
+            price: 19.00,
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/6/69/Tomb_Raider_%281996%29.png/220px-Tomb_Raider_%281996%29.png'
+        }),
+
+        // END PLAYSTATION
+
+        // BEGIN PLAYSTATION 2
+
+        await Product.create({
+            productName: 'Burnout',
+            category: 'Playstation 2',
+            stockQuantity: 30,
+            description: 'Burnout is a series of racing games developed by Criterion Games. The first two games were published by Acclaim Entertainment, while later instalments were published by Electronic Arts.',
+            price: 24.00,
+            imageUrl: 'https://m.media-amazon.com/images/I/51X4cFXHOgL._AC_SY1000_.jpg'
+        }),
+
+        await Product.create({
+            productName: 'Devil May Cry',
+            category: 'Playstation 2',
+            stockQuantity: 30,
+            description: 'Released from August to December, originally for the PlayStation 2, it is the first installment in the Devil May Cry series. ',
+            price: 27.00,
+            imageUrl: 'https://m.media-amazon.com/images/I/51SAXEd3d8L._AC_SY1000_.jpg'
+        }),
+
+        await Product.create({
+            productName: 'God of War',
+            category: 'Playstation 2',
+            stockQuantity: 30,
+            description: 'Unleash the power of the Gods and embark on a merciless quest as Kratos, an ex-Spartan warrior driven to destroy Ares, the God of War.',
+            price: 31.00,
+            imageUrl: 'https://m.media-amazon.com/images/I/91VKfyGGkYL.jpg'
+        }),
+
+        await Product.create({
+            productName: 'Grand Theft Auto: San Andreas',
+            category: 'Playstation 2',
+            stockQuantity: 30,
+            description: 'Grand Theft Auto: San Andreas is a 2004 action-adventure game developed by Rockstar North and published by Rockstar Games.',
+            price: 33.00,
+            imageUrl: 'https://m.media-amazon.com/images/I/61N9DX5CRKL._AC_SY1000_.jpg'
+        }),
+
+        await Product.create({
+            productName: 'Kingdom Hearts',
+            category: 'Playstation 2',
+            stockQuantity: 30,
+            description: 'Kingdom Hearts is a 2002 action role-playing video game developed by Square for the PlayStation 2 video game console.',
+            price: 26.00,
+            imageUrl: 'https://m.media-amazon.com/images/I/918AUL+i-DL.jpg'
+        }),
+
+        await Product.create({
+            productName: 'Madden 04',
+            category: 'Playstation 2',
+            stockQuantity: 30,
+            description: 'Madden NFL 2004 is the 15th installment of the Madden NFL series of American football video games. Former Atlanta Falcons quarterback Michael Vick is on the cover.',
+            price: 14.00,
+            imageUrl: 'https://www.mobygames.com/images/covers/l/565288-madden-nfl-2004-playstation-2-manual.jpg'
+        }),
+
+        await Product.create({
+            productName: 'Medal of Honor',
+            category: 'Playstation 2',
+            stockQuantity: 30,
+            description: 'Medal of Honor: Frontline is a first-person shooter video game, in the Medal of Honor series, and was published by Electronic Arts.',
+            price: 25.00,
+            imageUrl: 'https://i.ebayimg.com/images/g/bzwAAOSwJPBhsqBL/s-l1600.jpg'
+        }),
+
+        await Product.create({
+            productName: 'Soul Caliber II',
+            category: 'Playstation 2',
+            stockQuantity: 30,
+            description: 'Soulcalibur II (ソウルキャリバーII, Sōrukyaribā Tsū) is a 2002 fighting game developed by Project Soul and published by Namco and the third installment in the Soulcalibur series of weapon-based fighting games.',
+            price: 22.00,
+            imageUrl: 'https://www.lukiegames.com/assets/images/PS2/ps2_soul_calibur_2_ii_p_ac6o8t.jpg'
+        }),
+
+        await Product.create({
+            productName: 'SSX',
+            category: 'Playstation 2',
+            stockQuantity: 30,
+            description: 'SSX is a series of snowboarding and skiing video games published by EA Sports. It is an arcade-style racing game with larger-than-life courses, characters, and tricks.',
+            price: 20.00,
+            imageUrl: 'https://cdn11.bigcommerce.com/s-ymgqt/images/stencil/640w/products/25517/22574/ssx_tricky__75331.1673723554.jpg?c=2'
+        }),
+
+        await Product.create({
+            productName: 'Tony Hawk',
+            category: 'Playstation 2',
+            stockQuantity: 30,
+            description: 'Tony Hawks is a skateboarding video game series published by Activision and endorsed by the American professional skateboarder of the same name.',
+            price: 23.00,
+            imageUrl: 'https://cdromance.com/wp-content/uploads/2018/06/75269_front.jpg'
+        }),
+        
+        // END PLAYSTATION 2
+
         //End Real Seed Data
 
         await User.create({

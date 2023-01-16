@@ -92,7 +92,7 @@ const SingleProduct = () => {
         <div id="single-product">
 
             <div id="single-product-info"> 
-                <img src={`/${imageUrl}`} />
+                <img src={`${imageUrl}`} height='400px' />
                 
                 {singleUser.isAdmin ? <EditProductForm /> :
                 <>
