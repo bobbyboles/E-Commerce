@@ -8,6 +8,8 @@ import { selectUsers } from "../slices/allUsersSlice";
 import AddProductForm from "./AddProductForm";
 import AddUserForm from "./AddUserForm";
 import AdminViewUsers from "./AdminViewUsers";
+import { getMyOrders } from "../slices/orderHistorySlice";
+import { selectOrderHistory } from "../slices/orderHistorySlice";
 
 const MyAccount = () => {
     const userId = useSelector((state) => state.auth.me.id);
@@ -15,15 +17,16 @@ const MyAccount = () => {
 
     const dispatch = useDispatch();
     const users = useSelector(selectUsers)
+    const orderHistory = useSelector(selectOrderHistory)
 
     const singleUser = useSelector(selectSingleUser);
 
     useEffect(() => {
-
+        if(userId)dispatch(getMyOrders(userId))
         dispatch(getAllUsers())
     }, [dispatch, userId]);
 
-    console.log("This is the Users", users)
+    console.log(orderHistory)
     
     return(
       <div id='myAccount'>

@@ -7,6 +7,7 @@ import singleUserSlice from "../slices/singleUserSlice";
 import allUsersSlice from "../slices/allUsersSlice";
 import cartSlice from "../slices/cartSlice";
 import allCartDatabaseSlice from "../slices/allCartDatabaseSlice";
+import orderHistorySlice from "../slices/orderHistorySlice";
 
 const store = configureStore({
     reducer: {
@@ -17,6 +18,7 @@ const store = configureStore({
         singleUser: singleUserSlice,
         cart: cartSlice,
         allCartDatabase: allCartDatabaseSlice,
+        orderHistory: orderHistorySlice
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
