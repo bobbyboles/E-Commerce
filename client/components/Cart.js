@@ -11,45 +11,76 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { addToQuantity, removeToQuantity } from "../slices/cartSlice";
 import { getMyCart } from "../slices/singleCartDatabaseSlice";
-import { selectSingleCartDatabase} from "../slices/singleCartDatabaseSlice";
+import { selectSingleCartDatabase } from "../slices/singleCartDatabaseSlice";
+import { editProductInCart } from "../slices/singleCartDatabaseSlice";
+import { deleteDBCart } from "../slices/singleCartDatabaseSlice";
+import { getSingleUser } from "../slices/singleUserSlice";
+import { selectSingleUser } from "../slices/singleUserSlice";
 
 export const Cart = () => {
     const dispatch = useDispatch();
     const cart = useSelector(selectGetCart);
-    const dbCart = useSelector(selectSingleCartDatabase)
+    const dbCart = useSelector(selectSingleCartDatabase);
     const userId = useSelector((state) => state.auth.me.id);
+    const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+    const user = useSelector(selectSingleUser)
 
     const deleteButton = (id) => {
         dispatch(removeFromCart(id));
+
     };
 
     useEffect(() => {
-        if(userId)dispatch(getMyCart(userId));
-    }, [dispatch, userId]);
+         if(userId)dispatch(getSingleUser(userId));
 
+    }, [dispatch, userId,cart]);
 
-    const cartTotal = cart.reduce((acc, item)=>{
-        acc+= item.price * item.count
-        return acc
-    },0)
+    const cartTotal = cart.reduce((acc, item) => {
+        acc += item.price * item.count;
+        return acc;
+    }, 0);
 
-    
-    const getCartId = (_dbCart, _productId) =>{
-        for(const item of _dbCart){
-            if(item.id == _productId )return [item.id, item.quantity] 
-             else return false
+    const getCartId = (_dbCart, _productId) => {
+        for (const item of _dbCart) {
+            console.log("THIS IS THE ITEMS", item)
+            if (item.productId == _productId) {
+                console.log('This is the cart ID', item.id, 'this is the cart quantity', item.quantity)
+                return {id: item.id, cartQuantity: item.quantity} 
+            } 
         }
-    }
+return false;
+    };
 
-    const handleIncreaseQuantity = (_cartId, product) =>{
+    const handleIncreaseQuantity = (_dbCart, product) => {
+        dispatch(addToQuantity(product));
+        if (isLoggedIn) {
+            const {id, cartQuantity} = getCartId(_dbCart, product.id);
+            let quantity = cartQuantity + 1;
+            let productId = product.id;
+            console.log('this is the cart id', id)
+            dispatch(editProductInCart({ id, userId, productId, quantity }));
+        }
+    };
+    const handleDecreaseQuantity = (_dbCart, product) => {
+        dispatch(removeToQuantity(product));
+        if (isLoggedIn) {
+            const {id, cartQuantity} = getCartId(_dbCart, product.id);
+            let quantity = cartQuantity - 1;
+            let productId = product.id;
+            console.log('this is the cart id', id)
+            dispatch(editProductInCart({ id, userId, productId, quantity }));
 
-    }
-    const handleDecreaseQuantity = (_cartId, product) =>{
+        }
 
-    }
-    const handleDelete = (_cartId, product) =>{
+    };
+    const handleDelete = (_dbCart, product) => {
+        dispatch(removeFromCart(product.id));
+        if (isLoggedIn) {
+            const {id} = getCartId(_dbCart, product.id);
+            dispatch(deleteDBCart({id}));
+        }
 
-    }
+    };
 
     return (
         <div id="cart_container">
@@ -75,7 +106,7 @@ export const Cart = () => {
                                   <h3>Price:{product.price}</h3>
                                   <button
                                       onClick={() =>
-                                          dispatch(removeToQuantity(product))
+                                         handleDecreaseQuantity(dbCart, product) 
                                       }
                                   >
                                       Decrease Quantity
@@ -83,14 +114,17 @@ export const Cart = () => {
                                   <h3>Quantity:{product.count}</h3>
                                   <button
                                       onClick={() =>
-                                          dispatch(addToQuantity(product))
+                                          handleIncreaseQuantity(
+                                              dbCart,
+                                              product
+                                          )
                                       }
                                   >
                                       Increase Quantity
                                   </button>
                                   <h3>Total:{product.price * product.count}</h3>
                                   <button
-                                      onClick={() => deleteButton(product.id)}
+                                      onClick={() => handleDelete(dbCart,product)}
                                   >
                                       REMOVE{" "}
                                   </button>
