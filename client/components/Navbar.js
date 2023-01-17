@@ -30,6 +30,7 @@ const Navbar = () => {
         alignItems: "center",
         height: 60,
         margin: 10,
+        backgroundImage: 'linear-gradient(fuchsia, orange)'
     };
     useEffect(() => {
         if (userId) dispatch(getSingleUser(userId));

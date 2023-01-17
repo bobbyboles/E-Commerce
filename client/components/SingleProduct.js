@@ -5,6 +5,10 @@ import { selectSingleProduct, getSingleProduct, } from "../slices/singleProductS
 import { addToCart, addProductToDBCart, editProductInDBCart, selectGetCart, getMyHomeCart} from "../slices/cartSlice";
 import { selectSingleUser } from "../slices/singleUserSlice";
 import EditProductForm from "./EditProductForm";
+import { addProductToDBCart } from "../slices/cartSlice";
+import { editProductInDBCart } from "../slices/cartSlice";
+import { selectGetCart } from "../slices/cartSlice";
+import { getMyHomeCart } from "../slices/cartSlice";
 
 const SingleProduct = () => {
     const [quantity, setQuantity] = useState(1);
@@ -76,9 +80,14 @@ const SingleProduct = () => {
         }
     };
 
+    const singleProductStyle = {
+        color: 'white',
+        display: 'grid'
+    }
+
     return (
         <div id="single-product">
-            <div id="single-product-info">
+            <div id="single-product-info" style={singleProductStyle}>
                 <img src={`${imageUrl}`} height="400px" />
 
                 {singleUser.isAdmin ? (
@@ -86,7 +95,7 @@ const SingleProduct = () => {
                 ) : (
                     <>
                         <h1>{productName}</h1>
-                        <h3>Price: {price}</h3>
+                        <h3>Price: $ {price}</h3>
                         <h3>Category: {category}</h3>
                         <p>Details: {description}</p>
                         {stockQuantity > 0 ? (
