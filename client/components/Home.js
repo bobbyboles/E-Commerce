@@ -46,6 +46,9 @@ const Home = () => {
         flexWrap: "wrap",
         gap: 35,
     };
+    const imgStyle = {
+        height:150
+    }
 
 
     return (
@@ -70,6 +73,7 @@ const Home = () => {
                     ? products.map((product) => {
                           return (
                               <div className="product" key={product.id}>
+                                      <img src={product.imageUrl} style={imgStyle}></img>
                                   <Link
                                       to={`/products/${product.id}`}
                                       key={`All Products: ${product.id}`}

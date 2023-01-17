@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { authenticate } from "../store/store";
 import { useNavigate } from "react-router-dom";
 import  AddUserForm from './AddUserForm'
+import { selectGetCart } from "../slices/cartSlice";
+import { addProductToCart } from "../slices/cartDatabaseSlice";
 /**
   The AuthForm component can be used for Login or Sign Up.
   Props for Login: name="login", displayName="Login"
@@ -12,14 +14,24 @@ import  AddUserForm from './AddUserForm'
 const AuthForm = ({ name, displayName }) => {
     const dispatch = useDispatch();
     const nav = useNavigate();
+    const cart  = useSelector(selectGetCart)
+    const userId = useSelector((state) => state.auth.me.id);
 
-    const handleSubmit = (evt) => {
+    const handleSubmit = async (evt) => {
         evt.preventDefault();
         const formName = evt.target.name;
         const username = evt.target.username.value;
         const password = evt.target.password.value;
         dispatch(authenticate({ username, password, method: formName }));
-        nav("/");
+        if(cart.length){
+            cart.map(async(item)=>{
+                console.log("THIS IS AN ITEM IN THE CHECK", item)
+                const quantity = item.quantity
+                const productId = item.productId
+                await dispatch(addProductToCart(quantity, userId, productId )) 
+            })
+        }
+        // nav("/");
     };
 
     return (
