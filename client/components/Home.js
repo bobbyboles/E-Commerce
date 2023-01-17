@@ -12,6 +12,7 @@ import { getSingleUser } from "../slices/singleUserSlice";
 import { selectSingleUser } from "../slices/singleUserSlice";
 import { addToCart } from "../slices/cartSlice";
 import { selectGetCart } from "../slices/cartSlice";
+import SideNav from "./SideNav";
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -54,6 +55,7 @@ const Home = () => {
                     <option value="pricehl">Price H-L</option>
                     <option value="pricelh">Price L-H</option>
                 </select>
+                <SideNav />
             </div>
 
             <div id="products" style={simpleStyle}>
