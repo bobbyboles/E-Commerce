@@ -54,6 +54,13 @@ const allProductsSlice = createSlice({
             state = state.sort((a, b) => b.price - a.price
             );
         },
+        sortByCategory(state, action) {
+            return state.filter((product)=> {
+                if (product.category === action.payload) {
+                    return true
+                }
+            })
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(fetchProductsAsync.fulfilled, (state, action) => {
@@ -68,7 +75,7 @@ const allProductsSlice = createSlice({
     },
 });
 
-export const { sortZA, sortAZ, sortByPriceLowHigh, sortByPriceHighLow  } = allProductsSlice.actions;
+export const { sortZA, sortAZ, sortByPriceLowHigh, sortByPriceHighLow, sortByCategory } = allProductsSlice.actions;
 
 export const selectProducts = (state) => {
     return state.products;

@@ -28,7 +28,6 @@ const Navbar = () => {
     };
     const basicNavStyle = {
         display: "flex",
-        flexdirection: "column",
         justifyContent: "space-between",
         alignItems: "center",
         height: 60,

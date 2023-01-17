@@ -187,7 +187,7 @@ async function seed() {
         });
 
         await Product.create({
-            productName: 'Uncharted 2 Among Thieves',
+            productName: 'Uncharted 3 Drakes Deception',
             category: 'ps3',
             stockQuantity: 8,
             description: 'Two years after the events of the previous game, treasure hunters Nathan "Nate" Drake (Nolan North) and Victor "Sully" Sullivan (Richard McGonagle) meet with Talbot (Robin Atkin Downes) in London, who is interested in purchasing Nates ring, inherited from Sir Francis Drake. The duo accuses Talbot of using counterfeit banknotes, and a fight ensues. They are subdued by Talbots cohort, Charlie Cutter (Graham McTavish), and Talbots employer, Katherine Marlowe (Rosalind Ayres), who steals Drakes ring. Cutter shoots Nate and Sully.',
@@ -201,7 +201,7 @@ async function seed() {
             productName: 'Wii Console',
             category: 'wii',
             stockQuantity: 8,
-            description: 'Introducing motion controlled gaming from Nintendo. Package includes Wii console, 1 controller (batteries not included), 1 unused retention strap, and 1 replacement flat screen tv (also not included).',
+            description: 'Introducing motion controlled gaming from Nintendo. Package includes Wii console, 1 controller (batteries not included), 1 highly retention strap, and 1 replacement flat screen tv (also not included).',
             price: 350.00,
             imageUrl: 'https://cdn1.bigcommerce.com/server4000/a642e/products/18712/images/31128/__28131.1537914606.1280.1280.jpg?c=2'
         });
@@ -248,7 +248,7 @@ async function seed() {
             stockQuantity: 30,
             description: 'Ever got into a fist fight over a video game? That might change after you get your rightful title of winner taken from you at the last second by a person you thought was your friend! Enrage your friends by teaming up against one person and use all your purchases from the in game store against them. This game is specifically designed to bring out the anger in the nicest of individuals!',
             price: 20.00,
-            imageUrl: 'https://www.mobygames.com/images/covers/l/215373-guitar-hero-world-tour-wii-front-cover.jpg'
+            imageUrl: 'https://www.mobygames.com/images/covers/l/88949-mario-party-8-wii-front-cover.jpg'
         });
 
         await Product.create({
@@ -266,7 +266,7 @@ async function seed() {
             stockQuantity: 53,
             description: 'Princess Peach has been kidnapped! Again! Everyone was celebrating the Princess birthday when a giant birthday cake arrived... but then Bowser Jr. and the seven Koopalings popped out and kidnapped her! Mario, Luigi and two Toads make chase to rescue her once more. Will they succeed?',
             price: 45.00,
-            imageUrl: 'https://www.reference-gaming.com/assets/media/product/15595/monopoly-streets-wii.jpg?format=product-cover-large&k=1461754449'
+            imageUrl: 'https://www.mobygames.com/images/covers/l/172383-new-super-mario-bros-wii-wii-front-cover.jpg'
         });
 
         await Product.create({
