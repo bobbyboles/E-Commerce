@@ -16,6 +16,7 @@ import { selectSingleUser } from "../slices/singleUserSlice";
 import { deleteDBCart } from "../slices/cartSlice";
 import { getMyCart } from "../slices/cartSlice";
 import { checkoutCart } from "../slices/cartSlice";
+import { checkoutCartSlice } from "../slices/cartSlice";
 
 export const Cart = () => {
     const dispatch = useDispatch();
@@ -23,6 +24,11 @@ export const Cart = () => {
     const userId = useSelector((state) => state.auth.me.id);
     const isLoggedIn = useSelector((state) => !!state.auth.me.id);
     const user = useSelector(selectSingleUser);
+    const localCartStorage = localStorage.getItem("cart")
+
+    if(localCartStorage){
+        var localCart = JSON.parse(localCartStorage)
+    }
 
     const deleteButton = (id) => {
         dispatch(removeFromCart(id));
@@ -56,15 +62,33 @@ export const Cart = () => {
 
     const handleIncreaseQuantity = (_dbCart, product) => {
         dispatch(addToQuantity(product));
+        if (_dbCart.length) {
+            const newLocalCart = _dbCart.map((item) => {
+                if (item.id == product.id) {
+                    item.quantity++;
+                }
+                return item;
+            });
+            localStorage.setItem("cart", JSON.stringify(newLocalCart));
+        }
         if (isLoggedIn) {
             let id = product.cartId;
             let productId = product.id;
             let quantity = product.quantity + 1;
-            dispatch(editProductInDBCart({ id,  productId, quantity }));
+            dispatch(editProductInDBCart({ id, productId, quantity }));
         }
     };
     const handleDecreaseQuantity = (_dbCart, product) => {
         dispatch(removeToQuantity(product));
+        if (localCart) {
+            const newLocalCart = localCart.map((item) => {
+                if (item.id == product.id) {
+                    item.quantity--;
+                }
+                return item;
+            });
+            localStorage.setItem("cart", JSON.stringify(newLocalCart));
+        }
         if (isLoggedIn) {
             let id = product.cartId;
             let productId = product.id;
@@ -74,6 +98,12 @@ export const Cart = () => {
     };
     const handleDelete = (_dbCart, product) => {
         dispatch(removeFromCart(product.id));
+        if (localCart) {
+            const newLocalCart = localCart.filter((item) => {
+                if(item.id !== product.id) return true;
+            });
+            localStorage.setItem("cart", JSON.stringify(newLocalCart));
+        }
         if (isLoggedIn) {
             let id = product.cartId;
             dispatch(deleteDBCart({ id }));
@@ -81,14 +111,19 @@ export const Cart = () => {
     };
 
     const handleCheckout = (cart, userId) => {
+        localStorage.setItem('cart', '[]')
+        dispatch(checkoutCartSlice())
+        if (isLoggedIn) {
         let completed = true;
-        cart.map((item) => {
-            let id = item.cartId 
-            let productId = item.id
-            let quantity = item.quantity
-            console.log("THIS IS THE VALUES OF CHECKOUTCART PARAMS", id, userId, productId, quantity, completed)
-            dispatch(checkoutCart({id, userId,productId, quantity,  completed}));
-        });
+            cart.map((item) => {
+                let id = item.cartId;
+                let productId = item.id;
+                let quantity = item.quantity;
+                dispatch(
+                    checkoutCart({ id, userId, productId, quantity, completed })
+                );
+            });
+        }
     };
 
     return (
@@ -115,7 +150,7 @@ export const Cart = () => {
                                   <h3>Price:{product.price}</h3>
                                   <button
                                       onClick={() =>
-                                          handleDecreaseQuantity(cart, product)
+                                          handleDecreaseQuantity(localCart, product)
                                       }
                                   >
                                       Decrease Quantity
@@ -123,7 +158,7 @@ export const Cart = () => {
                                   <h3>Quantity:{product.quantity}</h3>
                                   <button
                                       onClick={() =>
-                                          handleIncreaseQuantity(cart, product)
+                                          handleIncreaseQuantity(localCart, product)
                                       }
                                   >
                                       Increase Quantity
@@ -133,7 +168,7 @@ export const Cart = () => {
                                   </h3>
                                   <button
                                       onClick={() =>
-                                          handleDelete(cart, product)
+                                          handleDelete(localCart, product)
                                       }
                                   >
                                       REMOVE{" "}
@@ -142,7 +177,9 @@ export const Cart = () => {
                           );
                       })
                     : "There is nothing in your cart!"}
-                <button onClick={()=> handleCheckout(cart, userId)}>Checkout</button>
+                <button onClick={() => handleCheckout(cart, userId)}>
+                    Checkout
+                </button>
             </div>
             <div>{cartTotal}</div>
         </div>
