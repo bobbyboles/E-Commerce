@@ -26,6 +26,21 @@ router.get("/myCart", async (req, res, next) => {
         next(err);
     }
 });
+router.get("/myHomeCart", async (req, res, next) => {
+    try {
+        console.log(req.headers)
+        const cart = await Cart.findAll({
+            where:{
+                userId:req.headers.authid || null, 
+                completed: false
+            },
+            include: Product
+        });
+        res.json(cart);
+    } catch (err) {
+        next(err);
+    }
+});
 router.get("/myOrders", async (req, res, next) => {
     try {
         console.log(req.headers)

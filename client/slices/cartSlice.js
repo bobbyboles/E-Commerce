@@ -24,7 +24,18 @@ export const getMyCart = createAsyncThunk("myCart", async (userId) => {
             `http://localhost:8080/api/cart/myCart`,
             { headers: { authid: userId } }
         );
-        console.log("this is the thunk for myCart", data);
+        return data;
+    } catch (err) {
+        alert("error has occurred, check console");
+        console.log("error has occurred, check console", err.message);
+    }
+});
+export const getMyHomeCart = createAsyncThunk("myHomeCart", async (userId) => {
+    try {
+        let { data } = await axios.get(
+            `http://localhost:8080/api/cart/myHomeCart`,
+            { headers: { authid: userId } }
+        );
         return data;
     } catch (err) {
         alert("error has occurred, check console");
@@ -134,6 +145,9 @@ const cartSlice = createSlice({
         });
         builder.addCase(checkoutCart.fulfilled, (state, action) => {
           return initialState 
+        });
+        builder.addCase(getMyHomeCart.fulfilled, (state, action) => {
+            return action.payload 
         });
     },
 });

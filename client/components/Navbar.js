@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import { selectSingleUser, getSingleUser } from "../slices/singleUserSlice";
 import { addToCart } from "../slices/cartSlice";
 import { selectProducts } from "../slices/allProductsSlice";
-import { getMyCart } from "../slices/cartSlice";
+import { getMyHomeCart } from "../slices/cartSlice";
 
 const Navbar = () => {
     const cartNum = useSelector(selectGetCart);
@@ -33,7 +33,7 @@ const Navbar = () => {
     };
     useEffect(() => {
         if (userId) dispatch(getSingleUser(userId));
-        if (userId) dispatch(getMyCart(userId))
+        if (userId) dispatch(getMyHomeCart(userId))
     }, [dispatch, userId]);
 
    // if (isLoggedIn && user.products && cartNum.length < 1 && dbCart.length) {
