@@ -10,6 +10,7 @@ import { selectSingleUser, getSingleUser } from "../slices/singleUserSlice";
 import { addToCart } from "../slices/cartSlice";
 import { selectProducts } from "../slices/allProductsSlice";
 import { getMyHomeCart } from "../slices/cartSlice";
+import { checkoutCartSlice } from "../slices/cartSlice";
 
 const Navbar = () => {
     const cartNum = useSelector(selectGetCart);
@@ -21,6 +22,7 @@ const Navbar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const logoutAndRedirectHome = () => {
+        dispatch(checkoutCartSlice())
         dispatch(logout());
         navigate("/");
     };
