@@ -10,6 +10,7 @@ import AddUserForm from "./AddUserForm";
 import AdminViewUsers from "./AdminViewUsers";
 import { getMyOrders } from "../slices/orderHistorySlice";
 import { selectOrderHistory } from "../slices/orderHistorySlice";
+import OrderHistory from "./OrderHistory";
 
 const MyAccount = () => {
     const userId = useSelector((state) => state.auth.me.id);
@@ -26,7 +27,7 @@ const MyAccount = () => {
         dispatch(getAllUsers())
     }, [dispatch, userId]);
 
-    console.log(orderHistory)
+    //console.log(orderHistory)
     
     return(
       <div id='myAccount'>
@@ -34,6 +35,7 @@ const MyAccount = () => {
         <h4>User Options: </h4>
         <div><EditUserInfoForm /></div>
         <h4>Order History:</h4>
+        <div><OrderHistory /></div>
 
         {(singleUser.isAdmin ? 
           <>
