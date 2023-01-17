@@ -13,7 +13,7 @@ import { getMyHomeCart } from "../slices/cartSlice";
 
 const Navbar = () => {
     const cartNum = useSelector(selectGetCart);
-    const allProducts = useSelector(selectProducts)
+    const allProducts = useSelector(selectProducts);
     const username = useSelector((state) => state.auth.me.username);
     const userId = useSelector((state) => state.auth.me.id);
     const user = useSelector(selectSingleUser);
@@ -34,10 +34,16 @@ const Navbar = () => {
     };
     useEffect(() => {
         if (userId) dispatch(getSingleUser(userId));
-        if (userId) dispatch(getMyHomeCart(userId))
+        const localSt = localStorage.getItem("cart");
+        if (localSt) {
+            const items = JSON.parse(localStorage.getItem("cart"));
+            if (items && cartNum.length == 0 && !isLoggedIn) {
+                items.map((item) => dispatch(addToCart(item)));
+            }
+        }
     }, [dispatch, userId]);
 
-   // if (isLoggedIn && user.products && cartNum.length < 1 && dbCart.length) {
+    // if (isLoggedIn && user.products && cartNum.length < 1 && dbCart.length) {
     //     console.log('fired')
     //     user.products.map((product) => {
     //         const newProduct = JSON.parse(JSON.stringify(product));
@@ -46,11 +52,11 @@ const Navbar = () => {
     //     });
     // }
 
-    const cartNumber =  cartNum.reduce((acc, item) => {
-            acc += item.quantity;
-            return acc;
-        }, 0);
-    
+    const cartNumber = cartNum.reduce((acc, item) => {
+        acc += item.quantity;
+        return acc;
+    }, 0);
+
     return (
         <div>
             <nav>

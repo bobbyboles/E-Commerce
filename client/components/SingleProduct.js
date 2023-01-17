@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-    selectSingleProduct,
-    getSingleProduct,
-} from "../slices/singleProductSlice";
-import { addToCart } from "../slices/cartSlice";
-import { getSingleUser } from "../slices/singleUserSlice";
+import { selectSingleProduct, getSingleProduct, } from "../slices/singleProductSlice";
+import { addToCart, addProductToDBCart, editProductInDBCart, selectGetCart, getMyHomeCart} from "../slices/cartSlice";
 import { selectSingleUser } from "../slices/singleUserSlice";
 import EditProductForm from "./EditProductForm";
 import { addProductToDBCart } from "../slices/cartSlice";
 import { editProductInDBCart } from "../slices/cartSlice";
 import { selectGetCart } from "../slices/cartSlice";
 import { getMyHomeCart } from "../slices/cartSlice";
-
 
 const SingleProduct = () => {
     const [quantity, setQuantity] = useState(1);
@@ -25,6 +20,7 @@ const SingleProduct = () => {
     const isLoggedIn = useSelector((state) => !!state.auth.me.id);
     const userId = useSelector((state) => state.auth.me.id);
     const cart = useSelector(selectGetCart);
+
 
     const singleUser = useSelector(selectSingleUser);
     console.log("Single User Data", singleUser);
@@ -42,6 +38,10 @@ const SingleProduct = () => {
         dispatch(getSingleProduct(productId));
         if (userId) dispatch(getMyHomeCart(userId));
     }, [dispatch, userId]);
+
+    useEffect(()=>{
+        if(!isLoggedIn)localStorage.setItem('cart', JSON.stringify(cart))
+    },[cart])
 
     console.log(cart);
 
@@ -61,7 +61,7 @@ const SingleProduct = () => {
 
     const isAlreadyInCart = (cart, _productId) => {
         for (const item of cart) {
-            if (item.productId == _productId || item.id == _productId) return [item.id, item.quantity];
+            if (item.productId == _productId ) return [item.id, item.quantity];
         }
         return false;
     };

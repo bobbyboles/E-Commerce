@@ -27,6 +27,16 @@ export const addUserAsync = createAsyncThunk("allUsers/addUser", async (addUser)
   }
 });
 
+export const deleteUserAsync = createAsyncThunk('allUsers/deleteUser', async (id) => {
+  try {
+    const { data } = await axios.delete(`/api/users/${id}`)
+    return data
+  }
+  catch (err) {
+    console.log(err)
+  }
+})
+
 const allUsersSlice = createSlice({
 
 name:  'allUsers',
@@ -38,7 +48,10 @@ extraReducers: (builder) => {
     });
     builder.addCase(addUserAsync.fulfilled, (state, action) => {
       return action.payload;
-  });
+    });
+    builder.addCase(deleteUserAsync.fulfilled, (state, action) => {
+      return state.filter(user => user.id !== action.payload.id)
+    });
   }
 })
 
