@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-    selectSingleProduct,
-    getSingleProduct,
-} from "../slices/singleProductSlice";
-import { addToCart } from "../slices/cartSlice";
-import { getSingleUser } from "../slices/singleUserSlice";
+import { selectSingleProduct, getSingleProduct, } from "../slices/singleProductSlice";
+import { addToCart, addProductToDBCart, editProductInDBCart, selectGetCart, getMyHomeCart} from "../slices/cartSlice";
 import { selectSingleUser } from "../slices/singleUserSlice";
 import EditProductForm from "./EditProductForm";
-import { addProductToDBCart } from "../slices/cartSlice";
-import { editProductInDBCart } from "../slices/cartSlice";
-import { selectGetCart } from "../slices/cartSlice";
-import { getMyHomeCart } from "../slices/cartSlice";
+
 const SingleProduct = () => {
     const [quantity, setQuantity] = useState(1);
 

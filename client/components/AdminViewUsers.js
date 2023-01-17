@@ -1,9 +1,10 @@
 import React from 'react'
-import { useSelector } from "react-redux";
-import { selectUsers } from '../slices/allUsersSlice';
+import { useSelector, useDispatch } from "react-redux";
+import { deleteUserAsync, selectUsers } from '../slices/allUsersSlice';
 
 const AdminViewUsers = () => {
-  const users = useSelector(selectUsers);
+   const dispatch = useDispatch();
+   const users = useSelector(selectUsers);
 
    return (
       <div className='User-table'>
@@ -16,6 +17,7 @@ const AdminViewUsers = () => {
                <th>Email:</th>
                <th>Home Address:</th>
                <th>Phone Number:</th>
+               <th>Delete User:</th>
             </tr>
             {users && users.length ? users.map((user) => {
                return(
@@ -26,6 +28,7 @@ const AdminViewUsers = () => {
                      <td>{user.email}</td>
                      <td>{user.address}</td>
                      <td>{user.phone}</td>
+                     <td><button onClick={() => {dispatch(deleteUserAsync(user.id))}}>Delete</button></td>
                   </tr>
                )
             }): null}
