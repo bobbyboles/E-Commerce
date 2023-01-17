@@ -4,7 +4,9 @@ import { authenticate } from "../store/store";
 import { useNavigate } from "react-router-dom";
 import  AddUserForm from './AddUserForm'
 import { selectGetCart } from "../slices/cartSlice";
-import { addProductToCart } from "../slices/cartDatabaseSlice";
+import { addProductToDBCart } from "../slices/cartSlice";
+import { useEffect } from "react";
+import { getSingleUser } from "../slices/singleUserSlice";
 /**
   The AuthForm component can be used for Login or Sign Up.
   Props for Login: name="login", displayName="Login"
@@ -16,6 +18,19 @@ const AuthForm = ({ name, displayName }) => {
     const nav = useNavigate();
     const cart  = useSelector(selectGetCart)
     const userId = useSelector((state) => state.auth.me.id);
+    
+    const handleLoginWithItems = (_preLogginCart, userId) =>{
+        if(_preLogginCart.length){
+            cart.map(async(item)=>{
+                console.log("THIS IS AN ITEM IN THE CHECK", item)
+                const quantity = item.quantity
+                const productId = item.id
+                await dispatch(addProductToDBCart({quantity, userId, productId })) 
+            })
+        }
+
+    }
+    
 
     const handleSubmit = async (evt) => {
         evt.preventDefault();
@@ -23,15 +38,15 @@ const AuthForm = ({ name, displayName }) => {
         const username = evt.target.username.value;
         const password = evt.target.password.value;
         dispatch(authenticate({ username, password, method: formName }));
-        if(cart.length){
-            cart.map(async(item)=>{
-                console.log("THIS IS AN ITEM IN THE CHECK", item)
-                const quantity = item.quantity
-                const productId = item.productId
-                await dispatch(addProductToCart(quantity, userId, productId )) 
-            })
-        }
-        // nav("/");
+        // if(cart.length){
+        //     cart.map(async(item)=>{
+        //         console.log("THIS IS AN ITEM IN THE CHECK", item)
+        //         const quantity = item.quantity
+        //         const productId = item.id
+        //         await dispatch(addProductToDBCart({quantity, userId, productId })) 
+        //     })
+        // }
+        nav("/");
     };
 
     return (

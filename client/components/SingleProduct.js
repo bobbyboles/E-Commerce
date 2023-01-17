@@ -17,6 +17,7 @@ const SingleProduct = () => {
     const userId = useSelector((state) => state.auth.me.id);
     const cart = useSelector(selectGetCart);
 
+
     const singleUser = useSelector(selectSingleUser);
     console.log("Single User Data", singleUser);
 
@@ -33,6 +34,10 @@ const SingleProduct = () => {
         dispatch(getSingleProduct(productId));
         if (userId) dispatch(getMyHomeCart(userId));
     }, [dispatch, userId]);
+
+    useEffect(()=>{
+        if(!isLoggedIn)localStorage.setItem('cart', JSON.stringify(cart))
+    },[cart])
 
     console.log(cart);
 
@@ -52,7 +57,7 @@ const SingleProduct = () => {
 
     const isAlreadyInCart = (cart, _productId) => {
         for (const item of cart) {
-            if (item.productId == _productId || item.id == _productId) return [item.id, item.quantity];
+            if (item.productId == _productId ) return [item.id, item.quantity];
         }
         return false;
     };

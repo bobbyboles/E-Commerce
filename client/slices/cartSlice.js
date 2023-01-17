@@ -118,6 +118,9 @@ const cartSlice = createSlice({
                 return product.id !== action.payload;
             });
         },
+        checkoutCartSlice(state, action){
+            return initialState
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(addProductToDBCart.fulfilled, (state, action) => {
@@ -152,7 +155,7 @@ const cartSlice = createSlice({
     },
 });
 
-export const { addToCart, removeFromCart, addToQuantity, removeToQuantity } =
+export const { addToCart, removeFromCart, addToQuantity, removeToQuantity, checkoutCartSlice } =
     cartSlice.actions;
 
 export const selectGetCart = (state) => {

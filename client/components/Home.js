@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchProductsAsync, selectProducts, deleteProductAsync } from "../slices/allProductsSlice";
+import {
+    fetchProductsAsync,
+    selectProducts,
+    deleteProductAsync,
+} from "../slices/allProductsSlice";
 import {
     sortAZ,
     sortZA,
@@ -13,7 +17,9 @@ import { selectSingleUser } from "../slices/singleUserSlice";
 import { addToCart } from "../slices/cartSlice";
 import { selectGetCart } from "../slices/cartSlice";
 import SideNav from "./SideNav";
-import { sortBySearch } from '../slices/allProductsSlice'
+import { sortBySearch } from "../slices/allProductsSlice";
+import { getMyHomeCart } from "../slices/cartSlice";
+import { addProductToDBCart } from "../slices/cartSlice";
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -26,6 +32,8 @@ const Home = () => {
     useEffect(() => {
         dispatch(fetchProductsAsync());
         if (userId) dispatch(getSingleUser(userId));
+        if (userId) dispatch(getMyHomeCart(userId));
+        if (userId) handleLoginWithItems(userId);
     }, [dispatch, userId]);
 
     const handleSort = ({ target: { value } }) => {
@@ -35,10 +43,25 @@ const Home = () => {
         if (value == "pricelh") dispatch(sortByPriceLowHigh());
     };
 
-    const handleSearch = async ({ target: {value} }) => {
-        await dispatch(fetchProductsAsync())
-        await dispatch(sortBySearch(value.toLowerCase()))
-    }
+    const handleSearch = async ({ target: { value } }) => {
+        await dispatch(fetchProductsAsync());
+        await dispatch(sortBySearch(value.toLowerCase()));
+    };
+    const handleLoginWithItems = (userId) => {
+        const previousCart = localStorage.getItem("cart");
+        if (previousCart) {
+            const previousCartStringed = JSON.parse(previousCart);
+            previousCartStringed.map(async (item) => {
+                console.log("THIS IS AN ITEM IN THE CHECK", item);
+                const quantity = item.quantity;
+                const productId = item.id;
+                await dispatch(
+                    addProductToDBCart({ quantity, userId, productId })
+                );
+            });
+            localStorage.setItem("cart", []);
+        }
+    };
 
     const simpleStyle = {
         display: "flex",
@@ -47,9 +70,8 @@ const Home = () => {
         gap: 35,
     };
     const imgStyle = {
-        height:150
-    }
-
+        height: 150,
+    };
 
     return (
         <div>
@@ -73,7 +95,10 @@ const Home = () => {
                     ? products.map((product) => {
                           return (
                               <div className="product" key={product.id}>
-                                      <img src={product.imageUrl} style={imgStyle}></img>
+                                  <img
+                                      src={product.imageUrl}
+                                      style={imgStyle}
+                                  ></img>
                                   <Link
                                       to={`/products/${product.id}`}
                                       key={`All Products: ${product.id}`}
@@ -81,7 +106,17 @@ const Home = () => {
                                       <h2>{product.productName}</h2>
                                       <h3>{product.price}</h3>
                                   </Link>
-                                  {user.isAdmin && <button onClick={() => {dispatch(deleteProductAsync(product.id))}}>Delete</button>}
+                                  {user.isAdmin && (
+                                      <button
+                                          onClick={() => {
+                                              dispatch(
+                                                  deleteProductAsync(product.id)
+                                              );
+                                          }}
+                                      >
+                                          Delete
+                                      </button>
+                                  )}
                               </div>
                           );
                       })
