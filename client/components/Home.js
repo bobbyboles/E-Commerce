@@ -13,6 +13,7 @@ import { selectSingleUser } from "../slices/singleUserSlice";
 import { addToCart } from "../slices/cartSlice";
 import { selectGetCart } from "../slices/cartSlice";
 import SideNav from "./SideNav";
+import { sortBySearch } from '../slices/allProductsSlice'
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -34,6 +35,11 @@ const Home = () => {
         if (value == "pricelh") dispatch(sortByPriceLowHigh());
     };
 
+    const handleSearch = async ({ target: {value} }) => {
+        await dispatch(fetchProductsAsync())
+        await dispatch(sortBySearch(value.toLowerCase()))
+    }
+
     const simpleStyle = {
         display: "flex",
         flexDirection: "row",
@@ -44,8 +50,9 @@ const Home = () => {
 
     return (
         <div>
-            <div id="AllProductFilters"></div>
-
+            <div id="searchBar">
+                <input onChange={handleSearch}></input>
+            </div>
             <div id="AllProductSorting">
                 <label>Sort by</label>
                 <select className="sortBy" onChange={handleSort}>

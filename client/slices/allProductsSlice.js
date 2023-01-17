@@ -60,7 +60,15 @@ const allProductsSlice = createSlice({
                     return true
                 }
             })
-        }
+        },
+
+        sortBySearch(state, action) {
+            return state.filter((product)=> {
+                if (product.productName.toLowerCase().includes(action.payload)) {
+                    return true
+                }
+            })
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchProductsAsync.fulfilled, (state, action) => {
@@ -75,7 +83,7 @@ const allProductsSlice = createSlice({
     },
 });
 
-export const { sortZA, sortAZ, sortByPriceLowHigh, sortByPriceHighLow, sortByCategory } = allProductsSlice.actions;
+export const { sortZA, sortAZ, sortByPriceLowHigh, sortByPriceHighLow, sortByCategory, sortBySearch } = allProductsSlice.actions;
 
 export const selectProducts = (state) => {
     return state.products;
