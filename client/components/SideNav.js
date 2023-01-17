@@ -18,7 +18,7 @@ function SideNav() {
           <button value='xbox' onClick={handleSubmit}>XBOX</button> 
           <button value='wii' onClick={handleSubmit}>Wii</button> 
           <button value='ps3' onClick={handleSubmit}>PS3</button> 
-          <button value='Playstation 2' onClick={handleSubmit}>PS2</button> 
+          <button value='Playstation 2' onClick={handleSubmit}>Playstation 2</button> 
           <button value='Playstation' onClick={handleSubmit}>Playstation</button> 
           <button value='Nintendo 64' onClick={handleSubmit}>N64</button> 
           <button value='snes' onClick={handleSubmit}>SNES</button> 

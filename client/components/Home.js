@@ -13,7 +13,8 @@ import { selectSingleUser } from "../slices/singleUserSlice";
 import { addToCart } from "../slices/cartSlice";
 import { selectGetCart } from "../slices/cartSlice";
 import SideNav from "./SideNav";
-import { sortBySearch } from '../slices/allProductsSlice'
+import { sortBySearch } from '../slices/allProductsSlice';
+
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -38,25 +39,69 @@ const Home = () => {
     const handleSearch = async ({ target: {value} }) => {
         await dispatch(fetchProductsAsync())
         await dispatch(sortBySearch(value.toLowerCase()))
-    }
+    };
 
+
+    const homePageStyle = {
+        // backgroundImage: 'url(https://wallpapercave.com/wp/wp6297979.jpg)',
+        // width: '100%',
+        // backgroundRepeat: 'no repeat',
+        // margin: '10px'
+    };
     const simpleStyle = {
         display: "flex",
         flexDirection: "row",
         flexWrap: "wrap",
-        gap: 35,
+        gap: 20,
+        height: '100%'
     };
     const imgStyle = {
-        height:150
+        display: 'flex',
+        height:150,
+        display: 'block',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        marginTop: '15px'
+    };
+    const productStyle = {
+        display: 'flex',
+        border: '2px solid purple',
+        flexWrap: 'wrap',
+        textAlign: 'center',
+        width: '18%',
+        alignItems: 'center',
+        height: '100%',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+        overflow: 'hidden',
+    };
+    const sortStyle = {
+        display: 'flex',
+        flexDirection: 'column',
+        width: '22%'
+    };
+    const productNameStyle = {
+        display: 'flex',
+        border: '1px solid red',
+        height: '60px',
+        backgroundColor: '#ffcc66',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+    };
+    const productPriceStyle = {
+        border: '1px solid red',
+        backgroundColor: '#ff99ff',
+        width: '100%',
     }
 
 
     return (
-        <div>
+        <div id="homePage" style={homePageStyle}>
             <div id="searchBar">
                 <input onChange={handleSearch}></input>
             </div>
-            <div id="AllProductSorting">
+            <div id="AllProductSorting" style={sortStyle}>
                 <label>Sort by</label>
                 <select className="sortBy" onChange={handleSort}>
                     <option value="select">-Select-</option>
@@ -72,14 +117,14 @@ const Home = () => {
                 {products && products.length
                     ? products.map((product) => {
                           return (
-                              <div className="product" key={product.id}>
-                                      <img src={product.imageUrl} style={imgStyle}></img>
+                              <div className="product" key={product.id} style={productStyle}>
                                   <Link
                                       to={`/products/${product.id}`}
                                       key={`All Products: ${product.id}`}
                                   >
-                                      <h2>{product.productName}</h2>
-                                      <h3>{product.price}</h3>
+                                      <img src={product.imageUrl} style={imgStyle}></img>
+                                      <h2 id="productName" style={productNameStyle}>{product.productName}</h2>
+                                      <h3 id="productPrice" style={productPriceStyle}>$ {product.price}</h3>
                                   </Link>
                                   {user.isAdmin && <button onClick={() => {dispatch(deleteProductAsync(product.id))}}>Delete</button>}
                               </div>
