@@ -32,7 +32,7 @@ const Navbar = () => {
         alignItems: "center",
         height: 60,
         margin: 10,
-        backgroundImage: 'linear-gradient(fuchsia, orange)'
+        backgroundImage: 'linear-gradient(#cc99ff, #99ccff)'
     };
     useEffect(() => {
         if (userId) dispatch(getSingleUser(userId));

@@ -107,14 +107,14 @@ const Home = () => {
         display: 'flex',
         border: '1px solid red',
         height: '60px',
-        backgroundColor: '#ffcc66',
+        backgroundColor: '#ffd9b3',
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
     };
     const productPriceStyle = {
         border: '1px solid red',
-        backgroundColor: '#ff99ff',
+        backgroundColor: '#99ccff',
         width: '100%',
     }
 
