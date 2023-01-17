@@ -5,10 +5,6 @@ import { selectSingleProduct, getSingleProduct, } from "../slices/singleProductS
 import { addToCart, addProductToDBCart, editProductInDBCart, selectGetCart, getMyHomeCart} from "../slices/cartSlice";
 import { selectSingleUser } from "../slices/singleUserSlice";
 import EditProductForm from "./EditProductForm";
-import { addProductToDBCart } from "../slices/cartSlice";
-import { editProductInDBCart } from "../slices/cartSlice";
-import { selectGetCart } from "../slices/cartSlice";
-import { getMyHomeCart } from "../slices/cartSlice";
 
 const SingleProduct = () => {
     const [quantity, setQuantity] = useState(1);
