@@ -19,7 +19,7 @@ async function seed() {
             stockQuantity: 30,
             description: '16-bit home video game console developed by Nintendo that was released in 1990 in Japan and South Korea, 1991 in North America. This state of the art console provides stunning graphics, responsive controls, and a decent length of cord! When the game malfunctions simply remove the cartridge, blow the dust out, and re-insert forcefully! ',
             price: 200.00,
-            imageUrl: 'https://www.lukiegames.com/assets/images/SNES/snessys01gr_p_0xp4xq.jpg'
+            imageUrl: 'https://static.swappa.com/media/product/snes-classic/snes-classic-01.png'
         });
 
         await Product.create({
@@ -28,7 +28,7 @@ async function seed() {
             stockQuantity: 25,
             description: ' home video game controller developed by Nintendo that was released in 1990 in Japan and South Korea, 1991 in North America, 1992 in Europe and Oceania, and 1993 in South America.',
             price: 25.00,
-            imageUrl: 'https://i5.walmartimages.com/asr/aced8da5-2c15-4f89-8d54-6c8363712733_1.2f1c4a61e0de94efaa954f5d243f99ff.jpeg'
+            imageUrl: 'https://gametrog.com/wp-content/uploads/2018/07/Joystick-snes-gametrog.png'
         });
 
         await Product.create({
@@ -111,7 +111,7 @@ async function seed() {
             stockQuantity: 26,
             description: 'The PlayStation 3 is a home video game console developed by Sony Interactive Entertainment. If you had a social life before then you will no longer have to worry about that anymore! Complete with a wireless controller for greater range when rage quitting after hard losses! The successor to the PlayStation 2, it is part of the PlayStation brand of consoles. It was first released on November 11, 2006, in Japan, November 17, 2006, in North America, and March 23, 2007, in Europe and Australia.',
             price: 285.00,
-            imageUrl: 'http://www.laaudiofile.com/images/ps3_60gb.jpg'
+            imageUrl: 'https://vignette3.wikia.nocookie.net/es.gta/images/8/80/PS3.png/revision/latest?cb=20101010211602'
         });
 
         await Product.create({
@@ -120,7 +120,7 @@ async function seed() {
             stockQuantity: 31,
             description: 'Playstation 3 Dualshock controller. With wireless connection at the press of a button, this replacement controller is sure to make an impact while leaving your console safely in place after those frustrating online losses! New and improved durability designed to withstand even the biggest squad wipes on C.O.D!',
             price: 50.00,
-            imageUrl: 'https://n3.sdlcdn.com/imgs/b/j/v/Sony-PlayStation-3-Dualshock-3-SDL009463255-3-81925.jpg'
+            imageUrl: 'https://cdn.windowsreport.com/wp-content/uploads/2017/09/playstation-3-controller-issues.png'
         });
 
         await Product.create({
@@ -203,7 +203,7 @@ async function seed() {
             stockQuantity: 8,
             description: 'Introducing motion controlled gaming from Nintendo. Package includes Wii console, 1 controller (batteries not included), 1 highly retention strap, and 1 replacement flat screen tv (also not included).',
             price: 350.00,
-            imageUrl: 'https://cdn1.bigcommerce.com/server4000/a642e/products/18712/images/31128/__28131.1537914606.1280.1280.jpg?c=2'
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/83/Wii_console.png'
         });
 
         await Product.create({
@@ -212,7 +212,7 @@ async function seed() {
             stockQuantity: 80,
             description: 'The TT (Tv Torpedo) is designed to be durable and eliminate the pain of replacing both a flat screen tv AND a controller on the same day! The silicon cover is not to protect the TT its to minimize the damage done BY the TT. The optional retention strap can be adjusted for an inconvenient sharing experience or even disregarded all together! Rated slightly safer than Lawn Darts!',
             price: 60.00,
-            imageUrl: 'https://ae01.alicdn.com/kf/HLB1zrjbX.zrK1RjSspmq6AOdFXaW/Remote-Controller-Wireless-GamePad-Wii-Joystick-Silicone-Case-for-Nintendo-Wii-Game.jpg'
+            imageUrl: 'https://www.gadzooki.com/wp-content/uploads/2006/05/controller_feature_wht.png'
         });
 
         await Product.create({
@@ -295,7 +295,7 @@ async function seed() {
             stockQuantity: 80,
             description: 'Xbox Series X/S are backwards-compatible with nearly all Xbox One-compatible games and accessories (including Xbox 360 and original Xbox games that were made backward-compatible with Xbox One), with the ability for games to automatically benefit from performance and visual improvements enabled by the newer hardware. At launch, Microsoft encouraged a "soft" transition between generations similar to PC gaming, offering the "Smart Delivery" framework to allow publishers to freely and automatically provide upgraded versions of Xbox One titles with optimizations for Xbox Series X/S. Publishers are not required to use Smart Delivery, and may publish Xbox Series X/S-exclusive titles if they so choose. Developers such as EA do not use Smart Delivery and prefer to sell separate Xbox One and Xbox Series X/S versions.',
             price: 850.00,
-            imageUrl: 'https://www.elgiganten.dk/image/dv_web_D180001002520756/218667/xbox-series-x-1-tb-sort.jpg?$fullsize$'
+            imageUrl: 'https://blogplay.pl/wp-content/uploads/2020/10/xbox-series-x.png'
         });
 
         await Product.create({
@@ -304,7 +304,7 @@ async function seed() {
             stockQuantity: 40,
             description: 'Experience the Xbox Elite Wireless Controller Series 2 featuring adjustable-tension thumbsticks, wrap-around rubberized grip, and shorter hair trigger locks. Enjoy limitless customization with interchangeable components and exclusive button mapping options in the Xbox Accessories app. Save up to 3 custom profiles on the controller and switch between them on the fly. Swap thumbstick toppers, D-pads, and paddles to tailor your controller to your preferred gaming style. Stay in the game with up to 40 hours of rechargeable battery life and refined components that are built to last. Use Xbox Wireless, Bluetooth, or the included USB-C cable to play across Xbox Series X|S, Xbox One, and Windows. Compatible with Xbox Series X|S, Xbox One, and Windows 10/11 devices.',
             price: 150.00,
-            imageUrl: 'https://media.gamestop.com/i/gamestop/10178670_ALT03/Microsoft-Xbox-Elite-Black-Series-2-Wireless-Controller?$pdp$'
+            imageUrl: 'https://cdn.shopify.com/s/files/1/0106/5946/3227/products/Back-to-Black-Xbox-One-Elite-Silicone-Skin_900x.png?v=1573431800'
         });
 
         await Product.create({
