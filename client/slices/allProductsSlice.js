@@ -50,7 +50,6 @@ const allProductsSlice = createSlice({
             );
         },
         sortByPriceHighLow(state, action) {
-            console.log('High Low Fired')
             state = state.sort((a, b) => b.price - a.price
             );
         },

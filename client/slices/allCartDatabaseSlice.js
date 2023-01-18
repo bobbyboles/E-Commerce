@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { current } from "@reduxjs/toolkit";
 
 const initialState =[]
 
@@ -10,7 +9,6 @@ export const getCartId = createAsyncThunk('cart', async () => {
         return data
     } catch (err){
         alert('error has occurred, check console')
-        console.log('error has occurred, check console', err.message)
     }
 })
 

@@ -127,7 +127,6 @@ const cartSlice = createSlice({
             return [...state, action.payload];
         });
         builder.addCase(getMyCart.fulfilled, (state, action) => {
-            console.log("THIS IS THE ACTION.PAYLOAD", action.payload);
             return action.payload.map((cart) => {
                 cart.product["quantity"] = cart.quantity;
                 cart.product["cartId"] = cart.id;
@@ -135,7 +134,6 @@ const cartSlice = createSlice({
             })
         });
         builder.addCase(editProductInDBCart.fulfilled, (state, action) => {
-            console.log("THIS IS THE ACTION.PAYLOAD", action.payload)
             return state.map((cart) => {
                 if (cart.id == action.payload.id) cart = action.payload;
                 return cart;
