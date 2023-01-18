@@ -7,6 +7,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  font-family: 'Press Start 2P';
 }
 
 a {
@@ -21,3 +22,17 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+/* @font-face {
+  font-family: "Open Sans";
+  src: url("./fonts/PressStart2P-Regular.ttf") format("woff2"),
+    url("./fonts/PressStart2P-Regular.ttf") format("woff");
+  font-weight: bold;
+  font-display: swap;
+}
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Open Sans";
+  font-weight: 400;
+} */

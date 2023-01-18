@@ -65,12 +65,6 @@ const Home = () => {
     };
 
 
-    const homePageStyle = {
-        // backgroundImage: 'url(https://wallpapercave.com/wp/wp6297979.jpg)',
-        // width: '100%',
-        // backgroundRepeat: 'no repeat',
-        // margin: '10px'
-    };
     const simpleStyle = {
         display: "flex",
         flexDirection: "row",
@@ -106,22 +100,28 @@ const Home = () => {
     const productNameStyle = {
         display: 'flex',
         border: '1px solid red',
-        height: '60px',
         backgroundColor: '#ffd9b3',
+        height: '60px',
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
-        fontFamily: 'Andale Mono, monospace'
+        fontFamily: 'Press Start 2P, serif',
+        fontSize: '17px'
     };
     const productPriceStyle = {
+        display: 'flex',
         border: '1px solid red',
         backgroundColor: '#99ccff',
+        height: '28px',
         width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: '14px'
     };
 
 
     return (
-        <div id="homePage" style={homePageStyle}>
+        <div id="homePage">
             <div id="searchBar">
                 <input onChange={handleSearch}></input>
             </div>
