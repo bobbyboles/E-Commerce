@@ -82,23 +82,24 @@ export const Cart = () => {
                     phone,
                 })
             );
-        }
-        else {
-            dispatch(addUserAsync({
-                username,
-                password:'password', 
-                firstName, 
-                lastName, 
-                email, 
-                address, 
-                phone
-            }))
+        } else {
+            dispatch(
+                addUserAsync({
+                    username,
+                    password: "password",
+                    firstName,
+                    lastName,
+                    email,
+                    address,
+                    phone,
+                })
+            );
         }
     };
 
     const handleIncreaseQuantity = (_dbCart, product) => {
         dispatch(addToQuantity(product));
-        if (_dbCart.length) {
+        if (_dbCart) {
             const newLocalCart = _dbCart.map((item) => {
                 if (item.id == product.id) {
                     item.quantity++;
@@ -119,7 +120,7 @@ export const Cart = () => {
         dispatch(removeToQuantity(product));
         if (localCart) {
             const newLocalCart = localCart.map((item) => {
-                if (item.id == product.id) {
+                if (item.id == product.id && item.quantity > 0) {
                     item.quantity--;
                 }
                 return item;
@@ -130,7 +131,11 @@ export const Cart = () => {
             let id = product.cartId;
             let productId = product.id;
             let quantity = product.quantity - 1;
-            dispatch(editProductInDBCart({ id, userId, productId, quantity }));
+            if (quantity > 0) {
+                dispatch(
+                    editProductInDBCart({ id, userId, productId, quantity })
+                );
+            }
         }
     };
 

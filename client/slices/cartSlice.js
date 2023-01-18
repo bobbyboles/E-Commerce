@@ -107,7 +107,7 @@ const cartSlice = createSlice({
         },
         removeToQuantity(state, action) {
             state.map((product) => {
-                if (action.payload.id == product.id) product.quantity--;
+                if (action.payload.id == product.id && product.quantity > 0) product.quantity--;
             });
         },
         addToCart(state, action) {
