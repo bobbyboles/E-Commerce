@@ -20,6 +20,7 @@ import { checkoutCartSlice } from "../slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 import { editSingleUser } from "../slices/singleUserSlice";
 import { addUserAsync } from "../slices/allUsersSlice";
+import { editSingleProduct } from "../slices/singleProductSlice";
 
 export const Cart = () => {
     const dispatch = useDispatch();
@@ -165,7 +166,15 @@ export const Cart = () => {
                 dispatch(
                     checkoutCart({ id, userId, productId, quantity, completed })
                 );
+                let stockQuantity = item.stockQuantity - quantity
+                dispatch(editSingleProduct({id:item.id, stockQuantity }))
             });
+        }else{
+            cart.map((item)=>{
+                let stockQuantity = item.stockQuantity - item.quantity
+                dispatch(editSingleProduct({id:item.id, stockQuantity }))
+
+            })
         }
         nav("/");
     };
