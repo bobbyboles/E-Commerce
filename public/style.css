@@ -1,9 +1,12 @@
 body {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
   font-family: sans-serif;
   background-image: url(https://i.pcmag.com/imagery/articles/00uIkjCE1t4ZULXF2djBOON-18..v1595619996.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: cover
+  background-size: cover;
 }
 
 a {

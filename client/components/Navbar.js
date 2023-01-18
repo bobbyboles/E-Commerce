@@ -30,9 +30,6 @@ const Navbar = () => {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        height: 60,
-        margin: 10,
-        backgroundImage: 'linear-gradient(#cc99ff, #99ccff)'
     };
     useEffect(() => {
         if (userId) dispatch(getSingleUser(userId));
@@ -60,8 +57,8 @@ const Navbar = () => {
     }, 0);
 
     return (
-        <div>
-            <nav>
+        <div id="navbarContainer">
+            <nav id="navbarContainerEl">
                 <div style={basicNavStyle}>
                     <Link to="/home">
                         <img
