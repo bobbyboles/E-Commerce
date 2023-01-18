@@ -57,12 +57,46 @@ const Home = () => {
         }
     };
 
+
+/////////////////////////////////////////////////// BEGIN CSS ///////////////////////////////////////////////////
+
+
     const simpleStyle = {
         display: "flex",
         flexDirection: "row",
         flexWrap: "wrap",
         gap: 20,
         height: "100%",
+    };
+    const homeStyle = {
+        position: 'relative',
+        top: '20px',
+        margin: '30px'
+    };
+    const filterStyle = {
+       display: 'flex',
+       width: '170vh',
+       justifyContent: 'space-evenly',
+       alignItems: 'center',
+       border: '2px solid lightBlue',
+       margin: '50px',
+       backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    };
+    const searchStyle = {
+        position: 'relative',
+        margin: '20px',
+        color: '#ff33cc',
+        alignItems: 'center'
+    };
+    const sortStyle = {
+        display: 'flex',
+        flexDirection: 'column',
+        width: '30%',
+        margin: '20px',
+        color: '#ff33cc',
+        border: '1px solid lightBlue',
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        padding: '10px'
     };
     const imgStyle = {
         display: "flex",
@@ -84,43 +118,48 @@ const Home = () => {
         backgroundColor: "rgba(0, 0, 0, 0.4)",
         overflow: "hidden",
     };
-    const sortStyle = {
-        display: "flex",
-        flexDirection: "column",
-        width: "22%",
-    };
     const productNameStyle = {
-        display: "flex",
-        border: "1px solid red",
-        height: "60px",
-        backgroundColor: "#ffd9b3",
-        width: "100%",
-        alignItems: "center",
-        justifyContent: "center",
-        fontFamily: "Andale Mono, monospace",
+        display: 'flex',
+        border: '1px solid red',
+        backgroundColor: '#ffd9b3',
+        height: '60px',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontFamily: 'Press Start 2P, serif',
+        fontSize: '17px'
     };
     const productPriceStyle = {
-        border: "1px solid red",
-        backgroundColor: "#99ccff",
-        width: "100%",
+        display: 'flex',
+        border: '1px solid red',
+        backgroundColor: '#99ccff',
+        height: '28px',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: '14px'
     };
 
+/////////////////////////////////////////////////// END CSS ///////////////////////////////////////////////////
+
     return (
-        <div id="homePage"> 
-            <div id="searchBar">
-                <input onChange={handleSearch}></input>
+        <div id="homePage" style={homeStyle}>
+            <div id='filterBars' style={filterStyle}>
+                <div id="searchBar" style={searchStyle}>Search for a specific game!
+                    <input onChange={handleSearch}></input>
+                </div>
+                <div id="AllProductSorting" style={sortStyle}>
+                    <label>Sort by</label>
+                    <select className="sortBy" onChange={handleSort}>
+                        <option value="select">-Select-</option>
+                        <option value="titleaz">Title A-Z</option>
+                        <option value="titleza">Title Z-A</option>
+                        <option value="pricehl">Price H-L</option>
+                        <option value="pricelh">Price L-H</option>
+                    </select>
+                </div>
             </div>
-            <div id="AllProductSorting" style={sortStyle}>
-                <label>Sort by</label>
-                <select className="sortBy" onChange={handleSort}>
-                    <option value="select">-Select-</option>
-                    <option value="titleaz">Title A-Z</option>
-                    <option value="titleza">Title Z-A</option>
-                    <option value="pricehl">Price H-L</option>
-                    <option value="pricelh">Price L-H</option>
-                </select>
-                <SideNav />
-            </div>
+            <SideNav />
 
             <div id="products" style={simpleStyle}>
                 {products && products.length

@@ -12,6 +12,7 @@ import { useState } from "react";
 import SingleProduct from "./SingleProduct";
 import Cart from "./Cart";
 
+
 const App = () => {
     const dispatch = useDispatch();
     const [loginToAccount, setLoginToAccount] = useState(false);

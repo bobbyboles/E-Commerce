@@ -12,65 +12,66 @@ function SideNav() {
     const sideNavStyle = {
       display: 'flex',
       border: '2px solid lightBlue',
-      width: '188vh',
+      width: '170vh',
       padding: '12px',
       margin: '8px',
       justifyContent: 'space-evenly',
       alignItems: 'center',
-      backgroundColor: 'rgba(0, 0, 0, 0.4)',
+      backgroundColor: 'rgba(0, 0, 0, 0.7)',
       color: 'pink',
-      fontSize: '20px'
+      fontSize: '25px',
+      position: 'relative',
     };
     const all = {
       width: '8vw',
-      height: '2vw',
+      height: '3vw',
       backgroundColor: '#ffd9b3'
     };
     const xbox = {
       width: '8vw',
-      height: '2vw',
+      height: '3vw',
       backgroundColor: 'black',
       color: '#00cc66'
     };
     const wii = {
       width: '8vw',
-      height: '2vw',
+      height: '3vw',
       backgroundColor: 'white',
       color: 'blue'
     };
     const ps3 = {
       width: '8vw',
-      height: '2vw',
+      height: '3vw',
       backgroundColor: 'black',
       color: 'white'
     };
     const ps2 = {
       width: '8vw',
-      height: '2vw',
+      height: '3vw',
       backgroundColor: 'black',
       color: '#66ccff'
     };
     const ps = {
       width: '8vw',
-      height: '2vw',
+      height: '3vw',
       backgroundColor: 'black',
       color: 'red'
     };
     const n64 = {
       width: '8vw',
-      height: '2vw',
+      height: '3vw',
       backgroundColor: '#66ff99',
       color: 'blue'
     };
     const snes = {
       width: '8vw',
-      height: '2vw',
+      height: '3vw',
       backgroundColor: 'white',
       color: 'red'
     };
     const nes = {
       width: '8vw',
-      height: '2vw',
+      height: '3vw',
       backgroundColor: 'black',
       color: 'red'
     };
