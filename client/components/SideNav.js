@@ -15,14 +15,15 @@ function SideNav() {
     const sideNavStyle = {
       display: 'flex',
       border: '2px solid lightBlue',
-      width: '188vh',
+      width: '170vh',
       padding: '12px',
       margin: '8px',
       justifyContent: 'space-evenly',
       alignItems: 'center',
-      backgroundColor: 'rgba(0, 0, 0, 0.4)',
+      backgroundColor: 'rgba(0, 0, 0, 0.7)',
       color: 'pink',
-      fontSize: '20px'
+      fontSize: '25px',
+      position: 'relative',
     };
     const all = {
       width: '8vw',
