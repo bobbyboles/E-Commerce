@@ -76,7 +76,7 @@ const Home = () => {
         flexDirection: "row",
         flexWrap: "wrap",
         gap: 20,
-        height: '100%'
+        height: '100%',
     };
     const imgStyle = {
         display: 'flex',
@@ -111,12 +111,13 @@ const Home = () => {
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
+        fontFamily: 'Andale Mono, monospace'
     };
     const productPriceStyle = {
         border: '1px solid red',
         backgroundColor: '#99ccff',
         width: '100%',
-    }
+    };
 
 
     return (
