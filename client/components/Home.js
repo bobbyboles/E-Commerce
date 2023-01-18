@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -17,10 +17,20 @@ import {
     addProductToDBCart,
 } from "../slices/cartSlice";
 import SideNav from "./SideNav";
+import Pagination from "./Pagination";
+let PageSize = 10;
 
 const Home = () => {
-    const dispatch = useDispatch();
+    const [currentPage, setCurrentPage] = useState(1);
     const products = useSelector(selectProducts);
+
+    const currentTableData = useMemo(() => {
+        const firstPageIndex = (currentPage - 1) * PageSize;
+        const lastPageIndex = firstPageIndex + PageSize;
+        return products.slice(firstPageIndex, lastPageIndex);
+      }, [currentPage]);
+
+    const dispatch = useDispatch();
     const userId = useSelector((state) => state.auth.me.id);
     const user = useSelector(selectSingleUser);
 
@@ -162,8 +172,8 @@ const Home = () => {
             <SideNav />
 
             <div id="products" style={simpleStyle}>
-                {products && products.length
-                    ? products.map((product) => {
+                {currentTableData && currentTableData.length
+                    ? currentTableData.map((product) => {
                           return (
                               <div
                                   className="product"
@@ -211,6 +221,12 @@ const Home = () => {
                       })
                     : null}
             </div>
+            <Pagination
+                className="pagination-bar"
+                currentPage={currentPage}
+                totalCount={products.length}
+                pageSize={PageSize}
+                onPageChange={page => setCurrentPage(page)} />  
         </div>
     );
 };
