@@ -54,10 +54,11 @@ const Navbar = () => {
                 <div style={basicNavStyle}>
                     <Link to="/home">
                         <img
-                            src="/logo/retrogaming.png"
+                            src="/logo/marioJump.png"
                             style={{ height: 50, width: 100 }}
                         />
                     </Link>
+                    
                     <Link to="/home">Shop</Link>
                     <Link to="/aboutUs">About Us</Link>
                     <Link to={isLoggedIn ? "/account" : "/login"}>

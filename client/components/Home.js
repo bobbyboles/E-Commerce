@@ -49,6 +49,7 @@ const Home = () => {
         await dispatch(fetchProductsAsync());
         await dispatch(sortBySearch(value.toLowerCase()));
     };
+
     const handleLoginWithItems = (userId) => {
         const previousCart = localStorage.getItem("cart");
         if (previousCart) {
