@@ -17,22 +17,28 @@ import { deleteDBCart } from "../slices/cartSlice";
 import { getMyCart } from "../slices/cartSlice";
 import { checkoutCart } from "../slices/cartSlice";
 import { checkoutCartSlice } from "../slices/cartSlice";
+import { useNavigate } from "react-router-dom";
+import { editSingleUser } from "../slices/singleUserSlice";
+import { addUserAsync } from "../slices/allUsersSlice";
 
 export const Cart = () => {
     const dispatch = useDispatch();
     const cart = useSelector(selectGetCart);
     const userId = useSelector((state) => state.auth.me.id);
     const isLoggedIn = useSelector((state) => !!state.auth.me.id);
-    const user = useSelector(selectSingleUser);
-    const localCartStorage = localStorage.getItem("cart")
+    const singleUser = useSelector(selectSingleUser);
+    const localCartStorage = localStorage.getItem("cart");
+    const [username, setUserName] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [address, setAddress] = useState("");
+    const [phone, setPhone] = useState("");
+    const nav = useNavigate();
 
-    if(localCartStorage){
-        var localCart = JSON.parse(localCartStorage)
+    if (localCartStorage) {
+        var localCart = JSON.parse(localCartStorage);
     }
-
-    const deleteButton = (id) => {
-        dispatch(removeFromCart(id));
-    };
 
     const cartTotal = cart.reduce((acc, item) => {
         acc += item.price * item.quantity;
@@ -44,21 +50,51 @@ export const Cart = () => {
         if (userId) dispatch(getMyCart(userId));
     }, [dispatch, userId]);
 
-    // const getCartId = (_dbCart, _productId) => {
-    //     for (const item of _dbCart) {
-    //         console.log("THIS IS THE ITEMS", item);
-    //         if (item.productId == _productId) {
-    //             console.log(
-    //                 "This is the cart ID",
-    //                 item.id,
-    //                 "this is the cart quantity",
-    //                 item.quantity
-    //             );
-    //             return { id: item.id, cartQuantity: item.quantity };
-    //         }
-    //     }
-    //     return false;
-    // };
+    useEffect(() => {
+        if (isLoggedIn) {
+            setUserName(singleUser.username);
+            setFirstName(singleUser.firstName);
+            setLastName(singleUser.lastName);
+            setEmail(singleUser.email);
+            setAddress(singleUser.address);
+            setPhone(singleUser.phone);
+        }
+    }, [
+        singleUser.username,
+        singleUser.firstName,
+        singleUser.lastName,
+        singleUser.email,
+        singleUser.address,
+        singleUser.phone,
+    ]);
+
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
+        if (isLoggedIn) {
+            dispatch(
+                editSingleUser({
+                    id: userId,
+                    username,
+                    firstName,
+                    lastName,
+                    email,
+                    address,
+                    phone,
+                })
+            );
+        }
+        else {
+            dispatch(addUserAsync({
+                username,
+                password:'password', 
+                firstName, 
+                lastName, 
+                email, 
+                address, 
+                phone
+            }))
+        }
+    };
 
     const handleIncreaseQuantity = (_dbCart, product) => {
         dispatch(addToQuantity(product));
@@ -78,6 +114,7 @@ export const Cart = () => {
             dispatch(editProductInDBCart({ id, productId, quantity }));
         }
     };
+
     const handleDecreaseQuantity = (_dbCart, product) => {
         dispatch(removeToQuantity(product));
         if (localCart) {
@@ -96,11 +133,12 @@ export const Cart = () => {
             dispatch(editProductInDBCart({ id, userId, productId, quantity }));
         }
     };
+
     const handleDelete = (_dbCart, product) => {
         dispatch(removeFromCart(product.id));
         if (localCart) {
             const newLocalCart = localCart.filter((item) => {
-                if(item.id !== product.id) return true;
+                if (item.id !== product.id) return true;
             });
             localStorage.setItem("cart", JSON.stringify(newLocalCart));
         }
@@ -111,10 +149,10 @@ export const Cart = () => {
     };
 
     const handleCheckout = (cart, userId) => {
-        localStorage.setItem('cart', '[]')
-        dispatch(checkoutCartSlice())
+        localStorage.setItem("cart", "[]");
+        dispatch(checkoutCartSlice());
         if (isLoggedIn) {
-        let completed = true;
+            let completed = true;
             cart.map((item) => {
                 let id = item.cartId;
                 let productId = item.id;
@@ -124,17 +162,12 @@ export const Cart = () => {
                 );
             });
         }
+        nav("/");
     };
 
     return (
         <div id="cart_container">
             <div id="product_container">
-                {/* <article>Product info</article>
-                    <article>Product name</article>
-                    <article>Product price</article>
-                    <article>Product description</article>
-                    <img />
-                    <button> + </button><button> - </button> */}
                 {cart && cart.length
                     ? cart.map((product) => {
                           return (
@@ -150,7 +183,10 @@ export const Cart = () => {
                                   <h3>Price:{product.price}</h3>
                                   <button
                                       onClick={() =>
-                                          handleDecreaseQuantity(localCart, product)
+                                          handleDecreaseQuantity(
+                                              localCart,
+                                              product
+                                          )
                                       }
                                   >
                                       Decrease Quantity
@@ -158,7 +194,10 @@ export const Cart = () => {
                                   <h3>Quantity:{product.quantity}</h3>
                                   <button
                                       onClick={() =>
-                                          handleIncreaseQuantity(localCart, product)
+                                          handleIncreaseQuantity(
+                                              localCart,
+                                              product
+                                          )
                                       }
                                   >
                                       Increase Quantity
@@ -182,6 +221,53 @@ export const Cart = () => {
                 </button>
             </div>
             <div>{cartTotal}</div>
+            <form id="edit-user-form" onSubmit={handleSubmit}>
+                <h3>Shipping Information</h3>
+
+                <label htmlFor="username">User Name:</label>
+                <input
+                    name="username"
+                    value={username}
+                    onChange={(e) => setUserName(e.target.value)}
+                />
+
+                <label htmlFor="firstName">First Name:</label>
+                <input
+                    name="firstName"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                />
+
+                <label htmlFor="lastName">Last Name:</label>
+                <input
+                    name="lastName"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                />
+
+                <label htmlFor="email">Email Address:</label>
+                <input
+                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+
+                <label htmlFor="address">Address:</label>
+                <input
+                    name="address"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                />
+
+                <label htmlFor="phone">Phone Number:</label>
+                <input
+                    name="phone"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                />
+
+                <button type="submit">Update Information</button>
+            </form>
         </div>
     );
 };
