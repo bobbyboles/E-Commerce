@@ -77,57 +77,60 @@ const SingleProduct = () => {
     };
 
     const singleProductStyle = {
-        color: 'white',
-        display: 'grid'
+        display: 'flex',
     }
 
     return (
         <div id="single-product">
             <div id="single-product-info" style={singleProductStyle}>
-                <img src={`${imageUrl}`} height="400px" />
 
                 {singleUser.isAdmin ? (
                     <EditProductForm />
-                ) : (
-                    <>
-                        <h1>{productName}</h1>
-                        <h3>Price: $ {price}</h3>
-                        <h3>Category: {category}</h3>
-                        <p>Details: {description}</p>
-                        {stockQuantity > 0 ? (
-                            <button
-                                onClick={() =>
-                                    handleAddToCart(quantity, userId, productId, cart)
-                                }
-                            >
-                                Add to Cart
-                            </button>
-                        ) : (
-                            <div>OUT OF STOCK</div>
-                        )}
+                    ) : (
+                    <div id="productContainer">
+                        <img src={`${imageUrl}`} height="400px" />
+                        <section id="colorContainer">
+                            <h1>{productName}</h1>
+                            <h3>Category: {category}</h3>
+                            <p>Details: {description}</p>
+                            <section id="priceColorContainer">
+                                <h3>Price: $ {price}</h3>
+                                {stockQuantity > 0 ? (
+                                    <button
+                                        onClick={() =>
+                                            handleAddToCart(quantity, userId, productId, cart)
+                                        }
+                                    >
+                                        Add to Cart
+                                    </button>
+                                ) : (
+                                    <div>OUT OF STOCK</div>
+                                )}
 
-                        <div className="quantityCounter">
-                            <h3>Quantity:</h3>
-                            <div className="btn-container">
-                                <button
-                                    className="control__btn"
-                                    onClick={decrease}
-                                >
-                                    -
-                                </button>
-                                <span className="quantityOutput">
-                                    {" "}
-                                    {quantity}{" "}
-                                </span>
-                                <button
-                                    className="control__btn"
-                                    onClick={increase}
-                                >
-                                    +
-                                </button>
-                            </div>
-                        </div>
-                    </>
+                                <div className="quantityCounter">
+                                    <br/>
+                                    <div className="btn-container">
+                                        <button
+                                            className="control__btn"
+                                            onClick={decrease}
+                                        >
+                                            -
+                                        </button>
+                                        <span className="quantityOutput">
+                                            {" "}
+                                            {quantity}{" "}
+                                        </span>
+                                        <button
+                                            className="control__btn"
+                                            onClick={increase}
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
+                            </section>
+                        </section>
+                    </div>
                 )}
             </div>
         </div>
