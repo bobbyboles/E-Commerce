@@ -149,7 +149,8 @@ const Home = () => {
                                   >
                                       <img src={product.imageUrl} style={imgStyle}></img>
                                       <h2 id="productName" style={productNameStyle}>{product.productName}</h2>
-                                      <h3 id="productPrice" style={productPriceStyle}>$ {product.price}</h3>
+                                      {product.stockQuantity ?<h3 id="productPrice" style={productPriceStyle}>$ {product.price}</h3>: <h3>OUT OF STOCK</h3>
+                                      }    
                                   </Link>
                                   {user.isAdmin && (
                                       <button
