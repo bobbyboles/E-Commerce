@@ -12,8 +12,6 @@ const EditProductForm = () => {
     const [imageUrl, setImageUrl] = useState("");
 
     const singleProduct = useSelector(selectSingleProduct);
-    console.log('single Product info:', singleProduct)
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
 

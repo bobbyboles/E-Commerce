@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectSingleProduct, getSingleProduct, } from "../slices/singleProductSlice";
-import { addToCart, addProductToDBCart, editProductInDBCart, selectGetCart, getMyHomeCart} from "../slices/cartSlice";
+import {
+    selectSingleProduct,
+    getSingleProduct,
+} from "../slices/singleProductSlice";
+import {
+    addToCart,
+    addProductToDBCart,
+    editProductInDBCart,
+    selectGetCart,
+    getMyHomeCart,
+} from "../slices/cartSlice";
 import { selectSingleUser } from "../slices/singleUserSlice";
 import EditProductForm from "./EditProductForm";
 
@@ -16,10 +25,7 @@ const SingleProduct = () => {
     const isLoggedIn = useSelector((state) => !!state.auth.me.id);
     const userId = useSelector((state) => state.auth.me.id);
     const cart = useSelector(selectGetCart);
-
-
     const singleUser = useSelector(selectSingleUser);
-    console.log("Single User Data", singleUser);
 
     const {
         productName,
@@ -35,11 +41,9 @@ const SingleProduct = () => {
         if (userId) dispatch(getMyHomeCart(userId));
     }, [dispatch, userId]);
 
-    useEffect(()=>{
-        if(!isLoggedIn)localStorage.setItem('cart', JSON.stringify(cart))
-    },[cart])
-
-    console.log(cart);
+    useEffect(() => {
+        if (!isLoggedIn) localStorage.setItem("cart", JSON.stringify(cart));
+    }, [cart]);
 
     if (!productName) {
         return <p>NO PRODUCTS FOUND</p>;
@@ -57,7 +61,7 @@ const SingleProduct = () => {
 
     const isAlreadyInCart = (cart, _productId) => {
         for (const item of cart) {
-            if (item.productId == _productId ) return [item.id, item.quantity];
+            if (item.productId == _productId) return [item.id, item.quantity];
         }
         return false;
     };
@@ -67,7 +71,7 @@ const SingleProduct = () => {
             const [id, cartQuantity] = isAlreadyInCart(userCart, productId);
             quantity += cartQuantity;
             dispatch(editProductInDBCart({ id, userId, productId, quantity }));
-        }else if (isLoggedIn && userId) {
+        } else if (isLoggedIn && userId) {
             dispatch(addProductToDBCart({ userId, productId, quantity }));
         } else {
             const newProduct = JSON.parse(JSON.stringify(singleProduct));
@@ -77,16 +81,15 @@ const SingleProduct = () => {
     };
 
     const singleProductStyle = {
-        display: 'flex',
-    }
+        display: "flex",
+    };
 
     return (
         <div id="single-product">
             <div id="single-product-info" style={singleProductStyle}>
-
                 {singleUser.isAdmin ? (
                     <EditProductForm />
-                    ) : (
+                ) : (
                     <div id="productContainer">
                         <img src={`${imageUrl}`} height="400px" />
                         <section id="colorContainer">
@@ -98,7 +101,12 @@ const SingleProduct = () => {
                                 {stockQuantity > 0 ? (
                                     <button
                                         onClick={() =>
-                                            handleAddToCart(quantity, userId, productId, cart)
+                                            handleAddToCart(
+                                                quantity,
+                                                userId,
+                                                productId,
+                                                cart
+                                            )
                                         }
                                     >
                                         Add to Cart
@@ -108,7 +116,7 @@ const SingleProduct = () => {
                                 )}
 
                                 <div className="quantityCounter">
-                                    <br/>
+                                    <br />
                                     <div className="btn-container">
                                         <button
                                             className="control__btn"

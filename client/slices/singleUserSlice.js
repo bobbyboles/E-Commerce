@@ -9,7 +9,6 @@ export const getSingleUser = createAsyncThunk("singleUser", async (id) => {
         const { data } = await axios.get(`/api/users/${id}`, {
             headers: { authorization: token },
         });
-        //console.log('AXIOS single user info:', data)
         return data;
     } catch (err) {
         console.log(err);

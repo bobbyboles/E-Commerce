@@ -9,7 +9,6 @@ export const getMyOrders = createAsyncThunk("myOrders", async (userId) => {
             `http://localhost:8080/api/cart/myOrders`,
             { headers: { authid: userId } }
         );
-        console.log("this is the thunk for myCart", data);
         return data;
     } catch (err) {
         alert("error has occurred, check console");

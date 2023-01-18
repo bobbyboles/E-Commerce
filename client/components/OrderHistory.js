@@ -5,7 +5,6 @@ import { selectOrderHistory } from "../slices/orderHistorySlice";
 
 const OrderHistory = () => {
     const orderHistory = useSelector(selectOrderHistory)
-    console.log('Order History:', orderHistory)
 
     return(
         <div id='order-history-container'>
