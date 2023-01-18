@@ -5,9 +5,18 @@ const AboutUs = () => {
     return(
         <div id="about">
             <h1>Bunch of Cool Dudes</h1>
-            <article>“It is a truth universally acknowledged, that a single web developer in possession of a good fortune, must be in want of a spouse.”</article>
+            <h3>Armand Arslanian</h3>
+            <article>"Sic Parvis Magna" -Mantra of Sir Francis Drake, Uncharted Series </article>
             <br/>
-            <article>We here at Retro Gaming hold these truths to be self evident! Relationships are just between tables in a database</article>
+            <h3>Robert Boles</h3>
+            <article>"LEEERRRROOOOYYYYYYYYYY JEENNNKINS" -Human Paladin Leeroy Jenkins, World of Warcraft </article>
+            <br/>
+            <h3>David Zheng</h3>
+            <article>"Sir, request permission to leave the station. (Lord Hood: For what purpose?) To give the covenant back their bomb" -John 117 Master Chief, Halo Series </article>
+            <br/>
+            <h3>Joseph Mealor</h3>
+            <article>???</article>
+            <br/>
         </div>
     )
 }
