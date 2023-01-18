@@ -12,23 +12,20 @@ import {
     sortBySearch,
 } from "../slices/allProductsSlice";
 import { getSingleUser, selectSingleUser } from "../slices/singleUserSlice";
-import {
-    getMyHomeCart,
-    addProductToDBCart,
-} from "../slices/cartSlice";
+import { getMyHomeCart, addProductToDBCart } from "../slices/cartSlice";
 import SideNav from "./SideNav";
 import Pagination from "./Pagination";
-let PageSize = 10;
+let PageSize = 15;
 
 const Home = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const products = useSelector(selectProducts);
 
-    const currentTableData = useMemo(() => {
+    const currentTableData = (() => {
         const firstPageIndex = (currentPage - 1) * PageSize;
         const lastPageIndex = firstPageIndex + PageSize;
         return products.slice(firstPageIndex, lastPageIndex);
-      }, [currentPage]);
+    })();
 
     const dispatch = useDispatch();
     const userId = useSelector((state) => state.auth.me.id);
@@ -67,9 +64,7 @@ const Home = () => {
         }
     };
 
-
-/////////////////////////////////////////////////// BEGIN CSS ///////////////////////////////////////////////////
-
+    /////////////////////////////////////////////////// BEGIN CSS ///////////////////////////////////////////////////
 
     const simpleStyle = {
         display: "flex",
@@ -79,34 +74,34 @@ const Home = () => {
         height: "100%",
     };
     const homeStyle = {
-        position: 'relative',
-        top: '20px',
-        margin: '30px'
+        position: "relative",
+        top: "20px",
+        margin: "30px",
     };
     const filterStyle = {
-       display: 'flex',
-       width: '170vh',
-       justifyContent: 'space-evenly',
-       alignItems: 'center',
-       border: '2px solid lightBlue',
-       margin: '50px',
-       backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        display: "flex",
+        width: "170vh",
+        justifyContent: "space-evenly",
+        alignItems: "center",
+        border: "2px solid lightBlue",
+        margin: "50px",
+        backgroundColor: "rgba(0, 0, 0, 0.7)",
     };
     const searchStyle = {
-        position: 'relative',
-        margin: '20px',
-        color: '#ff33cc',
-        alignItems: 'center'
+        position: "relative",
+        margin: "20px",
+        color: "#ff33cc",
+        alignItems: "center",
     };
     const sortStyle = {
-        display: 'flex',
-        flexDirection: 'column',
-        width: '30%',
-        margin: '20px',
-        color: '#ff33cc',
-        border: '1px solid lightBlue',
-        backgroundColor: 'rgba(0, 0, 0, 0.7)',
-        padding: '10px'
+        display: "flex",
+        flexDirection: "column",
+        width: "30%",
+        margin: "20px",
+        color: "#ff33cc",
+        border: "1px solid lightBlue",
+        backgroundColor: "rgba(0, 0, 0, 0.7)",
+        padding: "10px",
     };
     const imgStyle = {
         display: "flex",
@@ -129,33 +124,34 @@ const Home = () => {
         overflow: "hidden",
     };
     const productNameStyle = {
-        display: 'flex',
-        border: '1px solid red',
-        backgroundColor: '#ffd9b3',
-        height: '60px',
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontFamily: 'Press Start 2P, serif',
-        fontSize: '17px'
+        display: "flex",
+        border: "1px solid red",
+        backgroundColor: "#ffd9b3",
+        height: "60px",
+        width: "100%",
+        alignItems: "center",
+        justifyContent: "center",
+        fontFamily: "Press Start 2P, serif",
+        fontSize: "17px",
     };
     const productPriceStyle = {
-        display: 'flex',
-        border: '1px solid red',
-        backgroundColor: '#99ccff',
-        height: '28px',
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '14px'
+        display: "flex",
+        border: "1px solid red",
+        backgroundColor: "#99ccff",
+        height: "28px",
+        width: "100%",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: "14px",
     };
 
-/////////////////////////////////////////////////// END CSS ///////////////////////////////////////////////////
+    /////////////////////////////////////////////////// END CSS ///////////////////////////////////////////////////
 
     return (
         <div id="homePage" style={homeStyle}>
-            <div id='filterBars' style={filterStyle}>
-                <div id="searchBar" style={searchStyle}>Search for a specific game!
+            <div id="filterBars" style={filterStyle}>
+                <div id="searchBar" style={searchStyle}>
+                    Search for a specific game!
                     <input onChange={handleSearch}></input>
                 </div>
                 <div id="AllProductSorting" style={sortStyle}>
@@ -174,6 +170,7 @@ const Home = () => {
             <div id="products" style={simpleStyle}>
                 {currentTableData && currentTableData.length
                     ? currentTableData.map((product) => {
+                        console.log('THIS IS THE ITEMS FOR THE CURRENT PAGE ', product)
                           return (
                               <div
                                   className="product"
@@ -226,7 +223,8 @@ const Home = () => {
                 currentPage={currentPage}
                 totalCount={products.length}
                 pageSize={PageSize}
-                onPageChange={page => setCurrentPage(page)} />  
+                onPageChange={(page) => setCurrentPage(page)}
+            />
         </div>
     );
 };
