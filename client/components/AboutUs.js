@@ -2,8 +2,11 @@ import React from "react";
 
 
 const AboutUs = () => {
+    const aboutStyle = {
+        top: '1000px'
+    }
     return(
-        <div id="about">
+        <div id="about" style={aboutStyle}>
             <h1>Bunch of Cool Dudes</h1>
             <article>“It is a truth universally acknowledged, that a single web developer in possession of a good fortune, must be in want of a spouse.”</article>
             <br/>
