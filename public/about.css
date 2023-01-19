@@ -1,0 +1,13 @@
+#about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#aboutBody {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 8vh;
+    padding: 1rem;
+}

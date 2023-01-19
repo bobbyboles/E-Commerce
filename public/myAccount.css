@@ -1,0 +1,25 @@
+#add-user-form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: 3vh; */
+    line-height: 2.5rem;
+    padding: 0 0 1em 1em;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 0 0 5px 5px;
+}
+
+#add-user-form button {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+}
+
+#addUserFormContainer  {
+    display: flex;
+    margin-left: 0;
+    width: 20vw;
+}
+

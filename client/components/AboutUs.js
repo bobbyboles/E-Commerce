@@ -1,6 +1,7 @@
 import React from "react";
 
 
+
 const AboutUs = () => {
     const aboutStyle = {
         top: '1000px'
