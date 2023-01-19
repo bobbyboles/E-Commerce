@@ -70,32 +70,32 @@ const Home = () => {
     const simpleStyle = {
         display: "flex",
         flexDirection: "row",
-        justifyContent: 'right',
+        justifyContent: "right",
         flexWrap: "wrap",
         gap: 20,
         height: "100%",
-        marginTop: '9vh'
+        marginTop: "9vh",
     };
     const homeStyle = {
-        top: '12vh',
-        marginTop: '30px',
+        top: "12vh",
+        marginTop: "30px",
     };
     const filterStyle = {
-       display: 'flex',
-       width: '100vw',
-        height: '5vh',
-       justifyContent: 'space-evenly',
-       alignItems: 'center',
-       border: '2px solid lightBlue',
-       marginTop: '35px',
-       left: '0',
-       backgroundColor: 'rgba(0, 0, 0, 0.7)',
-       position: 'fixed'
+        display: "flex",
+        width: "100vw",
+        height: "5vh",
+        justifyContent: "space-evenly",
+        alignItems: "center",
+        border: "2px solid lightBlue",
+        marginTop: "35px",
+        left: "0",
+        backgroundColor: "rgba(0, 0, 0, 0.7)",
+        position: "fixed",
     };
     const searchStyle = {
         color: "#ff33cc",
-        backgroundColor: '#99ccff',
-        width: '100%'
+        backgroundColor: "#99ccff",
+        width: "100%",
     };
     const sortStyle = {
         display: "flex",
@@ -105,10 +105,10 @@ const Home = () => {
         padding: "10px",
     };
     const dropdownColor = {
-        backgroundColor: '#99ccff',
+        backgroundColor: "#99ccff",
     };
     const dropdownElColor = {
-        color: '#ff33cc',
+        color: "#ff33cc",
     };
     const imgStyle = {
         display: "flex",
@@ -126,7 +126,7 @@ const Home = () => {
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "rgba(0, 0, 0, 0.4)",
-        borderRadius: '3%',
+        borderRadius: "3%",
         overflow: "hidden",
     };
     const productNameStyle = {
@@ -155,15 +155,19 @@ const Home = () => {
 
     return (
         <div id="homePage" style={homeStyle}>
-            <div id='filterBars' style={filterStyle}>
-                <div id="searchBar" style={dropdownElColor}>Search: 
-                <SideNav />
-
+            <div id="filterBars" style={filterStyle}>
+                <div id="searchBar" style={dropdownElColor}>
+                    Search:
+                    <SideNav />
                     <input style={searchStyle} onChange={handleSearch}></input>
                 </div>
                 <div id="AllProductSorting" style={sortStyle}>
                     <label>Sort by:</label>
-                    <select className="sortBy" style={dropdownColor} onChange={handleSort}>
+                    <select
+                        className="sortBy"
+                        style={dropdownColor}
+                        onChange={handleSort}
+                    >
                         <option value="select">-Select-</option>
                         <option value="titleaz">Title A-Z</option>
                         <option value="titleza">Title Z-A</option>
@@ -176,7 +180,10 @@ const Home = () => {
             <div id="products" style={simpleStyle}>
                 {currentTableData && currentTableData.length
                     ? currentTableData.map((product) => {
-                        console.log('THIS IS THE ITEMS FOR THE CURRENT PAGE ', product)
+                          console.log(
+                              "THIS IS THE ITEMS FOR THE CURRENT PAGE ",
+                              product
+                          );
                           return (
                               <div
                                   className="product"
@@ -192,26 +199,27 @@ const Home = () => {
                                           style={imgStyle}
                                       ></img>
                                       <div id="productBottom">
-                                      <h2
-                                          id="productName"
-                                          style={productNameStyle}
-                                      >
-                                          {product.productName}
-                                      </h2>
-                                      {product.stockQuantity ? (
-                                          <h3
-                                              id="productPrice"
-                                              style={productPriceStyle}
+                                          <h2
+                                              id="productName"
+                                              style={productNameStyle}
                                           >
-                                              $ {product.price}
-                                          </h3>
-                                      ) : (
-                                          <h3>OUT OF STOCK</h3>
+                                              {product.productName}
+                                          </h2>
+                                          {product.stockQuantity ? (
+                                              <h3
+                                                  id="productPrice"
+                                                  style={productPriceStyle}
+                                              >
+                                                  $ {product.price}
+                                              </h3>
+                                          ) : (
+                                              <h3>OUT OF STOCK</h3>
                                           )}
-                                        </div>
+                                      </div>
                                   </Link>
                                   {user.isAdmin && (
                                       <button
+                                          style={{ marginRight: 150}}
                                           onClick={() => {
                                               dispatch(
                                                   deleteProductAsync(product.id)
@@ -225,13 +233,13 @@ const Home = () => {
                           );
                       })
                     : null}
-            <Pagination
-                className="pagination-bar"
-                currentPage={currentPage}
-                totalCount={products.length}
-                pageSize={PageSize}
-                onPageChange={(page) => setCurrentPage(page)}
-            />
+                <Pagination
+                    className="pagination-bar"
+                    currentPage={currentPage}
+                    totalCount={products.length}
+                    pageSize={PageSize}
+                    onPageChange={(page) => setCurrentPage(page)}
+                />
             </div>
         </div>
     );
