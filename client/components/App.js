@@ -11,7 +11,6 @@ import AboutUs from "./AboutUs";
 import { useState } from "react";
 import SingleProduct from "./SingleProduct";
 import Cart from "./Cart";
-import EditUserForm from "./EditUserInfoForm";
 
 
 const App = () => {

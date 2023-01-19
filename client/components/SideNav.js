@@ -1,14 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { fetchProductsAsync, sortByCategory } from '../slices/allProductsSlice'
 import { useDispatch } from 'react-redux'
-import { findLastIndex } from 'lodash';
 
 
 function SideNav() {
     const dispatch = useDispatch();
     const handleSubmit = async (e) => {
-        console.log(e)
        await dispatch(fetchProductsAsync())
        await dispatch(sortByCategory(e.target.value))
     };

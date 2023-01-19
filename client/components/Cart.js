@@ -1,25 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import {
+    getSingleUser,
+    selectSingleUser,
+    editSingleUser,
+} from "../slices/singleUserSlice";
 import {
     selectGetCart,
-    deleteCart,
     removeFromCart,
-    resetState,
     editProductInDBCart,
+    checkoutCart,
+    checkoutCartSlice,
+    getMyCart,
+    deleteDBCart,
+    addToQuantity,
+    removeToQuantity,
 } from "../slices/cartSlice";
-import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import { useState } from "react";
-import { addToQuantity, removeToQuantity } from "../slices/cartSlice";
-import { getSingleUser } from "../slices/singleUserSlice";
-import { selectSingleUser } from "../slices/singleUserSlice";
-import { deleteDBCart } from "../slices/cartSlice";
-import { getMyCart } from "../slices/cartSlice";
-import { checkoutCart } from "../slices/cartSlice";
-import { checkoutCartSlice } from "../slices/cartSlice";
-import { useNavigate } from "react-router-dom";
-import { editSingleUser } from "../slices/singleUserSlice";
 import { addUserAsync } from "../slices/allUsersSlice";
+import { editSingleProduct } from "../slices/singleProductSlice";
 
 export const Cart = () => {
     const dispatch = useDispatch();
@@ -118,8 +117,8 @@ export const Cart = () => {
 
     const handleDecreaseQuantity = (_dbCart, product) => {
         dispatch(removeToQuantity(product));
-        if (localCart) {
-            const newLocalCart = localCart.map((item) => {
+        if (_dbCart) {
+            const newLocalCart = _dbCart.map((item) => {
                 if (item.id == product.id && item.quantity > 0) {
                     item.quantity--;
                 }
@@ -141,8 +140,8 @@ export const Cart = () => {
 
     const handleDelete = (_dbCart, product) => {
         dispatch(removeFromCart(product.id));
-        if (localCart) {
-            const newLocalCart = localCart.filter((item) => {
+        if (_dbCart) {
+            const newLocalCart = _dbCart.filter((item) => {
                 if (item.id !== product.id) return true;
             });
             localStorage.setItem("cart", JSON.stringify(newLocalCart));
@@ -165,6 +164,13 @@ export const Cart = () => {
                 dispatch(
                     checkoutCart({ id, userId, productId, quantity, completed })
                 );
+                let stockQuantity = item.stockQuantity - quantity;
+                dispatch(editSingleProduct({ id: item.id, stockQuantity }));
+            });
+        } else {
+            cart.map((item) => {
+                let stockQuantity = item.stockQuantity - item.quantity;
+                dispatch(editSingleProduct({ id: item.id, stockQuantity }));
             });
         }
         nav("/");

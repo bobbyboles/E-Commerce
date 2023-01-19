@@ -4,33 +4,34 @@ import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../store/store";
 import { Badge } from "@material-ui/core";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import { selectGetCart } from "../slices/cartSlice";
 import { useEffect } from "react";
-import { selectSingleUser, getSingleUser } from "../slices/singleUserSlice";
-import { addToCart } from "../slices/cartSlice";
-import { selectProducts } from "../slices/allProductsSlice";
-import { getMyHomeCart } from "../slices/cartSlice";
-import { checkoutCartSlice } from "../slices/cartSlice";
+import { getSingleUser } from "../slices/singleUserSlice";
+import {
+    addToCart,
+    checkoutCartSlice,
+    selectGetCart,
+} from "../slices/cartSlice";
 
 const Navbar = () => {
     const cartNum = useSelector(selectGetCart);
-    const allProducts = useSelector(selectProducts);
     const username = useSelector((state) => state.auth.me.username);
     const userId = useSelector((state) => state.auth.me.id);
-    const user = useSelector(selectSingleUser);
     const isLoggedIn = useSelector((state) => !!state.auth.me.id);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
     const logoutAndRedirectHome = () => {
-        dispatch(checkoutCartSlice())
+        dispatch(checkoutCartSlice());
         dispatch(logout());
         navigate("/");
     };
+
     const basicNavStyle = {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
     };
+
     useEffect(() => {
         if (userId) dispatch(getSingleUser(userId));
         const localSt = localStorage.getItem("cart");
@@ -41,15 +42,6 @@ const Navbar = () => {
             }
         }
     }, [dispatch, userId]);
-
-    // if (isLoggedIn && user.products && cartNum.length < 1 && dbCart.length) {
-    //     console.log('fired')
-    //     user.products.map((product) => {
-    //         const newProduct = JSON.parse(JSON.stringify(product));
-    //         newProduct["count"] = product.cart.quantity;
-    //         dispatch(addToCart(newProduct));
-    //     });
-    // }
 
     const cartNumber = cartNum.reduce((acc, item) => {
         acc += item.quantity;
@@ -62,10 +54,11 @@ const Navbar = () => {
                 <div style={basicNavStyle}>
                     <Link to="/home">
                         <img
-                            src="/logo/retrogaming.png"
+                            src="/logo/marioJump.png"
                             style={{ height: 50, width: 100 }}
                         />
                     </Link>
+                    
                     <Link to="/home">Shop</Link>
                     <Link to="/aboutUs">About Us</Link>
                     <Link to={isLoggedIn ? "/account" : "/login"}>

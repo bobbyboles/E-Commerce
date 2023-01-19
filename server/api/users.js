@@ -5,9 +5,7 @@ const {
 
 router.get("/", async (req, res, next) => {
     try {
-        console.log("This is the Token from Router", req.headers.authorization);
         const loggedInUser = await User.findByToken(req.headers.authorization);
-        console.log("this is the logged in user from router", loggedInUser);
         if (loggedInUser.isAdmin === true) {
             const users = await User.findAll({});
             res.send(users);
@@ -21,12 +19,17 @@ router.get("/", async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
     try {
+        const loggedInUser = await User.findByToken(req.headers.authorization);
         const user = await User.findOne({
             where: {
                 id: req.params.id,
-            }
+            },
         });
-        res.send(user);
+        if (user.id == loggedInUser.id) {
+            res.send(user);
+        } else{
+            res.json({email: "Access Denied"})
+        }
     } catch (err) {
         next(err);
     }
