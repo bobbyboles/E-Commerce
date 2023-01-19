@@ -16,9 +16,9 @@ function SideNav() {
       border: '2px solid lightBlue',
       borderRadius: '5px',
       height: '80vh',
-      width: '10vw',
+      width: '8vw',
       padding: '.2em 1em 1em 1em',
-      marginTop: '2.9vh',
+      marginTop: '3.9vh',
       zIndex: '1',
       justifyContent: 'space-evenly',
       alignItems: 'center',
@@ -35,7 +35,8 @@ function SideNav() {
       fontFamily: 'Press Start 2P',
       fontSize: '1em',
       borderRadius: '5px',
-      backgroundColor: '#ffd9b3'
+      backgroundColor: 'black',
+        color:'red'
     };
     const xbox = {
       width: '8vw',
@@ -43,16 +44,16 @@ function SideNav() {
       fontSize: '1em',
       borderRadius: '5px',
       backgroundColor: 'black',
-      color: '#00cc66'
+      color: 'red'
     };
     const wii = {
       width: '8vw',
       height: '3vw',
       fontSize: '1em',
       borderRadius: '5px',
-      backgroundColor: 'white',
+      backgroundColor: 'black',
 
-      color: 'blue'
+      color: 'red'
     };
     const ps3 = {
       width: '8vw',
@@ -60,7 +61,7 @@ function SideNav() {
       fontSize: '1em',
       borderRadius: '5px',
       backgroundColor: 'black',
-      color: 'white'
+      color: 'red'
     };
     const ps2 = {
       width: '8vw',
@@ -68,7 +69,7 @@ function SideNav() {
       fontSize: '1em',
       borderRadius: '5px',
       backgroundColor: 'black',
-      color: '#66ccff'
+      color: 'red'
     };
     const ps = {
       width: '8vw',
@@ -83,15 +84,15 @@ function SideNav() {
       height: '3vw',
       fontSize: '1em',
       borderRadius: '5px',
-      backgroundColor: '#66ff99',
-      color: 'blue'
+      backgroundColor: 'black',
+      color: 'red'
     };
     const snes = {
       width: '8vw',
       height: '3vw',
       fontSize: '1em',
       borderRadius: '5px',
-      backgroundColor: 'white',
+      backgroundColor: 'black',
       color: 'red'
     };
     const nes = {
@@ -104,7 +105,7 @@ function SideNav() {
     };
   return (
     <>
-        <div className='sideNav' style={sideNavStyle}>Filter via your favorite consoles!
+        <div className='sideNav' style={sideNavStyle}>
           <button value='all' onClick={() => dispatch(fetchProductsAsync())} style={all}>All Products</button> 
           <button value='xbox' onClick={handleSubmit} style={xbox}>XBOX</button> 
           <button value='wii' onClick={handleSubmit} style={wii}>Wii</button> 

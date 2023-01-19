@@ -83,6 +83,7 @@ const Home = () => {
     const filterStyle = {
        display: 'flex',
        width: '100vw',
+        height: '10vh',
        justifyContent: 'space-evenly',
        alignItems: 'center',
        border: '2px solid lightBlue',
@@ -92,16 +93,12 @@ const Home = () => {
        position: 'fixed'
     };
     const searchStyle = {
-        position: "relative",
-        margin: "20px",
         color: "#ff33cc",
-        alignItems: "center",
     };
     const sortStyle = {
         display: "flex",
         flexDirection: "column",
         width: "30%",
-        margin: "20px",
         color: "#ff33cc",
         border: "1px solid lightBlue",
         backgroundColor: "rgba(0, 0, 0, 0.7)",
@@ -156,7 +153,7 @@ const Home = () => {
     return (
         <div id="homePage" style={homeStyle}>
             <div id='filterBars' style={filterStyle}>
-                <div id="searchBar" style={searchStyle}>Search for a specific game!
+                <div id="searchBar" style={searchStyle}>Search: 
                 <SideNav />
 
                     <input onChange={handleSearch}></input>
