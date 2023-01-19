@@ -8,7 +8,7 @@ const AboutUs = () => {
     }
     return(
         <div id="about" style={aboutStyle}>
-            <h1>Bunch of Cool Dudes</h1>
+            <h1>Favorite Game Quotes</h1>
             <h3>Armand Arslanian</h3>
             <article>"Sic Parvis Magna" -Mantra of Sir Francis Drake, Uncharted Series </article>
             <br/>
