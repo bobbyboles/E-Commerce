@@ -117,24 +117,24 @@ const SingleProduct = () => {
 
                                 <div className="quantityCounter">
                                     <br />
-                                    <div className="btn-container">
-                                        <button
-                                            className="control__btn"
-                                            onClick={decrease}
-                                        >
-                                            -
-                                        </button>
-                                        <span className="quantityOutput">
+                                    <span className="quantityOutput">
                                             {" "}
-                                            {quantity}{" "}
-                                        </span>
-                                        <button
-                                            className="control__btn"
-                                            onClick={increase}
-                                        >
-                                            +
-                                        </button>
-                                    </div>
+                                           QTY: {quantity}{" "}
+                                        <div className="btn-container">
+                                            <button
+                                                className="control__btn"
+                                                onClick={decrease}
+                                                >
+                                                -
+                                            </button>
+                                            <button
+                                                className="control__btn"
+                                                onClick={increase}
+                                                >
+                                                +
+                                            </button>
+                                        </div>
+                                    </span>
                                 </div>
                             </section>
                         </section>

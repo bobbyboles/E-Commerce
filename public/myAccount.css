@@ -4,20 +4,21 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin-top: 10vh;
+    margin-top: 5vh;
     color: rgb(221, 246, 107);
     text-shadow: 2px 2px 3px #cc99ff;
     line-height: 2.5rem;
     padding: 1em 1em 1em 1em;
     background-color: rgba(0, 0, 0, 0.4);
-    border-radius: 5%;
+    border: 2px solid purple;
+    border-radius: 3%;
 }
 
 #myAccount button {
     border-radius: 5px;
-    background-color: rgb(255, 217, 179);
+    background-color:black;
+    color: red;
     padding: .5em;
-    color: #551A8B;
     font-size: .9em;
     font-weight: bolder;
     text-shadow: 2px 2px 3px rgba(85, 26, 139, 0.3);
@@ -47,22 +48,36 @@
 }
 
 #loginForm {
-    margin-top: 15vh;
+    display: flex;
+    margin-top: 5vh;
+    align-items: center;
+    width: 30vw;
     padding: 1em 1em 1em 1em;
     border-radius: 15px 15px 0 0;
     border: 2px solid purple;
+    color: rgb(221, 246, 107);
+    text-shadow: 2px 2px 3px #cc99ff;
     background-color: rgba(0, 0, 0, 0.4);
     font-size: 1.5em;
   }
 
 #loginForm button {
     border-radius: 5px;
-    background-color: rgb(255, 217, 179);
+    background-color:black;
+    color: red;
+    margin-top: 1.2em;
     padding: 0 .5em 0 .5em;
-    color: #551A8B;
     font-size: .8em;
     font-weight: bolder;
     text-shadow: 2px 2px 3px rgba(85, 26, 139, 0.3);
+}
+
+#loginForm input {
+    background-color: #99ccff;
+    color: #551A8B;
+    font-size: large;
+    text-shadow: 2px 2px 3px rgba(85, 26, 139, 0.3);
+    border-radius: 5px;
 }
 
 #add-user-form {
@@ -82,11 +97,19 @@
     margin-top: 1em;
     margin-bottom: 1em;
     border-radius: 5px;
-    background-color: rgb(255, 217, 179);
+    background-color:black;
+    color: red;
     padding: 0 .5em 0 .5em;
-    color: #551A8B;
     font-size: 1.2em;
     font-weight: bolder;
     text-shadow: 2px 2px 3px rgba(85, 26, 139, 0.3);
+}
+
+#add-user-form input {
+    background-color: #99ccff;
+    color: #551A8B;
+    font-size: large;
+    text-shadow: 2px 2px 3px rgba(85, 26, 139, 0.3);
+    border-radius: 5px;
 }
 

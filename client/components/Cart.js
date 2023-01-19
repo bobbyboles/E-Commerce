@@ -191,7 +191,9 @@ export const Cart = () => {
                                           {product.productName}
                                       </Link>
                                   </h2>
+                                  <div id="cartTest">
                                   <h3 className="productAtt">Price:{product.price}</h3>
+                                  <h3 className="productAtt">Quantity:{product.quantity}</h3>
                                   <button
                                       onClick={() =>
                                           handleDecreaseQuantity(
@@ -199,11 +201,11 @@ export const Cart = () => {
                                               product
                                           )
                                       }
+                                      id='remove'
                                       className='productButtons'
                                   >
                                      - 
                                   </button>
-                                  <h3 className="productAtt">Quantity:{product.quantity}</h3>
                                   <button
                                       onClick={() =>
                                           handleIncreaseQuantity(
@@ -211,27 +213,30 @@ export const Cart = () => {
                                               product
                                           )
                                       }
+                                      id='add'
                                       className="productButtons"
                                   >
                                   +   
                                   </button>
-                                  <h3 className="productAtt">
+                                  {/* <h3 className="productAtt">
                                       Total:{product.price * product.quantity}
-                                  </h3>
+                                  </h3> */}
                                   <button
                                       onClick={() =>
                                           handleDelete(localCart, product)
                                       }
+                                      id='remove-all'
                                       className='productButtons'
                                   >
-                                 X 
+                                 x 
                                   </button>
+                                  </div>
                               </div>
                           );
                       })
                     : "There is nothing in your cart!"}
             </div>
-            <div>GRAND TOTAL: {cartTotal}</div>
+            <div id="grand-total">GRAND TOTAL: $ {cartTotal}</div>
             <form id="edit-user-form" onSubmit={handleSubmit}>
                 <h3>Shipping Information</h3>
 

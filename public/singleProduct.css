@@ -8,9 +8,9 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    margin-top: 10vh;
+    margin-top: 5vh;
     width: 100vw;
-    color: #551A8B;
+    color: rgb(85, 26, 139);
 }
 
 #single-product-info p {
@@ -31,7 +31,28 @@
     overflow: hidden;
 }
 
+#productBottom {
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 1.5em;
+    width: 14vw;
+    padding: 0 2em 0 2em;
+    overflow: visible;
+}
+
+#productName {
+    margin: 2em 0 0 0;
+}
+
+#productPrice {
+    margin: .5em 0 0 0;
+}
+
 .quantityOutput {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
     font-weight: bolder;
     text-shadow: 2px 2px 3px rgba(85, 26, 139, 0.3);
 }
@@ -42,7 +63,18 @@
     border: 1px solid red;
     align-items: center;
     margin-top: 2em;
+    padding: 0 2em 0 2em;
     background-color: rgb(255, 217, 179);
+}
+
+#colorContainer h1 {
+    margin: .3em;
+    text-align: center;
+    line-height: 1.5em;
+}
+
+#colorContainer p {
+    line-height: 1.5em;
 }
 
 #priceColorContainer {
@@ -56,9 +88,12 @@
 }
 
 #priceColorContainer button {
-    background-color: rgb(255, 217, 179);
+    background-color:black;
+    color: red;
     border-radius: 5px;
     padding: .5em;
     font-weight: bolder;
     text-shadow: 2px 2px 3px rgba(85, 26, 139, 0.3);
 }
+
+

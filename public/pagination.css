@@ -1,6 +1,7 @@
 .pagination-container {
   display: flex;
   list-style-type: none;
+  margin-top: 0;
 }
 
 .pagination-item {
@@ -8,7 +9,7 @@
   height: 32px;
   text-align: center;
   margin: auto 4px;
-  color: rgba(0, 0, 0, 0.87);
+  color: rgba(85, 26, 139, 0.87);
   display: flex;
   box-sizing: border-box;
   align-items: center;
@@ -24,12 +25,13 @@
   cursor: default;
 }
 .pagination-item:hover {
-  background-color: rgba(0, 0, 0, 0.04);
+  background-color: rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
 
 .pagination-item.selected {
-  background-color: rgba(0, 0, 0, 0.08);
+  border: 2px solid purple;
+  background-color: rgba(255, 217, 179, 0.8);
 }
 
     
