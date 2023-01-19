@@ -84,7 +84,7 @@ const Home = () => {
     const filterStyle = {
        display: 'flex',
        width: '100vw',
-        height: '10vh',
+        height: '9vh',
        justifyContent: 'space-evenly',
        alignItems: 'center',
        border: '2px solid lightBlue',

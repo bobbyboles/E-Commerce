@@ -32,9 +32,8 @@ const AddUserForm = () => {
 
     return(
         <div>
-            {/* <div id="addUserFormContainer"> */}
                 <form id="add-user-form" onSubmit={handleSubmit}>
-                <h3>Add New User: </h3>
+                <h3>Create Account: </h3>
 
                     <label htmlFor="username">User Name:</label>
                     <input
@@ -85,9 +84,8 @@ const AddUserForm = () => {
                     onChange={(e) => setPhone(e.target.value)}
                     />
 
-                    <button type="submit">Create New User</button>
+                    <button type="submit">Create Account</button>
                 </form>
-            {/* </div> */}
       </div>
     )
 }

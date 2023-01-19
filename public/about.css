@@ -1,13 +1,19 @@
 #about {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: 1.5rem;
+    color: rgb(221, 246, 107);
+    text-shadow: 2px 2px 3px rgba(85, 26, 139, 0.3);
+    width: 90vh;
+    padding: 2em;
+    margin-top: 5vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    line-height: 2.5rem;
+    border-radius: 5%;
 }
 
-#aboutBody {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 8vh;
-    padding: 1rem;
+#about h1 {
+    text-decoration: underline;
 }

@@ -27,6 +27,7 @@ const MyAccount = () => {
     return (
         <div id="myAccount">
             <h1>My Account</h1>
+            <span>
             <h4>User Options: </h4>
             <button
                 onClick={() => {
@@ -48,6 +49,7 @@ const MyAccount = () => {
             >
                 Order History
             </button>
+            </span>
             {singleUser.isAdmin ? (
                 <>
                     <button
