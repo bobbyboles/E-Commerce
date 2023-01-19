@@ -74,11 +74,12 @@ const Home = () => {
         flexWrap: "wrap",
         gap: 20,
         height: "100%",
+        marginTop: '12vh'
         // borderRadius: '12px'
     };
     const homeStyle = {
-        top: '20px',
-        margin: '30px'
+        top: '12vh',
+        marginTop: '30px',
     };
     const filterStyle = {
        display: 'flex',
@@ -118,7 +119,7 @@ const Home = () => {
         // flexWrap: "wrap",
         textAlign: "center",
         width: "18%",
-        marginTop: '5vh',
+        // marginTop: '12vh',
         alignItems: "center",
         // height: "100%",
         justifyContent: "center",
