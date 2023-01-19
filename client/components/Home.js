@@ -64,23 +64,26 @@ const Home = () => {
     const simpleStyle = {
         display: "flex",
         flexDirection: "row",
+        justifyContent: 'right',
         flexWrap: "wrap",
         gap: 20,
         height: "100%",
+        // borderRadius: '12px'
     };
     const homeStyle = {
-        position: 'relative',
         top: '20px',
         margin: '30px'
     };
     const filterStyle = {
        display: 'flex',
-       width: '170vh',
+       width: '100vw',
        justifyContent: 'space-evenly',
        alignItems: 'center',
        border: '2px solid lightBlue',
-       margin: '50px',
+       marginTop: '35px',
+       left: '0',
        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+       position: 'fixed'
     };
     const searchStyle = {
         position: 'relative',
@@ -109,13 +112,15 @@ const Home = () => {
     const productStyle = {
         display: "flex",
         border: "2px solid purple",
-        flexWrap: "wrap",
+        // flexWrap: "wrap",
         textAlign: "center",
         width: "18%",
+        marginTop: '5vh',
         alignItems: "center",
-        height: "100%",
+        // height: "100%",
         justifyContent: "center",
         backgroundColor: "rgba(0, 0, 0, 0.4)",
+        borderRadius: '5px',
         overflow: "hidden",
     };
     const productNameStyle = {
@@ -146,6 +151,7 @@ const Home = () => {
         <div id="homePage" style={homeStyle}>
             <div id='filterBars' style={filterStyle}>
                 <div id="searchBar" style={searchStyle}>Search for a specific game!
+                <SideNav />
                     <input onChange={handleSearch}></input>
                 </div>
                 <div id="AllProductSorting" style={sortStyle}>
@@ -159,7 +165,6 @@ const Home = () => {
                     </select>
                 </div>
             </div>
-            <SideNav />
 
             <div id="products" style={simpleStyle}>
                 {products && products.length

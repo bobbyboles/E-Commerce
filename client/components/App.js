@@ -23,9 +23,9 @@ const App = () => {
 
     return (
         <>
-            <div>
+            {/* <div> */}
                 <Navbar />
-            </div>
+            {/* </div> */}
             <Routes>
                 <Route path="/*" element={<Home />} />
                 <Route to="/home" element={<Home />} />

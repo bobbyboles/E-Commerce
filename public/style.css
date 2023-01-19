@@ -1,13 +1,28 @@
 body {
   display: flex;
+  /* flex-wrap: wrap; */
   justify-content: center;
-  margin: 8px auto;
+  margin: 0 auto;
+  width: 100vw;
   font-family: sans-serif;
   background-image: url(https://i.pcmag.com/imagery/articles/00uIkjCE1t4ZULXF2djBOON-18..v1595619996.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   font-family: 'Press Start 2P';
+}
+
+#app {
+  display: flex;
+  justify-content: center;
+  width: 80vw;
+}
+
+#loginForm {
+  margin-top: 8vh;
+  padding: 1em 1em 1em 1em;
+  border-radius: 5px 5px 0 0;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 a {

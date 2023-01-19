@@ -27,7 +27,7 @@ const AuthForm = ({ name, displayName }) => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit} name={name}>
+            <form id="loginForm" onSubmit={handleSubmit} name={name}>
                 <div>
                     <label htmlFor="username">
                         <small>Username</small>

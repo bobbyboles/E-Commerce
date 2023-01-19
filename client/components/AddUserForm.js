@@ -32,60 +32,62 @@ const AddUserForm = () => {
 
     return(
         <div>
-            <form id="add-user-form" onSubmit={handleSubmit}>
-            <h3>Add New User: </h3>
+            {/* <div id="addUserFormContainer"> */}
+                <form id="add-user-form" onSubmit={handleSubmit}>
+                <h3>Add New User: </h3>
 
-                <label htmlFor="username">User Name:</label>
-                <input
-                name="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                />
+                    <label htmlFor="username">User Name:</label>
+                    <input
+                    name="username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    />
 
-                <label htmlFor="password">Password:</label>
-                <input
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                />
+                    <label htmlFor="password">Password:</label>
+                    <input
+                    name="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    />
 
-                <label htmlFor="firstName">First Name:</label>
-                <input
-                name="firstName"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                />
+                    <label htmlFor="firstName">First Name:</label>
+                    <input
+                    name="firstName"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    />
 
-                <label htmlFor="lastName">Last Name:</label>
-                <input
-                name="lastName"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                />
+                    <label htmlFor="lastName">Last Name:</label>
+                    <input
+                    name="lastName"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    />
 
-                <label htmlFor="email">Email:</label>
-                <input
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                />
+                    <label htmlFor="email">Email:</label>
+                    <input
+                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    />
 
-                <label htmlFor="address">Home Address:</label>
-                <input
-                name="address"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                />
+                    <label htmlFor="address">Home Address:</label>
+                    <input
+                    name="address"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    />
 
-                <label htmlFor="phone">Phone Number:</label>
-                <input
-                name="phone"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                />
+                    <label htmlFor="phone">Phone Number:</label>
+                    <input
+                    name="phone"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    />
 
-                <button type="submit">Create New User</button>
-            </form>
+                    <button type="submit">Create New User</button>
+                </form>
+            {/* </div> */}
       </div>
     )
 }
