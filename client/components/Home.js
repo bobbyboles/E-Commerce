@@ -111,15 +111,12 @@ const Home = () => {
         color: '#ff33cc',
     };
     const imgStyle = {
-        display: "flex",
+        margin: 0,        
         height: 150,
-        display: "block",
-        marginLeft: "auto",
-        marginRight: "auto",
-        marginTop: "15px",
     };
     const productStyle = {
         display: "flex",
+        flexDirection: 'column',
         border: "2px solid purple",
         textAlign: "center",
         width: "18%",
@@ -217,6 +214,7 @@ const Home = () => {
                                                   deleteProductAsync(product.id)
                                               );
                                           }}
+                                          id='adminDelete'
                                       >
                                           Delete
                                       </button>

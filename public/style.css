@@ -17,6 +17,11 @@ body {
   width: 80vw;
 }
 
+#adminDelete {
+  background-color: black;
+  color: red;
+}
+
 a {
   text-decoration: none;
 }
