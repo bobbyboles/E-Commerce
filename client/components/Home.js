@@ -150,9 +150,9 @@ const Home = () => {
 
     return (
         <div id="homePage" style={homeStyle}>
-            <div id="filterBars" style={filterStyle}>
-                <div id="searchBar" style={searchStyle}>
-                    Search for a specific game!
+            <div id='filterBars' style={filterStyle}>
+                <div id="searchBar" style={searchStyle}>Search for a specific game!  
+
                     <input onChange={handleSearch}></input>
                 </div>
                 <div id="AllProductSorting" style={sortStyle}>

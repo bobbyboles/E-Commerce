@@ -2,8 +2,11 @@ import React from "react";
 
 
 const AboutUs = () => {
+    const aboutStyle = {
+        top: '1000px'
+    }
     return(
-        <div id="about">
+        <div id="about" style={aboutStyle}>
             <h1>Bunch of Cool Dudes</h1>
             <h3>Armand Arslanian</h3>
             <article>"Sic Parvis Magna" -Mantra of Sir Francis Drake, Uncharted Series </article>
