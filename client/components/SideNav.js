@@ -51,6 +51,7 @@ function SideNav() {
       fontSize: '1em',
       borderRadius: '5px',
       backgroundColor: 'white',
+
       color: 'blue'
     };
     const ps3 = {

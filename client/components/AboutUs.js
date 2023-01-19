@@ -3,13 +3,24 @@ import React from "react";
 
 
 const AboutUs = () => {
+    const aboutStyle = {
+        top: '1000px'
+    }
     return(
-        <div id="about">
-            <div id="aboutBody">
+        <div id="about" style={aboutStyle}>
             <h1>Bunch of Cool Dudes</h1>
-            <article>“It is a truth universally acknowledged, that a single web developer in possession of a good fortune, must be in want of a spouse.”</article>
-            <article>We here at Retro Gaming hold these truths to be self evident! Relationships are just between tables in a database</article>
-            </div>
+            <h3>Armand Arslanian</h3>
+            <article>"Sic Parvis Magna" -Mantra of Sir Francis Drake, Uncharted Series </article>
+            <br/>
+            <h3>Robert Boles</h3>
+            <article>"LEEERRRROOOOYYYYYYYYYY JEENNNKINS" -Human Paladin Leeroy Jenkins, World of Warcraft </article>
+            <br/>
+            <h3>David Zheng</h3>
+            <article>"Sir, request permission to leave the station. (Lord Hood: For what purpose?) To give the covenant back their bomb" -John 117 Master Chief, Halo Series </article>
+            <br/>
+            <h3>Joseph Mealor</h3>
+            <article>"I Survived Because The Fire Inside Me Burned Brighter Than The Fire Around Me." - Joshua Graham, Fallout NV</article>
+            <br/>
         </div>
     )
 }
