@@ -1,0 +1,37 @@
+#cart_container {
+    display: flex;
+    flex-direction:column;
+    margin-top: 5em;
+    justify-content:center;
+    align-items:center
+}
+#product_container {
+    /* display: flex */
+}
+.cart {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+#checkout {
+    text-align: center;
+    margin-top: 2em;
+    height:10em;
+    width:10em;
+    background-color:black;
+    color: red
+}
+#edit-user-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ff33cc
+}
+.productAtt {
+    color: #ff39cc;
+}
+.productButtons{
+    background-color:black;
+    color: red
+}
