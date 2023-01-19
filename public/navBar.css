@@ -20,3 +20,8 @@
    text-decoration: underline;
    color: #ffd9b3;
 }
+
+#logoutBtn {
+    background-color:black;
+    color: red
+}

@@ -18,7 +18,7 @@ function SideNav() {
       height: '80vh',
       width: '8vw',
       padding: '.2em 1em 1em 1em',
-      marginTop: '3.9vh',
+      marginTop: '2.7vh',
       zIndex: '1',
       justifyContent: 'space-evenly',
       alignItems: 'center',

@@ -74,8 +74,7 @@ const Home = () => {
         flexWrap: "wrap",
         gap: 20,
         height: "100%",
-        marginTop: '12vh'
-        // borderRadius: '12px'
+        marginTop: '9vh'
     };
     const homeStyle = {
         top: '12vh',
@@ -84,7 +83,7 @@ const Home = () => {
     const filterStyle = {
        display: 'flex',
        width: '100vw',
-        height: '9vh',
+        height: '5vh',
        justifyContent: 'space-evenly',
        alignItems: 'center',
        border: '2px solid lightBlue',
@@ -95,15 +94,21 @@ const Home = () => {
     };
     const searchStyle = {
         color: "#ff33cc",
+        backgroundColor: '#99ccff',
+        width: '100%'
     };
     const sortStyle = {
         display: "flex",
         flexDirection: "column",
-        width: "30%",
+        width: "15%",
         color: "#ff33cc",
-        border: "1px solid lightBlue",
-        backgroundColor: "rgba(0, 0, 0, 0.7)",
         padding: "10px",
+    };
+    const dropdownColor = {
+        backgroundColor: '#99ccff',
+    };
+    const dropdownElColor = {
+        color: '#ff33cc',
     };
     const imgStyle = {
         display: "flex",
@@ -116,15 +121,12 @@ const Home = () => {
     const productStyle = {
         display: "flex",
         border: "2px solid purple",
-        // flexWrap: "wrap",
         textAlign: "center",
         width: "18%",
-        // marginTop: '12vh',
         alignItems: "center",
-        // height: "100%",
         justifyContent: "center",
         backgroundColor: "rgba(0, 0, 0, 0.4)",
-        borderRadius: '5px',
+        borderRadius: '3%',
         overflow: "hidden",
     };
     const productNameStyle = {
@@ -154,14 +156,14 @@ const Home = () => {
     return (
         <div id="homePage" style={homeStyle}>
             <div id='filterBars' style={filterStyle}>
-                <div id="searchBar" style={searchStyle}>Search: 
+                <div id="searchBar" style={dropdownElColor}>Search: 
                 <SideNav />
 
-                    <input onChange={handleSearch}></input>
+                    <input style={searchStyle} onChange={handleSearch}></input>
                 </div>
                 <div id="AllProductSorting" style={sortStyle}>
-                    <label>Sort by</label>
-                    <select className="sortBy" onChange={handleSort}>
+                    <label>Sort by:</label>
+                    <select className="sortBy" style={dropdownColor} onChange={handleSort}>
                         <option value="select">-Select-</option>
                         <option value="titleaz">Title A-Z</option>
                         <option value="titleza">Title Z-A</option>
@@ -189,6 +191,7 @@ const Home = () => {
                                           src={product.imageUrl}
                                           style={imgStyle}
                                       ></img>
+                                      <div id="productBottom">
                                       <h2
                                           id="productName"
                                           style={productNameStyle}
@@ -204,7 +207,8 @@ const Home = () => {
                                           </h3>
                                       ) : (
                                           <h3>OUT OF STOCK</h3>
-                                      )}
+                                          )}
+                                        </div>
                                   </Link>
                                   {user.isAdmin && (
                                       <button
@@ -221,7 +225,6 @@ const Home = () => {
                           );
                       })
                     : null}
-            </div>
             <Pagination
                 className="pagination-bar"
                 currentPage={currentPage}
@@ -229,6 +232,7 @@ const Home = () => {
                 pageSize={PageSize}
                 onPageChange={(page) => setCurrentPage(page)}
             />
+            </div>
         </div>
     );
 };

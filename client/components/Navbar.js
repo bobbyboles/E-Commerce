@@ -70,6 +70,7 @@ const Navbar = () => {
                             <button
                                 type="button"
                                 onClick={logoutAndRedirectHome}
+                                id='logoutBtn'
                             >
                                 Logout
                             </button>
