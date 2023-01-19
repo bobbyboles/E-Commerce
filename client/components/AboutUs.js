@@ -18,7 +18,7 @@ const AboutUs = () => {
             <article>"Sir, request permission to leave the station. (Lord Hood: For what purpose?) To give the covenant back their bomb" -John 117 Master Chief, Halo Series </article>
             <br/>
             <h3>Joseph Mealor</h3>
-            <article>???</article>
+            <article>"I Survived Because The Fire Inside Me Burned Brighter Than The Fire Around Me." - Joshua Graham, Fallout NV</article>
             <br/>
         </div>
     )
