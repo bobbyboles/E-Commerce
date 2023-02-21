@@ -3,11 +3,8 @@ import React from "react";
 
 
 const AboutUs = () => {
-    const aboutStyle = {
-        top: '1000px'
-    }
     return(
-        <div id="about" style={aboutStyle}>
+        <div>
             <h1>Favorite Game Quotes</h1>
             <h3>Armand Arslanian</h3>
             <article>"Sic Parvis Magna" -Mantra of Sir Francis Drake, Uncharted Series </article>

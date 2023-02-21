@@ -7,7 +7,7 @@ const AdminViewUsers = () => {
    const users = useSelector(selectUsers);
 
    return (
-      <div className='User-table'>
+      <div >
          <h3>View User Information:</h3>
          <table>
             <tr>

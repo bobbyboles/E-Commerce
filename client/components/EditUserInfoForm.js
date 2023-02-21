@@ -45,7 +45,7 @@ const EditUserForm = () => {
 
     return (
         <>
-            <form id="edit-user-form" onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
             <h3>View/Edit Account Information: </h3>
 
                 <label htmlFor="username">User Name:</label>

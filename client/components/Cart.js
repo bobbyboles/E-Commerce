@@ -177,13 +177,13 @@ export const Cart = () => {
     };
 
     return (
-        <div id="cart_container">
-            <div id="product_container">
+        <div>
+            <div>
                 {cart && cart.length
                     ? cart.map((product) => {
                           return (
-                              <div className="cart" key={product.id}>
-                                  <h2 id="product">
+                              <div key={product.id}>
+                                  <h2>
                                       <Link
                                           to={`/products/${product.id}`}
                                           key={`All Products: ${product.id}`}
@@ -191,53 +191,44 @@ export const Cart = () => {
                                           {product.productName}
                                       </Link>
                                   </h2>
-                                  <div id="cartTest">
-                                  <h3 className="productAtt">Price:{product.price}</h3>
-                                  <h3 className="productAtt">Quantity:{product.quantity}</h3>
-                                  <button
-                                      onClick={() =>
-                                          handleDecreaseQuantity(
-                                              localCart,
-                                              product
-                                          )
-                                      }
-                                      id='remove'
-                                      className='productButtons'
-                                  >
-                                     - 
-                                  </button>
-                                  <button
-                                      onClick={() =>
-                                          handleIncreaseQuantity(
-                                              localCart,
-                                              product
-                                          )
-                                      }
-                                      id='add'
-                                      className="productButtons"
-                                  >
-                                  +   
-                                  </button>
-                                  {/* <h3 className="productAtt">
-                                      Total:{product.price * product.quantity}
-                                  </h3> */}
-                                  <button
-                                      onClick={() =>
-                                          handleDelete(localCart, product)
-                                      }
-                                      id='remove-all'
-                                      className='productButtons'
-                                  >
-                                 x 
-                                  </button>
+                                  <div>
+                                      <h3>Price:{product.price}</h3>
+                                      <h3>Quantity:{product.quantity}</h3>
+                                      <button
+                                          onClick={() =>
+                                              handleDecreaseQuantity(
+                                                  localCart,
+                                                  product
+                                              )
+                                          }
+                                      >
+                                          -
+                                      </button>
+                                      <button
+                                          onClick={() =>
+                                              handleIncreaseQuantity(
+                                                  localCart,
+                                                  product
+                                              )
+                                          }
+                                      >
+                                          +
+                                      </button>
+                                      <button
+                                          onClick={() =>
+                                              handleDelete(localCart, product)
+                                          }
+                                      >
+                                          x
+                                      </button>
                                   </div>
                               </div>
                           );
                       })
                     : "There is nothing in your cart!"}
             </div>
-            <div id="grand-total">GRAND TOTAL: $ {cartTotal}</div>
-            <form id="edit-user-form" onSubmit={handleSubmit}>
+            <div >GRAND TOTAL: $ {cartTotal}</div>
+            <form onSubmit={handleSubmit}>
                 <h3>Shipping Information</h3>
 
                 <label htmlFor="username">User Name:</label>
@@ -282,11 +273,13 @@ export const Cart = () => {
                     onChange={(e) => setPhone(e.target.value)}
                 />
 
-                <button type="submit" className="productButtons">Update Information</button>
-            </form>
-                <button id='checkout' onClick={() => handleCheckout(cart, userId)}>
-                    Checkout
+                <button type="submit" >
+                    Update Information
                 </button>
+            </form>
+            <button  onClick={() => handleCheckout(cart, userId)}>
+                Checkout
+            </button>
         </div>
     );
 };

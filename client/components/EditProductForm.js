@@ -42,7 +42,7 @@ const EditProductForm = () => {
 
     return (
         <>
-            <form id="edit-product-form" onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
             <h3>View/Edit Product Information: </h3>
 
                 <label htmlFor="productName">Product Name:</label>
