@@ -65,104 +65,19 @@ const Home = () => {
         }
     };
 
-    /////////////////////////////////////////////////// BEGIN CSS ///////////////////////////////////////////////////
-
-    const simpleStyle = {
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "right",
-        flexWrap: "wrap",
-        gap: 20,
-        height: "100%",
-        marginTop: "9vh",
-    };
-    const homeStyle = {
-        top: "12vh",
-        marginTop: "30px",
-    };
-    const filterStyle = {
-        display: "flex",
-        width: "100vw",
-        height: "5vh",
-        justifyContent: "space-evenly",
-        alignItems: "center",
-        border: "2px solid lightBlue",
-        marginTop: "35px",
-        left: "0",
-        backgroundColor: "rgba(0, 0, 0, 0.7)",
-        position: "fixed",
-    };
-    const searchStyle = {
-        color: "#ff33cc",
-        backgroundColor: "#99ccff",
-        width: "100%",
-    };
-    const sortStyle = {
-        display: "flex",
-        flexDirection: "column",
-        width: "15%",
-        color: "#ff33cc",
-        padding: "10px",
-    };
-    const dropdownColor = {
-        backgroundColor: "#99ccff",
-    };
-    const dropdownElColor = {
-        color: "#ff33cc",
-    };
-    const imgStyle = {
-        margin: 0,        
-        height: 150,
-    };
-    const productStyle = {
-        display: "flex",
-        flexDirection: 'column',
-        border: "2px solid purple",
-        textAlign: "center",
-        width: "18%",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "rgba(0, 0, 0, 0.4)",
-        borderRadius: "3%",
-        overflow: "hidden",
-    };
-    const productNameStyle = {
-        display: "flex",
-        border: "1px solid red",
-        backgroundColor: "#ffd9b3",
-        height: "60px",
-        width: "100%",
-        alignItems: "center",
-        justifyContent: "center",
-        fontFamily: "Press Start 2P, serif",
-        fontSize: "17px",
-    };
-    const productPriceStyle = {
-        display: "flex",
-        border: "1px solid red",
-        backgroundColor: "#99ccff",
-        height: "28px",
-        width: "100%",
-        alignItems: "center",
-        justifyContent: "center",
-        fontSize: "14px",
-    };
-
-    /////////////////////////////////////////////////// END CSS ///////////////////////////////////////////////////
-
     return (
-        <div id="homePage" style={homeStyle}>
-            <div id="filterBars" style={filterStyle}>
-                <div id="searchBar" style={dropdownElColor}>
+        <div id="homePage" >
+            <div id="filterBars" >
+                <div id="searchBar" >
                     Search:
                     <SideNav />
-                    <input style={searchStyle} onChange={handleSearch}></input>
+                    <input  onChange={handleSearch}></input>
                 </div>
-                <div id="AllProductSorting" style={sortStyle}>
+                <div id="AllProductSorting" >
                     <label>Sort by:</label>
                     <select
                         className="sortBy"
-                        style={dropdownColor}
+                        
                         onChange={handleSort}
                     >
                         <option value="select">-Select-</option>
@@ -174,7 +89,7 @@ const Home = () => {
                 </div>
             </div>
 
-            <div id="products" style={simpleStyle}>
+            <div> 
                 {currentTableData && currentTableData.length
                     ? currentTableData.map((product) => {
                           console.log(
@@ -183,9 +98,7 @@ const Home = () => {
                           );
                           return (
                               <div
-                                  className="product"
                                   key={product.id}
-                                  style={productStyle}
                               >
                                   <Link
                                       to={`/products/${product.id}`}
@@ -193,19 +106,16 @@ const Home = () => {
                                   >
                                       <img
                                           src={product.imageUrl}
-                                          style={imgStyle}
                                       ></img>
                                       <div id="productBottom">
                                           <h2
                                               id="productName"
-                                              style={productNameStyle}
                                           >
                                               {product.productName}
                                           </h2>
                                           {product.stockQuantity ? (
                                               <h3
                                                   id="productPrice"
-                                                  style={productPriceStyle}
                                               >
                                                   $ {product.price}
                                               </h3>
@@ -222,7 +132,6 @@ const Home = () => {
                                                   deleteProductAsync(product.id)
                                               );
                                           }}
-                                          id='adminDelete'
                                       >
                                           Delete
                                       </button>

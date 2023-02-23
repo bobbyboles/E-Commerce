@@ -7,7 +7,7 @@ const OrderHistory = () => {
     const orderHistory = useSelector(selectOrderHistory)
 
     return(
-        <div id='order-history-container'>
+        <div> 
             <div>
                 {orderHistory ? orderHistory.map((order) => {
                     return(

@@ -85,18 +85,18 @@ const SingleProduct = () => {
     };
 
     return (
-        <div id="single-product">
-            <div id="single-product-info" style={singleProductStyle}>
+        <div> 
+            <div>
                 {singleUser.isAdmin ? (
                     <EditProductForm />
                 ) : (
-                    <div id="productContainer">
+                    <div>
                         <img src={`${imageUrl}`} height="400px" />
-                        <section id="colorContainer">
+                        <section>
                             <h1>{productName}</h1>
                             <h3>Category: {category}</h3>
                             <p>Details: {description}</p>
-                            <section id="priceColorContainer">
+                            <section>
                                 <h3>Price: $ {price}</h3>
                                 {stockQuantity > 0 ? (
                                     <button
@@ -115,12 +115,12 @@ const SingleProduct = () => {
                                     <div>OUT OF STOCK</div>
                                 )}
 
-                                <div className="quantityCounter">
+                                <div>
                                     <br />
-                                    <span className="quantityOutput">
+                                    <span>
                                             {" "}
                                            QTY: {quantity}{" "}
-                                        <div className="btn-container">
+                                        <div>
                                             <button
                                                 className="control__btn"
                                                 onClick={decrease}

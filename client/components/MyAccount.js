@@ -25,7 +25,7 @@ const MyAccount = () => {
     }, [dispatch, userId]);
 
     return (
-        <div id="myAccount">
+        <div> 
             <h1>My Account</h1>
             <span>
             <h4>User Options: </h4>

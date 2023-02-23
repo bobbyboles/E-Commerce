@@ -26,11 +26,6 @@ const Navbar = () => {
         navigate("/");
     };
 
-    const basicNavStyle = {
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-    };
 
     useEffect(() => {
         if (userId) dispatch(getSingleUser(userId));
@@ -49,9 +44,9 @@ const Navbar = () => {
     }, 0);
 
     return (
-        <div id="navbarContainer">
-            <nav id="navbarContainerEl">
-                <div style={basicNavStyle}>
+        <div >
+            <nav>
+                <div>
                     <Link to="/home">
                         <img
                             src="/logo/marioJump.png"
@@ -70,7 +65,6 @@ const Navbar = () => {
                             <button
                                 type="button"
                                 onClick={logoutAndRedirectHome}
-                                id='logoutBtn'
                             >
                                 Logout
                             </button>
@@ -89,7 +83,7 @@ const Navbar = () => {
                     </Link>
                 </div>
             </nav>
-            <hr />
+            <hr/>
         </div>
     );
 };

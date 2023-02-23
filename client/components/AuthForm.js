@@ -14,14 +14,6 @@ const AuthForm = ({ name, displayName }) => {
         const username = evt.target.username.value;
         const password = evt.target.password.value;
         dispatch(authenticate({ username, password, method: formName }));
-        // if(cart.length){
-        //     cart.map(async(item)=>{
-        //         console.log("THIS IS AN ITEM IN THE CHECK", item)
-        //         const quantity = item.quantity
-        //         const productId = item.id
-        //         await dispatch(addProductToDBCart({quantity, userId, productId })) 
-        //     })
-        // }
         nav("/");
     };
 
